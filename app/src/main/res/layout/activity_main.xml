@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tech.fuge.www.forgotheadfirstandroid.MainActivity">
+    tools:context="tech.fuge.www.forgotheadfirstandroid.activity.MainActivity">
 
     <TextView
         android:id="@+id/sample_text"

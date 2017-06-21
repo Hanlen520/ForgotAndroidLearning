@@ -1,8 +1,10 @@
-package tech.fuge.www.forgotheadfirstandroid;
+package tech.fuge.www.forgotheadfirstandroid.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import tech.fuge.www.forgotheadfirstandroid.R;
 
 public class MainActivity extends AppCompatActivity {
 
