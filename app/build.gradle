@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.antfortune.freeline'
 
 android {
     compileSdkVersion 26
@@ -15,10 +16,37 @@ android {
                 cppFlags ""
             }
         }
+        multiDexEnabled true
+    }
+
+    productFlavors {
+        dev {
+            // Enable pre-dexing to produce an APK that can be tested on
+            // Android 5.0+ without the time-consuming DEX build processes.
+            minSdkVersion 21
+            //only package english translations, and xxhdpi resources
+            resConfigs ("cn", "xxhdpi")
+        }
+        prod {
+            // The actual minSdkVersion for the production version.
+            minSdkVersion 15
+        }
+
+    }
+
+    freeline {
+        hack true
+        productFlavor 'dev'
+    }
+
+
+    /*PNG优化在默认情况下是打开的，我们可以在开发模式下禁用*/
+    if (project.hasProperty('devBuild')){
+        aaptOptions.cruncherEnabled = false
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -34,7 +62,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.android.support:appcompat-v7:26.0.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 }

@@ -3,9 +3,9 @@
 
 extern "C"
 JNIEXPORT jstring JNICALL
-Java_tech_fuge_www_forgotheadfirstandroid_MainActivity_stringFromJNI(
+Java_tech_fuge_www_forgotheadfirstandroid_activity_MainActivity_stringFromJNI(
         JNIEnv *env,
         jobject /* this */) {
-    std::string hello = "Hello from C++";
+    std::string hello = "Hello from C++,再测试一下Freeline";
     return env->NewStringUTF(hello.c_str());
 }
