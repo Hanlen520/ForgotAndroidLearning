@@ -25,7 +25,8 @@ android {
             // Android 5.0+ without the time-consuming DEX build processes.
             minSdkVersion 21
             //only package english translations, and xxhdpi resources
-            resConfigs("cn", "xxhdpi")
+            //设置为开发模式 只打包中文和xxhdpi资源，节省打包时间
+//            resConfigs("cn", "xxhdpi")
         }
         prod {
             // The actual minSdkVersion for the production version.

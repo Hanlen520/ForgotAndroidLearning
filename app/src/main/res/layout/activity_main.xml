@@ -7,8 +7,17 @@
     tools:context="tech.fuge.www.forgotheadfirstandroid.activity.MainActivity">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="内容测试2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/test_string"
         android:textSize="30sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"/>
+    <Button
+        android:id="@+id/btn_wine_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="啤酒推荐"/>
 </LinearLayout>
