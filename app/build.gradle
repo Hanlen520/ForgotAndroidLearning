@@ -1,9 +1,9 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.antfortune.freeline'
+//apply plugin: 'com.antfortune.freeline'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "25.0.3"
+    buildToolsVersion '26.0.0 rc2'
     defaultConfig {
         applicationId "tech.fuge.www.forgotheadfirstandroid"
         minSdkVersion 15
@@ -25,7 +25,7 @@ android {
             // Android 5.0+ without the time-consuming DEX build processes.
             minSdkVersion 21
             //only package english translations, and xxhdpi resources
-            resConfigs ("cn", "xxhdpi")
+            resConfigs("cn", "xxhdpi")
         }
         prod {
             // The actual minSdkVersion for the production version.
@@ -34,14 +34,13 @@ android {
 
     }
 
-    freeline {
-        hack true
-        productFlavor 'dev'
-    }
-
+//    freeline {
+//        hack true
+//        productFlavor 'dev'
+//    }
 
     /*PNG优化在默认情况下是打开的，我们可以在开发模式下禁用*/
-    if (project.hasProperty('devBuild')){
+    if (project.hasProperty('devBuild')) {
         aaptOptions.cruncherEnabled = false
     }
     buildTypes {
@@ -58,7 +57,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
