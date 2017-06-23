@@ -1,5 +1,6 @@
 package tech.fuge.www.forgotheadfirstandroid.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Spinner;
@@ -23,7 +24,10 @@ public class WineRecommendActivity extends BaseActivity {
         setContentView(R.layout.activity_wine_recommend);
         wineTv = (TextView) findViewById(R.id.tv_wine);
         spinner = (Spinner) findViewById(R.id.spinner_wine);
-
+        String strFromOther = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+        if (strFromOther!=null&&!strFromOther.isEmpty()){
+            wineTv.setText(strFromOther);
+        }
         findViewById(R.id.btn_wine_recommend).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

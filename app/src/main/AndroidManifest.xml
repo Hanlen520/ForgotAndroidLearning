@@ -26,7 +26,17 @@
             <!-- </intent-filter> -->
         </activity>
         <activity android:name=".base.BaseActivity" />
-        <activity android:name=".activity.WineRecommendActivity"></activity>
+        <activity android:name=".activity.WineRecommendActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <!--没有这个DEFAULT category也是收不到的-->
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+                <data android:mimeType="image/*" />
+                <data android:host="http"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

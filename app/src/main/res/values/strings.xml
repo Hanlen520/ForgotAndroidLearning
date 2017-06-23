@@ -3,4 +3,5 @@
     <string name="test_string">内容测试2</string>
     <string name="name">名字</string>
     <string name="no_for_you">品味太独特，没有适合你的</string>
+    <string name="chooser">分享消息到：</string>
 </resources>
