@@ -31,4 +31,9 @@
         android:text="选择器"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/chronograph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="秒表"/>
 </LinearLayout>

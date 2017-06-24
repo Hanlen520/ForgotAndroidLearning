@@ -23,7 +23,8 @@ android {
         dev {
             // Enable pre-dexing to produce an APK that can be tested on
             // Android 5.0+ without the time-consuming DEX build processes.
-            minSdkVersion 21
+            minSdkVersion 17
+//            minSdkVersion 21
             //only package english translations, and xxhdpi resources
             //设置为开发模式 只打包中文和xxhdpi资源，节省打包时间
 //            resConfigs("cn", "xxhdpi")
@@ -62,7 +63,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:multidex:1.0.1'
-    compile 'com.android.support:appcompat-v7:26.0.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.alibaba:fastjson:1.1.58.android'
     testCompile 'junit:junit:4.12'
 }
