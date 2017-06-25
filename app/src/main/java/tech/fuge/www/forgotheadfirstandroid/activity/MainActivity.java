@@ -56,6 +56,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, ChronographActivity.class));
             }
         });
+        findViewById(R.id.btn_gridlayout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,GridLayoutActivity.class));
+            }
+        });
+
+        findViewById(R.id.btn_widget).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,WidgetsActivity.class));
+            }
+        });
 
     }
 

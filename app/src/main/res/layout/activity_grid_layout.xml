@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="4"
+    android:rowCount="2"
+    tools:context="tech.fuge.www.forgotheadfirstandroid.activity.GridLayoutActivity">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        tools:visibility="visible"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:text="btn1" />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:inputType="textEmailAddress|textAutoCorrect"
+            android:layout_gravity="fill_horizontal"
+            android:layout_row="0"
+            android:hint="Enter Email" />
+
+        <EditText
+            android:id="@+id/et_message"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:background="#ccc"
+            android:layout_row="1"
+            android:text="message"
+            android:layout_gravity="fill"
+            android:gravity="top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:text="send"
+            android:layout_gravity="center_horizontal"
+            android:layout_columnSpan="2"/>
+
+
+    </GridLayout>
+<GridLayout
+    android:visibility="gone">
+    <Button
+
+        android:layout_column="2"
+        android:layout_row="1"
+        android:layout_columnSpan="2"/>
+    <Button />
+    <Button />
+    <Button />
+    <Button />
+    <Button />
+</GridLayout>
+
+</GridLayout>
