@@ -12,28 +12,37 @@
         android:id="@+id/btn_wine_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="啤酒推荐"/>
+        android:text="啤酒推荐" />
+
     <Button
         android:id="@+id/btn_action"
-        android:text="响应Action"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="响应Action" />
+
     <Button
         android:id="@+id/btn_select"
-        android:text="选择器"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="选择器" />
+
     <Button
         android:id="@+id/chronograph"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="秒表"/>
+        android:text="秒表" />
+
     <Button
         android:id="@+id/btn_gridlayout"
-        android:text="gridlayout布局"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="gridlayout布局" />
+
     <Button
         android:id="@+id/btn_widget"
-        android:text="小控件"/>
+        android:text="小控件" />
+
+    <Button
+        android:id="@+id/list"
+        android:text="列表视图和适配器" />
 </GridLayout>

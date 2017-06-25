@@ -6,4 +6,9 @@
         <item>红酒</item>
         <item>汽水</item>
     </string-array>
+    <string-array name="options">
+        <item>Drinks</item>
+        <item>Food</item>
+        <item>Stores</item>
+    </string-array>
 </resources>

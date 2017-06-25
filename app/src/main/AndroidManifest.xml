@@ -40,7 +40,10 @@
         <activity android:name=".activity.ChronographActivity" />
         <!-- android:configChanges="orientation|screenSize" -->
         <activity android:name=".activity.GridLayoutActivity" />
-        <activity android:name=".activity.WidgetsActivity"></activity>
+        <activity android:name=".activity.WidgetsActivity" />
+        <activity android:name=".activity.FoodListViewActivity" />
+        <activity android:name=".activity.DrinkCategoryActivity" />
+        <activity android:name=".activity.DrinkActivity"></activity>
     </application>
 
 </manifest>
