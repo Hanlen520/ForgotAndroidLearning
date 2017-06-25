@@ -25,13 +25,13 @@ public class ActionbarActivity extends AppCompatActivity {
 //        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.actionbar_bar);
         toolbar.setTitle("toobar");
-
+        toolbar.setLogo(R.mipmap.ic_launcher);
 //        toolbar.setLogo(R.drawable.ic_action_share);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_action_back);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+//        getSupportActionBar().setDisplayUseLogoEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
