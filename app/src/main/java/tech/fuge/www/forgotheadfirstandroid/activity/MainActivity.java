@@ -75,6 +75,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, FoodListViewActivity.class));
             }
         });
+
+        findViewById(R.id.workout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,WorkOutActivity.class));
+            }
+        });
+
+        findViewById(R.id.btn_titlebar).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ActionbarActivity.class));
+            }
+        });
     }
 
     public static void testFastJson() {

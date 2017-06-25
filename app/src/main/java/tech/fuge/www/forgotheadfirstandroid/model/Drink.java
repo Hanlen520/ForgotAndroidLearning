@@ -16,6 +16,16 @@ public static final Drink[] drinks={
         new Drink("雪碧","也是汽水饮料", R.mipmap.ic_launcher),
         new Drink("农夫山泉","矿泉水", R.mipmap.ic_launcher)
 };
+
+    @Override
+    public String toString() {
+        return "Drink{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", imageResourceId=" + imageResourceId +
+                '}';
+    }
+
     public Drink(String name, String description, int imageResourceId) {
         this.name = name;
         this.description = description;
