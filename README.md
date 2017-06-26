@@ -40,7 +40,8 @@
 - 应付用户旋转屏幕的方法：避开重建活动，在Manifest的Activity中设置:android:configChanges="orientation|screenSize"
 - 保存当前状态,在onSaveInstanceState方法中保存，然后在onCreate检测不为空时，则载入数据
 
- `@Override
+
+```@Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt("curSecond",seconds);
         outState.putBoolean("curRun",running);
@@ -52,7 +53,9 @@
             if (savedInstanceState!=null){
                 seconds=savedInstanceState.getInt("curSecond");
                 running=savedInstanceState.getBoolean("curRun");
-            }}`
+            }}
+```
+
 
 - 当前活动不可见时，在onStop中保存当前秒表运行状态，并停止计时（若不停止，秒表将在后台计时），然后在onStart中获取运行状态，继续计时
 - 当前活动不在前台时，在onPause中保存运行状态，停止计时，在onResume中获取运行状态
@@ -88,12 +91,12 @@ ScrollView和horizontalScrollView
 - Fragment的生命周期
 - 导入import android.app.Fragment; 而不是v4库的
 - 在onStart()中先用getView来获取视图，然后在fingViewById来找到子view
-
-`View view = getView();
+```
+View view = getView();
         if (view!=null){
             TextView title = (TextView) view.findViewById(R.id.workout_detail_title);
-            TextView description = (TextView) view.findViewById(R.id.workout_detail_content);}`
-
+            TextView description = (TextView) view.findViewById(R.id.workout_detail_content);}
+```
 - fragment不需要在manifest中注册，因为四大组件才需要注册
 
 ## 第八章 嵌套片段
@@ -104,14 +107,18 @@ Android支持库v4,v7,v13,v17,v21
 主题设置
 Toobar基本使用。 先将主题设置为禁用ActionBar
 
-`<style name="AppTheme.NoActionbar">
+```
+<style name="AppTheme.NoActionbar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-</style>`
+</style>
+```
 
 然后在使用的Activity中获取
-`Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-setSupportActionBar(toolbar);`
+```
+Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+setSupportActionBar(toolbar);
+```
 toolbar.setTitle设置标题
 setNavigationIcon(R.drawable.ic)设置左边返回键
 toolbar.setNavigationOnClickListener(new View.OnClickListener()来设置返回键事件
