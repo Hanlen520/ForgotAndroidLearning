@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context="tech.fuge.www.forgotheadfirstandroid.activity.WorkOutActivity">
+    tools:context="tech.fuge.www.forgotandroidlearning.activity.WorkOutActivity">
 
     <fragment
         android:id="@+id/fragment_workout_list"
-        android:name="tech.fuge.www.forgotheadfirstandroid.fragment.WorkoutListFragment"
+        android:name="tech.fuge.www.forgotandroidlearning.fragment.WorkoutListFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2" />
@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/fragment_workout_details"
-        android:name="tech.fuge.www.forgotheadfirstandroid.fragment.WorkoutDetailFragment"
+        android:name="tech.fuge.www.forgotandroidlearning.fragment.WorkoutDetailFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginLeft="20dp"

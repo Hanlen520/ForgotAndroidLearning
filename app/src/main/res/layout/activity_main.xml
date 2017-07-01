@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:columnCount="3"
     android:rowCount="3"
-    tools:context="tech.fuge.www.forgotheadfirstandroid.activity.MainActivity">
+    tools:context="tech.fuge.www.forgotandroidlearning.activity.MainActivity">
 
     <Button
         android:id="@+id/btn_wine_activity"

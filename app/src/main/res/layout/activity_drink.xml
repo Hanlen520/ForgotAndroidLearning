@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="tech.fuge.www.forgotheadfirstandroid.activity.DrinkActivity">
+    tools:context="tech.fuge.www.forgotandroidlearning.activity.DrinkActivity">
 
     <TextView
         android:id="@+id/drink_name"

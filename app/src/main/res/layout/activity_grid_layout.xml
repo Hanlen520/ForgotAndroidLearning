@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:columnCount="4"
     android:rowCount="2"
-    tools:context="tech.fuge.www.forgotheadfirstandroid.activity.GridLayoutActivity">
+    tools:context="tech.fuge.www.forgotandroidlearning.activity.GridLayoutActivity">
 
     <GridLayout
         android:layout_width="match_parent"
