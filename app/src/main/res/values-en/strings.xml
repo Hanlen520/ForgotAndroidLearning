@@ -2,5 +2,6 @@
     <string name="app_name">ForgotAndroidLearning</string>
     <string name="test_string">test string</string>
     <string name="name">name</string>
-    <string name="no_for_you">品味太独特，没有适合你的</string>
+    <string name="no_for_you">your taste is so different</string>
+    <string name="chooser">share to</string>
 </resources>

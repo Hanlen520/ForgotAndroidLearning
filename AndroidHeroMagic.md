@@ -16,3 +16,12 @@
 - Git的基本使用
 
 ## 第三章 Android Studio 技巧
+- Project和Structure面板
+- 在设置的Android Logcat中设置打印日志颜色
+- View-Enter Full Screen 全屏模式 减少外部干扰
+- 断点调试，异常断点. 在断点中添加Java Exception断点，发生异常时就会定位
+- 多语言处理，点击strings.xml右上角的Open editor
+- 输入/** 再按Enter 快速生成注释代码
+- 自定义Live Templates, 如author声明, 也可以在File and Code Templates设置模版
+![debug](./pictures/Debug1.png)
+- Theme Editor 主题右上角点击Open Editor进行编辑
