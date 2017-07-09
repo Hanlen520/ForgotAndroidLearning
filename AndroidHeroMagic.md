@@ -57,4 +57,13 @@ F11 添加书签
 - 9Patch工具
 - 在手机的开发者选项中开启Shou Layout Bounds查看布局； GPU查看过度重绘
 
-## 第六章 
+## 第六章 App背后的故事--性能检测和分析工具
+- 16ms黄金准则
+- Merge和ViewStub
+- 内存占用分析和GC系统
+- 内存泄漏检测和Dump Heap
+- Allocation Tracker
+- 用MAT分析内存泄漏，先在Captures中将文件转化为标准的.hprof文件
+- 用LeakCanary来分析内存泄漏
+- 耗电元凶：Walklocks，AlarmManager，轮询，频繁的网络请求，长时间的CPU占用
+- 云测平台：谷歌云测，阿里云测，腾讯优测，Testin
