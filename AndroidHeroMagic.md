@@ -48,3 +48,13 @@ F11 添加书签
 - 常用Task命令:assemble task , Check, Build, Clean
 
 ## 第五章 深藏功与名的开发者工具
+- ADB指令
+- Logcat日志系统
+- Android Device Monitor
+- Hierarchy Viewer就在ADM右上角
+
+![Hierarchy](./pictures/ADM1.png)
+- 9Patch工具
+- 在手机的开发者选项中开启Shou Layout Bounds查看布局； GPU查看过度重绘
+
+## 第六章 
