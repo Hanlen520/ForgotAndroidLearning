@@ -35,3 +35,17 @@
 - ListView常用优化技巧。ViewHolder,设置分隔线，隐藏滚动条，取消item点击效果 why？,设置需要显示在第几项，动态修改 notifyDataSetChanged()，处理空ListView,setEmptyView， 滑动监听 OnTouchListener OnScrollListener
 
 ## 第5章 Android Scroll 分析
+- 滑动效果是如何产生的。Android坐标系，视图坐标系，MotionEvent
+- 实现滑动的七种方法
+
+## 第6章 Android绘图机制与处理技巧
+- 屏幕的尺寸信息。屏幕参数 屏幕大小 分辨率 PPI，系统屏幕密度，dp,sp,单位转换
+- 2D绘图基础。Canvas,drawPoint\drawLine\drawRect\drawCircle
+- Android XML绘图。 Bitmap,Shape,Layer,Selector
+- Android绘图技巧。Canvas的几个方法:save(),restore(),translate(),rotate()
+- Android图标处理之色彩特效处理。颜色矩阵ColorMatrix
+- Android图标处理之图形特效处理.变形矩阵Matrix.Translate,Rotate,Scale,Skew
+- Android图标处理之画笔特效处理
+- View的孪生兄弟--SurfaceView
+
+## 第7章 Android动画机制与使用技巧
