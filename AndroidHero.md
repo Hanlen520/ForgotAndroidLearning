@@ -49,3 +49,12 @@
 - View的孪生兄弟--SurfaceView
 
 ## 第7章 Android动画机制与使用技巧
+- Android View 动画框架。透明度动画，旋转动画，位移动画，缩放动画，动画集合。 监听setAnimationListener
+- Android属性动画分析。 ObjectAnimator,ValueAnimator，动画事件的监听，AnimatorSet,在XML中使用属性动画
+- Android布局动画，也就是给ViewGroup添加View时的一个过度动画
+- Interpolators 插值器
+- 自定义动画
+- Android 5.X SVG矢量动画机制
+- Android 动画特效
+
+## 第8章 Activity与Activity调用栈分析
