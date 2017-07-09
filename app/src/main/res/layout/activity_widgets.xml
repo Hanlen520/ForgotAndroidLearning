@@ -28,6 +28,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:tint="@color/colorAccent"
             android:contentDescription="this is imageView"
             android:src="@mipmap/ic_launcher" />
 

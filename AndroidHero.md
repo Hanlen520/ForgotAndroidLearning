@@ -58,3 +58,37 @@
 - Android 动画特效
 
 ## 第8章 Activity与Activity调用栈分析
+- Activity的形态与生命周期
+- Android任务栈简介
+- AndroidManifest启动模式
+- Intent Flag 启动模式
+- 清空任务栈。 clearTaskOnLaunch
+
+## 第9章 Android系统信息与安全机制
+- Android系统信息获取。android.os.Build,SystemProperty
+- Android Apk应用信息获取之PackageManager
+- Android Apk应用信息获取之ActivityManager
+- 解析Packages.xml获取系统信息
+- Android安全机制。 代码混淆proguard, 应用接入权限控制，应用签名，Linux内核层安全机制，Android虚拟机沙箱隔离机制（应用之间不受影响）
+- Android系统安全隐患。 代码漏洞，Root风险，安全机制不健全，用户安全意识。
+- Android Apk加密。 Proguard
+
+## 第10章 Android性能优化
+- 布局优化。避免Overdraw，优化布局层级，避免嵌套过多无用布局，使用include来重用layout，ViewStub比View.GONE性能更好
+- 内存优化。寄存器，栈，堆，静态存储区，常量池
+## 第11章 搭建云端服务器
+- 移动后端服务介绍。
+## 第12章 Android 5.X新特性详解
+- Material Design设计
+- Material 主题
+- Palette 颜色API
+- 视图与阴影
+- Tinting（着色）和Clipping（裁剪）
+- RecyclerView和CardView,替代ListView
+- Activity过渡动画. explode,slide,fade
+- Material Design动画效果。Ripple水纹效果，Circular Reveal,View state changes Animation
+- Toolbar. 主题要设为NoActionBar
+- Notification
+## 第13章 Android实例提高
+- 移动迷宫--拼图游戏
+- 魔幻矩阵--2048
