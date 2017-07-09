@@ -8,3 +8,8 @@
 - Android App 组件架构。 四大组件
 - Android系统源代码目录与系统目录
 
+## 第2章 Android开发工具新接触
+- Android开发IDE介绍
+- AndroidStudio高级使用技巧
+- ADB命令使用技巧。 安装卸载软件，导入导出文件。
+- 模拟器使用与配置。Genymotion
