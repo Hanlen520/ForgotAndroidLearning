@@ -67,3 +67,17 @@ F11 添加书签
 - 用LeakCanary来分析内存泄漏
 - 耗电元凶：Walklocks，AlarmManager，轮询，频繁的网络请求，长时间的CPU占用
 - 云测平台：谷歌云测，阿里云测，腾讯优测，Testin
+
+## 第七章 一个人的寂寞与一群人的狂欢
+- Chrome开发者工具和插件。 Json-Handler查看Json格式，Octotree方便查看github代码，Request Maker调试后端接口
+- Google搜索技巧。 + - OR进行逻辑搜索，*模糊匹配，site指定站点，inurl:pdf 匹配文件格式
+- 后端接口测试
+- 思维导图工具
+- 搜索代码片段的网站 searchcode.com
+- github和gitlab 代码托管
+- Code Review代码审查
+- 自动化测试Monkey,Appium,Robotium,UiAutomator
+- Bug管理www.atlassian.com/software/jira
+- 文档管理，开源wiki
+- Shape生成器 http://shapes.softartstudio.com/
+- 工具集合 http://angrytools.com/
