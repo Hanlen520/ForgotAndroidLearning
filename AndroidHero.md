@@ -31,4 +31,7 @@
 - 自定义ViewGroup
 - 事件拦截机制分析。dispatchTouchEvent(),onInterceptTouchEvent(),onTouchEvent()。 onTouchEvent()优先与onClick执行，且如果onTouchEvent()消费事件后返回true，那么onClick也就无法执行了
 
-## 第4章
+## 第4章 ListView使用技巧（新版推荐用RecyclerView）
+- ListView常用优化技巧。ViewHolder,设置分隔线，隐藏滚动条，取消item点击效果 why？,设置需要显示在第几项，动态修改 notifyDataSetChanged()，处理空ListView,setEmptyView， 滑动监听 OnTouchListener OnScrollListener
+
+## 第5章 Android Scroll 分析
