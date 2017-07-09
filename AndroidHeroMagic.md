@@ -1,4 +1,5 @@
-#《Android群英传 神兵利器》
+## 《Android群英传 神兵利器》
+
 *世上没有什么事情是不能通过工具来解决的，如果有，那么就创造一个工具去解决*
 
 ## 第一章 程序员的小窝--搭建高效的开发环境
@@ -25,3 +26,25 @@
 - 自定义Live Templates, 如author声明, 也可以在File and Code Templates设置模版
 ![debug](./pictures/Debug1.png)
 - Theme Editor 主题右上角点击Open Editor进行编辑
+
+AS快捷键：
+Ctrl+H  查看该类的继承关系
+Ctrl+O  查看可重写的方法
+ctrl+P 查看方法的参数列表
+ctrl+F7 查看方法引用的地方
+Ctrl + -  方法折叠 展开
+ctrl+J 代码模版
+ctrl+E 查看最近浏览
+Ctrl+Shift+E 查看最近修改
+ctrl+shift+A 弹出操作搜索
+ctrl+alt+T 弹出Surround With功能，包括一些if try catch语句
+ctrl+alt+H 查看方法调用栈
+F11 添加书签
+
+## 第四章 与Gradle的爱恨情仇
+- Gradle基于DSL语言，如何学习Gradle，在终端输入tree 查看项目结构
+- 项目全局的build.gradle， Module build.gradle , apply plugin领域，android领域，dependencies领域
+- 核心部分 Gradle Task
+- 常用Task命令:assemble task , Check, Build, Clean
+
+## 第五章 深藏功与名的开发者工具
