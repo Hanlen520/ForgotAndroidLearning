@@ -10,3 +10,4 @@
 - Android中的主线程又称为UI线程，只能在UI线程操作界面元素。耗时操作放在其他线程中执行，否则易引起ANR响应超时
 - Android中的多进程模式。 开启多进程模式，运行机制，存在的问题
 - IPC基本概念介绍。Serializable接口，Parcelable接口，Binder
+- Android中的IPC机制。 Bundle，文件共享，Messenger,使用AIDL,使用socket
