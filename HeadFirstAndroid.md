@@ -11,6 +11,7 @@
 - 在 Android Monitor 查看进度
 - string 字符串要在 values 下的 strings.xml 声明，一是方便多语言本地化处理，而是方便后期统一修改管理
 - 英文value文件夹是 value-en , 中文是 value-zh
+
 ## 第二章 构建交互 (P39~72)
 - RelativeLayout的各属性应用，如layout_alignLeft , layout_below,layout_alignParentTop
 - Spinner的使用,用 getSelectedItem() 来获取当前选项
@@ -31,6 +32,7 @@
 - 真机调试
 - 选择器的用法，比如一键分享功能可使用 Intent.createChooser(intent,"Share Message...")
 没有响应时，则只显示消息，而响应列表为空白（不会奔溃），若隐式意图不用这个的话就可能奔溃了
+
 ## 第四章 活动的生命周期(P115~162)
 - 字体属性  android:textAppearance="?android:attr/textAppearanceLarge"
 - 用Handler做一个秒表计时器
@@ -102,6 +104,7 @@ View view = getView();
 
 ## 第八章 嵌套片段
 - fragment嵌套
+
 ## 第九章 动作条
 动作条ActonBar已淘汰，推荐ToolBar
 Android支持库v4,v7,v13,v17,v21
@@ -123,6 +126,7 @@ setSupportActionBar(toolbar);
 toolbar.setTitle设置标题
 setNavigationIcon(R.drawable.ic)设置左边返回键
 toolbar.setNavigationOnClickListener(new View.OnClickListener()来设置返回键事件
+
 ## 第十章 导航抽屉
 - 左边侧滑栏
 

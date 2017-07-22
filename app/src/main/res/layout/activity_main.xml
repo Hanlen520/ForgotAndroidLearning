@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:columnCount="3"
-    android:rowCount="3"
+    android:rowCount="10"
     tools:context="tech.fuge.www.forgotandroidlearning.activity.MainActivity">
 
     <Button
@@ -53,4 +53,7 @@
     <Button
         android:id="@+id/btn_titlebar"
         android:text="actionBar" />
+    <TextView
+        android:id="@+id/text"
+        android:text="test"/>
 </GridLayout>

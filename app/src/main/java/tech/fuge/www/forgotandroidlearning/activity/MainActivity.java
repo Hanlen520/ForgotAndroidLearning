@@ -4,11 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 import tech.fuge.www.forgotandroidlearning.R;
 
 public class MainActivity extends AppCompatActivity {
-
+TextView mTextView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +85,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,ActionbarActivity.class));
             }
         });
+
+       mTextView= (TextView) findViewById(R.id.text);
+        mTextView.setText(R.string.age);
+        mTextView.setText(String.format(getString(R.string.age),20));
     }
 
 //    public static void testFastJson() {
