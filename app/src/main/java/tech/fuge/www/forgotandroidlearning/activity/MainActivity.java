@@ -2,14 +2,17 @@ package tech.fuge.www.forgotandroidlearning.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import tech.fuge.www.forgotandroidlearning.R;
 
 public class MainActivity extends AppCompatActivity {
 TextView mTextView;
+    Button btnPress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,8 +92,28 @@ TextView mTextView;
        mTextView= (TextView) findViewById(R.id.text);
         mTextView.setText(R.string.age);
         mTextView.setText(String.format(getString(R.string.age),20));
+         btnPress = (Button) findViewById(R.id.btn_press);
+        btnPress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doAfterPress();
+            }
+        });
+//        String a;
+//        a.equals("ss");
     }
 
+
+    void doAfterPress(){
+        System.out.println("press");
+        btnPress.setEnabled(false);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                btnPress.setEnabled(true);
+            }
+        }, 1000);
+    }
 //    public static void testFastJson() {
 //        Group group = new Group();
 //        group.setId(0L);

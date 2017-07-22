@@ -3,6 +3,26 @@
 
 ## Base
 - 父类定义过的变量，在子类可以直接使用 而不用声明
+- String string; 在栈和堆中都没有分配空间
+  String string=null; 在栈中分配了空间，在堆中没有分配空间
+  String string="";在栈和堆中都分配了空间
+- String a="abc";
+    String b=new String("abc");
+    System.out.println(a==b);
+    System.out.println(a.equals(b));
+    答案是false true ，  ==比较的是两对象完全相等（值还有hashcode相等），而.equal比较的是值相等
+- 像a.equals("Happy new year")这种判断的话如果a为null就会出现异常，但是改成"Happy new year".equals(a)这种写法的话，则即使a为null也不会有问题。所以在Java中进行比较就最好把常量放在左边
+
+
+
+## AndroidManifest.xml
+- application 标签内加上  android:supportsRtl="true"属性，然后TargetSDK写成17
+  由于布局方向可以是从右到左的，所以在写xml布局的时候，为了防止出现布局混乱的现象，不要使用诸如layout_marginRight这种，而应该是layout_marginEnd这种
+  
+  这样做是为了兼容阿拉伯文，阿拉伯文是一种从右向左书写的文字, 所谓RTL(Right to Left)文字
+
+- android:stateNotNeeded="true"  不保存state状态，即不保留屏幕临时数据
+
 
 ## TextView
 xml:
@@ -10,6 +30,8 @@ xml:
 - android:ems="1" 设置TextView为一列
 - android:alpha="0.6" 设置透明度
 - textView.append("\n" + msg.obj.toString());  追加消息到TextView中
+- 取消默认大写字母android:textAllCaps="false";
+
 java:
 - tv.setError("报错信息");
 
@@ -21,14 +43,72 @@ xml:
 - android:background="@null" 消除底部横线
 - android:inputType="textMultiLine" 多行显示文字
 - EditText挡住ListView的问题，在Manifest中设置Activity属性 android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
+- 直接在xml布局中限制输入字符串
+  android:digits="qwertyuiopasdfghjklzxcvbnm1234567890"
+- TextLayout中显示密码的按钮 app:passwordToggleEnabled="true"
+
+
 java:
-1. 显示小键盘 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(editPrivateMsg, 0);
-2. 隐藏小键盘 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).
+-  显示小键盘 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(editPrivateMsg, 0);
+-  隐藏小键盘 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).
    hideSoftInputFromWindow(editPrivateMsg.getWindowToken(), 0);
+- 屏蔽EditText的焦点 etCode.setFocusable(false);
+- 点击控件时，重新获取焦点，激活软键盘
+- 监听输入edtInput.setKeyListener(DigitsKeyListener.getInstance("1234567890."));
+  edtInput.setInputType(8194);
+
+```
+  etCode.setFocusable(true);
+  etCode.setFocusableInTouchMode(true);
+  etCode.requestFocus();
+```
+
+
 
 ## Button
 xml:
+- 普通Button可以用以下风格实现Material
+  style="@style/Widget.AppCompat.Button.Colored"
+  Widget.AppCompat.Button.Borderless
+  Widget.AppCompat.Button.Colored
+  Widget.AppCompat.Button
+- 设置Material风格的ImageButton， ImageView，TextView也能用，在某些背景下可能看不出下过，则换一个background，如?attr/selectableItemBackground
+```
+  <ImageButton
+      style="@style/Widget.AppCompat.Button"
+      android:layout_width="50dp"
+      android:layout_height="wrap_content"
+      android:src="@drawable/btn_back_normal"
+      android:background="?attr/selectableItemBackgroundBorderless"/>
+```
+
 java:
+
+## RadioButtn
+- 关于RadioGroup实现多行选项，如两排四列，在选择第一列时，把第二列清空选择即可
+  mRg2.clearCheck();
+
+
+## ListView
+- 长按获取listView的某项值
+```
+   listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+             @Override
+             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+  str=view.getItemAtPosition(position).toString();
+                 TextView text=(TextView)view.findViewById(R.id.text2);
+                 String strText=text.getText().toString();
+                 Toast.makeText(CodeRecordActivity.this, strText, Toast.LENGTH_SHORT).show();
+                 return false;
+             }
+         });
+```
+
+## ImageView
+- android:tint="@color/sample_green"
+  可以直接给ImageView图片src上色
+
+## 
 
 ## String
 - %d（表示整数），%f（表示浮点数）， %s （表示字符串）
@@ -41,6 +121,8 @@ java:
 
 - 十六进制转化为十进制，结果140。 Integer.parseInt("8C",16);
 
+- res-values-integers.xml, 存放整型数据，strings存放字符串数据
+
 
 
 
@@ -51,6 +133,16 @@ java:
 
 ## 四大组件
 - Android中的四大组件千万不要通过new的方式创建出来。 会内存泄漏
+- 界面跳转和服务的启动都会用到Intent，现在介绍Intent Flag是关于Activity的跳转
+  　　Intent intent = new Intent(this,xxx.class);
+  　　//如果activity在task存在，拿到最顶端,不会启动新的Activity
+  　　intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+  　　//如果activity在task存在，将Activity之上的所有Activity结束掉
+  　　intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+  　　//默认的跳转类型,将Activity放到一个新的Task中
+  　　intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+  　　//如果Activity已经运行到了顶部Task，再次跳转不会在运行这个Activity
+  　　intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
 
 ## fragment
@@ -75,8 +167,13 @@ java:
   在fragment布局中预览效果，顶部
   tools:showIn="@layout/activity_main"
 
+- RecyclerView预览item元素情况
+  tools:listheader="@layout/demo_header"
+  tools:listitem="@layout/demo_item"
 
-
+- TextView等预览
+tools:text="预览文字"
+tools:visibility= "visible"
 
 ## 集合
 -
@@ -89,7 +186,13 @@ java:
 	* HashSet是由一个hash表来实现的，因此，它的元素是无序的。add()，remove()，contains()方法的时间复杂度是O(1)。
 	* 另一方面，TreeSet是由一个树形的结构来实现的，它里面的元素是有序的。因此，add()，remove()，contains()方法的时间复杂度是O(logn)。
 
-
+## 多媒体
+- 摄像头权限要设置三个
+```
+    <uses-permission android:name ="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+```
 
 
 ## 设计模式
@@ -101,7 +204,16 @@ java:
 - Handler中：myReturnHandler.removeCallbacksAndMessages(null)。null表示将所有的Callbacks和Messages全部清除掉，如
 - 关于Handler为何不采用Binder， 先总结说一句，Handler完全可以通过BInder，但是杀鸡焉用牛刀。
   Binder用于进程间通信，而Handler消息机制用于同进程的线程间通信
-
+- 延迟执行
+```
+  new Handler().postDelayed(new Runnable() {
+      @Override
+      public void run() {
+          pbInit.setVisibility(View.GONE);
+      }
+  }, 500);
+```
+- 
   
 ## 异常
 - 异常的分类：
@@ -116,9 +228,35 @@ java:
 
 
 
+## SQLite数据库
+- 调试数据库
+```
+adb shell  
+cd /data/data/tech.fuge.www.forgotfirstlinecode/databases/
+sqlite3 myDatebase.db
 
-## 性能优化
-- Java 内存泄露的根本原因就是 保存了不可能再被访问的变量类型的引用
+SELECT DISTINCT 消除重复记录
+select * from Book
+```
+创建数据表，更新数据表
+增删改查
+
+1. table 要操作的表名 
+2. columns 要查询显示的列名
+3. selection  指定where约束条件的列名+条件， 如 item>=
+4. selectionArgs  约束条件的值,3+4. 合并为：where column="value"
+5. GROUP BY column  指定列来进行分组，将该列一样名字的合并到一个
+6. HAVING column="value" 进一步约束
+7. ORDER BY column正序排列 从大到小,ORDER BY columnDESC 逆序排列，从小到大
+8. LIMIT 6 显示前面多少个
+数据库操作写法，一是用Android自带的工具类
+二是用一般的数据库写法exc()
+
+insert into Book(name,pages,price,author)  values("作者",103,600,"书名");
+
+
+
+
 
 
 
@@ -126,6 +264,13 @@ java:
 - 谈谈对Android NDK的理解。
   native develop kit   只是一个交叉编译的工具  .so
       1.什么时候用ndk,  实时性要求高,游戏,图形渲染,  opencv (人脸识别) , ffmpeg , rmvb  mp5 avi 高清解码. ffmpeg, opencore.
+
+## 性能优化
+- Java 内存泄露的根本原因就是 保存了不可能再被访问的变量类型的引用
+- 匿名内部类默认持有外部类的引用，有内存泄漏的风险;
+- Application对象的生命周期是整个程序中最长的，它的生命周期就等于这个程序的生命周期。因为它是全局的单例的，所以在不同的Activity,Service中获得的对象都是同一个对象。所以可以通过Application来进行一些，如：数据传递、数据共享和数据缓存等操作。
+- Java中的卫语句:把嵌套写的if else判断，改为串行的条件判断, return;
+- 在BaseActivity中统一开启关闭DEBUG， 还有List<Activity> 管理所有Activity的finish()
 
 
 ## Windows
@@ -148,6 +293,7 @@ android/platform/libcore：平台的lib库;
 
 
 ## 其他
+
 
 - 图片、文字在网络传送中是转换成一定的二进制代码进行传送的。（图片、文字等--→传送端（发出）--→图片数据转换器（把图片和文字转换成0、1代码）--→终端（接收）--→图片数据转换器（将0、1代码转换成图片和文字）--→图片、文字。）
 - 传输过程中是二进制的，但物理上表示的方式不同。光纤用光信号的亮与不亮来表示1和0，电信号用高低电平来表示二进制！
@@ -173,5 +319,10 @@ android/platform/libcore：平台的lib库;
 - HAL（Hardware Abstract Layer硬件抽象层）
 
 
-输入法推荐bing拼音输入法,能跟随AndroidStudio的光标移动,再切换到暗黑边界主题。 会导致Alt+Tab切换标签失败，不要用
+## 工具&&网站
+- 自动获取shape  http://shapes.softartstudio.com/#&ui-state=dialog
+
+- 输入法推荐bing拼音输入法,能跟随AndroidStudio的光标移动,再切换到暗黑边界主题。 会导致Alt+Tab切换标签失败，不要用
 ![](./picutres/bing.png)
+
+

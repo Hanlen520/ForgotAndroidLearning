@@ -1,0 +1,402 @@
+# 实用代码
+- 创建btn_pressed  作为button的Background使用，圆角矩形
+```
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="8dip"/>
+            <solid android:color="#ffcccccc"/>
+        </shape>
+    </item>
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="8dp"/>
+            <solid android:color="#ff666666"/>
+        </shape>
+    </item>
+</selector>
+```
+
+- 圆角矩形
+```
+  <?xml version="1.0" encoding="UTF-8"?>
+  <shape
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      android:shape="rectangle">
+      <!-- 填充的颜色 -->
+      <solid android:color="#8BC34A" />
+      <!-- 设置按钮的四个角为弧形 -->
+      <!-- android:radius 弧形的半径 -->
+      <corners android:radius="5dip" />
+      <!-- 边框宽度和颜色 -->
+      <stroke
+          android:width="1dp"
+          android:color="#CCCCCC" />
+  
+      <!-- padding：Button里面的文字与Button边界的间隔 -->
+      <padding
+          android:left="1dp"
+          android:top="1dp"
+         android:right="1dp"
+          android:bottom="1dp"
+          />
+  </shape>
+```
+
+- Button或者ImageButton的背景设为透明或者半透明
+  半透明<Button android:background="#e0000000" ... /> 
+  透明<Button android:background="#00000000" ... />
+
+- 自定义view,  setId方法，创建一个ids.xml资源文件，专门放id定义
+  <resources> 
+    <item type="id" name="snack" /> 
+  </resources>
+  调用
+  myButton.setId(R.id.snack);
+   
+- 隐藏标题栏和顶部状态栏，底部导航栏的方法
+```
+  public class HideTestActivity extends Activity implements OnClickListener{ 
+      View main ; 
+      /** Called when the activity is first created. */ 
+      @Override 
+      public void onCreate(Bundle savedInstanceState) { 
+          super.onCreate(savedInstanceState); 
+          main = getLayoutInflater().from(this).inflate(R.layout.main, null); 
+          main.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION); 
+  requestWindowFeature(Window.FEATURE_NO_TITLE);     // 隐藏标题栏
+  getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+          //最后加载布局，否则报错
+          setContentView(main); 
+      } 
+```
+- 实现对话框全选功能
+```
+  for (int i = 0; i < str.length; i++) {
+      init[i] = true;
+      ((AlertDialog) dialog).getListView().setItemChecked(i, true);
+  }
+  设置dialog按钮点击之后不消失的方法，比如实现全选等功能
+  .setNeutralButton("选中全部",
+                          new DialogInterface.OnClickListener() {
+                              @Override
+                              public void onClick(DialogInterface dialog,
+                                                  int which) {
+                                  for (int i = 0; i < str.length; i++) {
+                                      init[i] = true;
+                                  }
+                                  Toast.makeText(MainMiddleAccreditAppAddNew.this, "你选了全部设备", Toast.LENGTH_SHORT).show();
+                                  try
+                                  {
+                                      Field field = dialog.getClass()
+                                              .getSuperclass().getDeclaredField(
+                                                      "mShowing" );
+                                      field.setAccessible( true );
+                                      // 将mShowing变量设为false，表示对话框已关闭，想要点击可以退出dialog，则下面设为true
+                                      field.set(dialog, false );
+                                      dialog.dismiss();
+  
+                                  }
+                                  catch (Exception e)
+                                  {
+  
+                                  }
+                              }
+                          });
+```
+- //设置屏幕最大亮度
+```
+  WindowManager.LayoutParams lp = getWindow().getAttributes();
+  lp.screenBrightness = 1;
+  getWindow().setAttributes(lp);
+  //设置屏幕常亮，不锁屏
+  getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+```
+- 如String str=getFromAssets(text.txt); 
+  以下为直接从assets文件夹读取代码
+```
+      public String getFromAssets(String fileName){ 
+              try { 
+                   InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open(fileName) ); 
+                  BufferedReader bufReader = new BufferedReader(inputReader);
+                  String line="";
+                  String Result="";
+                  while((line = bufReader.readLine()) != null)
+                      Result += line;
+                  return Result;
+              } catch (Exception e) { 
+                  e.printStackTrace(); 
+              }
+      } 
+```
+- 
+```
+/**
+ * bitmap压缩大小的方法
+ *
+ * @param bgimage   要压缩的bitmap
+ * @param newWidth  想要压缩到的宽度
+ * @param newHeight 想要压缩到的高度
+ */
+public static Bitmap zoomImage(Bitmap bgimage, double newWidth,
+                               double newHeight) {
+    // 获取这个图片的宽和高
+    float width = bgimage.getWidth();
+    float height = bgimage.getHeight();
+    // 创建操作图片用的matrix对象
+    Matrix matrix = new Matrix();
+    // 计算宽高缩放率
+    float scaleWidth = ((float) newWidth) / width;
+    float scaleHeight = ((float) newHeight) / height;
+    // 缩放图片动作
+    matrix.postScale(scaleWidth, scaleHeight);
+    Bitmap bitmap = Bitmap.createBitmap(bgimage, 0, 0, (int) width,
+            (int) height, matrix, true);
+    return bitmap;
+}
+```
+
+-  判断手机是否root
+```
+    public boolean isRoot() {
+        boolean bool = false;
+        try {
+            if ((!new File("/system/bin/su").exists()) && (!new File("/system/xbin/su").exists())) {
+                bool = false;
+            } else {
+                bool = true;
+            }
+        } catch (Exception e) {
+        }
+        return bool;
+    }
+```
+- 应用申请root权限
+```
+  //Requesting root
+          try {
+              Runtime.getRuntime().exec("su");
+          } catch (IOException e) {
+          }
+```
+
+- 弱引用，防止Handler泄露
+```
+  private static class HttpHandler extends Handler {
+  //若引用防止handler内存泄漏
+  WeakReference<Main10Activity> weakReference;
+  
+  HttpHandler(Main10Activity activity) {
+  weakReference = new WeakReference<Main10Activity>(activity);
+  }
+  
+  @Override
+  public void handleMessage(Message msg) {
+  // super.handleMessage(msg);
+  Main10Activity main10Ref = weakReference.get();
+  switch (msg.what) {
+  case HTTP_URLCONNECTION:
+  // final TextView textView = weakReference.get();
+  if (main10Ref != null) {
+  // if ( weakReference.get() != null ){
+  // update android ui
+  String result = msg.obj.toString();
+  main10Ref.activity10Textview.setText(result);
+  }
+  break;
+  default:break;
+  }
+  }
+  }
+```
+
+- 简单的SharePreference写法
+```
+/**
+         * 保存数据
+         * @param editor
+         * @param key
+         * @param obj
+         */
+        @SuppressWarnings("unchecked")
+        private void put(SharedPreferences.Editor editor, String key, Object obj) {
+            // key 不为null时再存入，否则不存储
+            if (key != null){
+                if (obj instanceof Integer){
+                    editor.putInt(key, (Integer)obj);
+                } else if (obj instanceof Long){
+                    editor.putLong(key, (Long)obj);
+                } else if (obj instanceof Boolean){
+                    editor.putBoolean(key, (Boolean)obj);
+                } else if (obj instanceof Float){
+                    editor.putFloat(key, (Float) obj);
+                } else if (obj instanceof Set){
+                    editor.putStringSet(key, (Set<String>) obj);
+                } else if (obj instanceof String){
+                    editor.putString(key, String.valueOf(obj));
+                }
+            }
+        }
+        /**
+         * 根据key和类型取出数据
+         * @param key
+         * @return
+         */
+        private Object getValue(String key, DataType type){
+            switch (type) {
+                case INTEGER:
+                    return preferences.getInt(key, -1);
+                case FLOAT:
+                    return preferences.getFloat(key, -1f);
+                case BOOLEAN:
+                    return preferences.getBoolean(key, false);
+                case LONG:
+                    return preferences.getLong(key, -1L);
+                case STRING:
+                    return preferences.getString(key, null);
+                case STRING_SET:
+                    return preferences.getStringSet(key, null);
+                default: // 默认取出String类型的数据
+                    return null;
+            }
+        }
+```
+
+- TextView实现文字和图片一起
+```
+<TextView
+android:id="@+id/tv_more"
+android:layout_width="140dp"
+android:layout_height="40dp"
+android:layout_alignParentEnd="true"
+android:layout_centerVertical="true"
+android:layout_marginEnd="108dp"
+android:background="@drawable/bg_green"
+android:gravity="center"
+android:drawableRight="@drawable/ic_more"
+android:paddingRight="20dp"
+android:drawablePadding="-20dp"
+android:drawableTint="@color/colorPrimary"
+android:text="更多"
+android:textColor="@android:color/white"
+android:textSize="20sp" />
+```
+
+- 防止用户短时间内重复点击，设置一秒内只能响应一次
+```
+  rlOther.setEnabled(false);
+  new Handler().postDelayed(new Runnable() {
+  @Override
+  public void run() {
+  rlOther.setEnabled(true);
+  }
+  }, 1000);
+```
+
+- getCacheDir()方法用于获取/data/data/<application package>/cache目录
+  getFilesDir()方法用于获取/data/data/<application package>/files目录
+  通过Context.getExternalFilesDir()方法可以获取到 SDCard/Android/data/你的应用的包名/files/ 目录，一般放一些长时间保存的数据
+  通过Context.getExternalCacheDir()方法可以获取到 SDCard/Android/data/你的应用包名/cache/目录，一般存放临时缓存数据
+
+- 计算算法耗时
+```
+  public static void systemTimeSpend(){
+      long startTime = System.currentTimeMillis();
+      System.out.println("开始时间是：" + startTime);
+      //一个比较耗时的操作
+      for (int i = 0, sum = 0; i < 1000; i++) {
+          for (int j = 0; j < 1000; j++) {
+              for (int k = 0; k < 1000; k++) {
+                  sum *= k;
+              }
+          }
+      }
+      long endTime = System.currentTimeMillis();
+      System.out.println("结束时间是：" + endTime);
+      float totalTime = (endTime - startTime) / 1000f;
+      System.out.println("算法总共花费时间：" + totalTime+"秒");
+  }
+  public static void dateTimeSpend(){
+      long startDate =new Date().getTime();
+      System.out.println("开始date时间是：" + startDate);
+      for (int i = 0, sum = 0; i < 1000; i++) {
+          for (int j = 0; j < 1000; j++) {
+              for (int k = 0; k < 1000; k++) {
+                  sum *= k;
+              }
+          }
+      }
+      long endDate=new Date().getTime();
+      System.out.println("结束date时间是：" + endDate);
+      System.out.println("算法总共花费时间："+(endDate-startDate)/1000f+"秒");
+  }
+```
+
+- unicode转中文的方法，比如
+  \u0254\u026a 转化为“名称”
+```
+  public static String decodeUnicode(String theString) {
+             char aChar;
+             int len = theString.length();
+             StringBuffer outBuffer = new StringBuffer(len);
+             for (int x = 0; x < len;) {
+                  aChar = theString.charAt(x++);
+                  if (aChar == '\\') {
+                        aChar = theString.charAt(x++);
+                        if (aChar == 'u') {
+                             // Read the xxxx
+                             int value = 0;
+                             for (int i = 0; i < 4; i++) {
+                                   aChar = theString.charAt(x++);
+                                   switch (aChar) {
+                                   case '0':
+                                   case '1':
+                                   case '2':
+                                   case '3':
+                                   case '4':
+                                   case '5':
+                                   case '6':
+                                   case '7':
+                                   case '8':
+                                   case '9':
+                                        value = (value << 4) + aChar - '0';
+                                        break;
+                                   case 'a':
+                                   case 'b':
+                                   case 'c':
+                                   case 'd':
+                                   case 'e':
+                                   case 'f':
+                                        value = (value << 4) + 10 + aChar - 'a';
+                                        break;
+                                   case 'A':
+                                   case 'B':
+                                   case 'C':
+                                   case 'D':
+                                   case 'E':
+                                   case 'F':
+                                        value = (value << 4) + 10 + aChar - 'A';
+                                        break;
+                                   default:
+                                        throw new IllegalArgumentException("Malformed   \\uxxxx   encoding.");
+                                   }
+                             }
+                             outBuffer.append((char) value);
+                        } else {
+                             if (aChar == 't')
+                                   aChar = '\t';
+                             else if (aChar == 'r')
+                                   aChar = '\r';
+                             else if (aChar == 'n')
+                                   aChar = '\n';
+                             else if (aChar == 'f')
+                                   aChar = '\f';
+                             outBuffer.append(aChar);
+                        }
+                  } else
+                        outBuffer.append(aChar);
+             }
+             return outBuffer.toString();
+       }
+```

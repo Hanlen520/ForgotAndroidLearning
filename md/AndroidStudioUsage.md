@@ -32,7 +32,7 @@
 - MarkDown Navigator  写作 github方便，还能配合wakatime统计事件
 - Android Parcelable Code Generator  生成序列化的Bean
 - CheckStyle 检查代码规范性，自己导入规范文档
-- FindBugs 找空指针等bug
+- FindBugs 找空指针等bug.是一个静态分析工具，它检查类或者 JAR 文件，将字节码与一组缺陷模式进行对比以发现可能的问题。
 - CodeGlance 右边方便预览代码
 - DataBase Navigator 查看SQLite数据库，需要导出文件再查看
 - GsonFormat 方便用json字符串 一键生成bean类
