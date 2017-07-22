@@ -75,9 +75,8 @@ java:
   在fragment布局中预览效果，顶部
   tools:showIn="@layout/activity_main"
 
-## 调试
-1. 遇到问题先看日志 ，先看日志，先看日志啊
-   录音功能需要权限，然后6.0需要动态获取权限
+
+
 
 ## 集合
 -
@@ -133,20 +132,6 @@ java:
 - 切换输入法 win+空格
 
 
-## Android Studio使用
-- AS快捷键：
-  Ctrl+H  查看该类的继承关系
-  Ctrl+O  查看可重写的方法
-  ctrl+P 查看方法的参数列表
-  ctrl+F7 查看方法引用的地方
-  Ctrl + -  方法折叠 展开
-  ctrl+J 代码模版
-  ctrl+E 查看最近浏览
-  Ctrl+Shift+E 查看最近修改
-  ctrl+shift+A 弹出操作搜索
-  ctrl+alt+T 弹出Surround With功能，包括一些if try catch语句
-  ctrl+alt+H 查看方法调用栈
-  F11 添加书签
 
 
 ## Android系统源码
