@@ -1,5 +1,8 @@
 ## Android基础
-整理通用技巧
+整理通用基础知识
+
+## Base
+- 父类定义过的变量，在子类可以直接使用 而不用声明
 
 ## TextView
 xml:
@@ -17,6 +20,7 @@ xml:
 - android:ems="1" 设置EditText为一列
 - android:background="@null" 消除底部横线
 - android:inputType="textMultiLine" 多行显示文字
+- EditText挡住ListView的问题，在Manifest中设置Activity属性 android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
 java:
 1. 显示小键盘 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(editPrivateMsg, 0);
 2. 隐藏小键盘 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).
