@@ -89,6 +89,19 @@ java:
   mRg2.clearCheck();
 
 
+## ScrollView
+- 配合TextView来打印日志，自动滚到最底部
+```
+private void scrollToBottom() {
+        scroll.post(new Runnable() {
+            public void run() {
+                scroll.smoothScrollTo(0, tvLog.getBottom());
+            }
+        });
+    }
+```
+
+
 ## ListView
 - 长按获取listView的某项值
 ```
@@ -275,7 +288,7 @@ insert into Book(name,pages,price,author)  values("作者",103,600,"书名");
 
 ## Windows
 - 切换输入法 win+空格
-
+- 安装Office时默认安装32位的，最好安装时自己在文件夹内选择64位安装，后面的project等也是手动选64位， 否则Office套件不能同时安装32位和64位的软件
 
 
 
@@ -323,6 +336,7 @@ android/platform/libcore：平台的lib库;
 - 自动获取shape  http://shapes.softartstudio.com/#&ui-state=dialog
 
 - 输入法推荐bing拼音输入法,能跟随AndroidStudio的光标移动,再切换到暗黑边界主题。 会导致Alt+Tab切换标签失败，不要用
-![](./picutres/bing.png)
+
+![](../pictures/bing.png)
 
 
