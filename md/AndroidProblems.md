@@ -98,6 +98,9 @@
   useLibrary 'org.apache.http.legacy'
 
 
+- WindowManager$BadTokenException: Unable to add window -- token null is not for an application
+<br>导致报这个错是在于new AlertDialog.Builder(mcontext)，虽然这里的参数是AlertDialog.Builder(Context context)但我们不能使用getApplicationContext()获得的Context,而必须使用Activity,因为只有一个Activity才能添加一个窗体。 
+
 
 ## Others
 - android:allowBackup="true"  有风险，连接数据线可恢复备份数据，应该设置为false

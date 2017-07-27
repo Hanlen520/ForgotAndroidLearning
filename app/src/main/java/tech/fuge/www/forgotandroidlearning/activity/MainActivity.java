@@ -3,16 +3,17 @@ package tech.fuge.www.forgotandroidlearning.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import tech.fuge.www.forgotandroidlearning.R;
+import tech.fuge.www.forgotandroidlearning.base.BaseActivity;
 
-public class MainActivity extends AppCompatActivity {
-TextView mTextView;
+public class MainActivity extends BaseActivity {
+    TextView mTextView;
     Button btnPress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,21 +79,21 @@ TextView mTextView;
         findViewById(R.id.workout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,WorkOutActivity.class));
+                startActivity(new Intent(MainActivity.this, WorkOutActivity.class));
             }
         });
 
         findViewById(R.id.btn_titlebar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,ActionbarActivity.class));
+                startActivity(new Intent(MainActivity.this, ActionbarActivity.class));
             }
         });
 
-       mTextView= (TextView) findViewById(R.id.text);
+        mTextView = (TextView) findViewById(R.id.text);
         mTextView.setText(R.string.age);
-        mTextView.setText(String.format(getString(R.string.age),20));
-         btnPress = (Button) findViewById(R.id.btn_press);
+        mTextView.setText(String.format(getString(R.string.age), 20));
+        btnPress = (Button) findViewById(R.id.btn_press);
         btnPress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,7 +106,7 @@ TextView mTextView;
     }
 
 
-    void doAfterPress(){
+    void doAfterPress() {
         System.out.println("press");
         btnPress.setEnabled(false);
         new Handler().postDelayed(new Runnable() {

@@ -400,3 +400,28 @@ android:textSize="20sp" />
              return outBuffer.toString();
        }
 ```
+- 判断设备是否是 Tablet，适配Tablet设备的时候特别有用。 
+```
+  public static boolean isTablet(Activity activity) {
+      DisplayMetrics dm = new DisplayMetrics();
+      activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
+      double diagonalPixels = Math.sqrt(Math.pow(dm.widthPixels, 2) + Math.pow(dm.heightPixels, 2));
+      double screenSize = diagonalPixels / (160 * dm.density);
+      return screenSize >= 6.0D;
+  }
+```
+
+- 判断 n次点击事件
+```
+long[] mClicks = new long[n];
+  view.setOnClickListener(new OnClickListener() {
+   @Override
+   public void onClick(View v) {
+      System.arraycopy(mClicks, 1, mClicks, 0, mClicks.length - 1);
+      mClicks[mClicks.length - 1] = SystemClock.uptimeMillis();
+       if(mClicks[0] >= (SystemClock.uptimeMillis() - 500)){
+         doSomething();
+    }
+  }
+``` 
+

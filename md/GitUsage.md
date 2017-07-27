@@ -48,6 +48,13 @@ git push gitcafe master;
 可以考虑自己写个小脚本，一个命令同时执行多个
 
 
+## 恢复日志
+git reflog命令可以对git误操作进行数据恢复。
+
+如不小心用git commit --amend当成git commit覆盖当前的commit，或不小心把当前的commit给搞没了（reset --hard）。 都可以通过git reflog恢复。
+
+Git记录每次修改HEAD的操作，git reflog/git log -g可以查看所有的历史操作记录，然后通过git reset命令进行恢复。
+
 ## 更多
 - git status 查看git当前文件情况
 - 有时候网络更换后，github push失败：ssh: Could not resolve hostname github.com: Name or service not known fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.
