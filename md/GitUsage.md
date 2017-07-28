@@ -22,7 +22,7 @@
 - git remote set-url --push[name][newUrl] 修改远程仓库
 - git pull [remoteName] [localBranchName] 拉取远程仓库
 - git push [remoteName] [localBranchName] 推送远程仓库
-
+- git push –force origin master 当本地缺少远程仓库部分文件时，可能提示出错，需要用–force 来强制上传
 
 
 ## 关于分支

@@ -14,7 +14,16 @@
 - 像a.equals("Happy new year")这种判断的话如果a为null就会出现异常，但是改成"Happy new year".equals(a)这种写法的话，则即使a为null也不会有问题。所以在Java中进行比较就最好把常量放在左边
 
 - Math.ceil(x/y) 向上取商；Math.floor(x/y) 向下取商
-
+- @Override是伪代码,表示重写(当然不写也可以)，不过写上有如下好处: 
+  - 可以当注释用,方便阅读； 
+  - 编译器可以给你验证@Override下面的方法名是否是你父类中所有的，如果没有则报错。例如，你如果没写@Override，而你下面的方法名又写错了，这时你的编译器是可以编译通过的，因为编译器以为这个方法是你的子类中自己增加的方法。
+- android的xml文件的开头处一般会有 
+  xmlns:android=”http://schemas.android.com/apk/res/android” 
+  其中xmlns是xml name space的意思。 
+  android:id中的android就是在这定义的。可以自己修改，如 
+  xmlns:a=”http://schemas.android.com/apk/res/android” 
+  然后你就可以放心大胆地写a:id=”@+id/ha”了。  
+  
 ## AndroidManifest.xml
 - application 标签内加上  android:supportsRtl="true"属性，然后TargetSDK写成17
   由于布局方向可以是从右到左的，所以在写xml布局的时候，为了防止出现布局混乱的现象，不要使用诸如layout_marginRight这种，而应该是layout_marginEnd这种
@@ -297,10 +306,13 @@ insert into Book(name,pages,price,author)  values("作者",103,600,"书名");
 - Android oom 1是加载对象过大， 2是相应资源过多，没有来不及释放。
 - android new一个类后（如果被context或view等持有的话，会导致无法被GC回收），不用时要手动释放，不然有可能会导致内存泄漏
 
-## Windows
-- 切换输入法 win+空格
-- 安装Office时默认安装32位的，最好安装时自己在文件夹内选择64位安装，后面的project等也是手动选64位， 否则Office套件不能同时安装32位和64位的软件
 
+
+## 调试
+- Can’t bind to local 8601 for debugger 
+  原因是androidstudio和eclipse一起开了，被eclipse占用，或者是其他ide工具占用了（一般关闭eclipse就好了） 
+  netstat -ano 查看端口情况，然后ctrl+f搜索8601，查看该端口的PID，然后任务管理器中查看该PID对应的程序。需要在任务管理器中设置 才能查看PID
+- Android hierarchyviewer不能使用的解决方法，试下在任务管理器中，结束adb.exe进程，然后新建adb.exe进程即可
 
 
 ## Android系统源码
@@ -315,24 +327,6 @@ android/kernel/common：Android内核，这是驱动工程师最关注的模块�
 android/platform/system/core ：核心系统;
 android/platform/libcore：平台的lib库;
 
-
-## 其他
-
-
-- 图片、文字在网络传送中是转换成一定的二进制代码进行传送的。（图片、文字等--→传送端（发出）--→图片数据转换器（把图片和文字转换成0、1代码）--→终端（接收）--→图片数据转换器（将0、1代码转换成图片和文字）--→图片、文字。）
-- 传输过程中是二进制的，但物理上表示的方式不同。光纤用光信号的亮与不亮来表示1和0，电信号用高低电平来表示二进制！
-
-- **Applet和普通的Java应用程序有什么区别？**
-  applet是运行在启用了java的浏览器中，Java应用程序是可以在浏览器之外运行的独立的Java程序。但是，它们都需要有Java虚拟机。
-  进一步来说，Java应用程序需要一个有特定方法签名的main函数来开始执行。Java applet不需要这样的函数来开始执行。
-  最后，Java applet一般会使用很严格的安全策略，Java应用一般使用比较宽松的安全策略。
-- **数据库连接池是什么意思？**
-  像打开关闭数据库连接这种和数据库的交互可能是很费时的，尤其是当客户端数量增加的时候，会消耗大量的资源，成本是非常高的。可以在应用服务器启动的时候建立很多个数据库连接并维护在一个池中。连接请求由池中的连接提供。在连接使用完毕以后，把连接归还到池中，以用于满足将来更多的请求。
-- **什么是cookie？session和cookie有什么区别？**
-  cookie是Web服务器发送给浏览器的一块信息。浏览器会在本地文件中给每一个Web服务器存储cookie。以后浏览器在给特定的Web服务器发请求的时候，同时会发送所有为该服务器存储的cookie。下面列出了session和cookie的区别：
-
-  	* 无论客户端浏览器做怎么样的设置，session都应该能正常工作。客户端可以选择禁用cookie，但是，session仍然是能够工作的，因为客户端无法禁用服务端的session。
-  	* 在存储的数据量方面session和cookies也是不一样的。session能够存储任意的Java对象，cookie只能存储String类型的对象。
 
 
 
@@ -359,6 +353,15 @@ android/platform/libcore：平台的lib库;
 - SYN(synchronous):TCP/IP建立连接时使用的握手信号 同步 
 - ACK(Acknowledgement):确认字符，确认发来的数据已经接受无误 确认
 - SVG 指可伸缩矢量图形 (Scalable Vector Graphics)
+- SSH 为 Secure Shell 的缩写,为建立在应用层和传输层基础上的安全协议。
+- APK是AndroidPackage的缩写，即Android安装包(apk)
+- USB-OTG线 接鼠标操作手机
+- API（Application Programming Interface,应用程序编程接口）是一些预先定义的函数，目的是提供应用程序与开发人员基于某软件或硬件得以访问一组例程的能力，而又无需访问源码，或理解内部工作机制的细节。
+- GMS全称为Google Mobile Service，即谷歌移动服务。GMS是Google开发并推动Android的动力，也是Android系统的灵魂所在。
+- 物料清单(Bill of Material,BOM)
+- .so ， shared object，用户层的动态库 。
+
+
 
 ## 工具&&网站
 - 自动获取shape  http://shapes.softartstudio.com/#&ui-state=dialog
@@ -369,4 +372,23 @@ android/platform/libcore：平台的lib库;
 
 - 『我从不畏惧一个知道一万种踢法的人，但是我害怕一个把一种踢法练习过一万次的对手。』
 
+## 其他
 
+
+- 图片、文字在网络传送中是转换成一定的二进制代码进行传送的。（图片、文字等--→传送端（发出）--→图片数据转换器（把图片和文字转换成0、1代码）--→终端（接收）--→图片数据转换器（将0、1代码转换成图片和文字）--→图片、文字。）
+- 传输过程中是二进制的，但物理上表示的方式不同。光纤用光信号的亮与不亮来表示1和0，电信号用高低电平来表示二进制！
+
+- **Applet和普通的Java应用程序有什么区别？**
+  applet是运行在启用了java的浏览器中，Java应用程序是可以在浏览器之外运行的独立的Java程序。但是，它们都需要有Java虚拟机。
+  进一步来说，Java应用程序需要一个有特定方法签名的main函数来开始执行。Java applet不需要这样的函数来开始执行。
+  最后，Java applet一般会使用很严格的安全策略，Java应用一般使用比较宽松的安全策略。
+- **数据库连接池是什么意思？**
+  像打开关闭数据库连接这种和数据库的交互可能是很费时的，尤其是当客户端数量增加的时候，会消耗大量的资源，成本是非常高的。可以在应用服务器启动的时候建立很多个数据库连接并维护在一个池中。连接请求由池中的连接提供。在连接使用完毕以后，把连接归还到池中，以用于满足将来更多的请求。
+- **什么是cookie？session和cookie有什么区别？**
+  cookie是Web服务器发送给浏览器的一块信息。浏览器会在本地文件中给每一个Web服务器存储cookie。以后浏览器在给特定的Web服务器发请求的时候，同时会发送所有为该服务器存储的cookie。下面列出了session和cookie的区别：
+
+  	* 无论客户端浏览器做怎么样的设置，session都应该能正常工作。客户端可以选择禁用cookie，但是，session仍然是能够工作的，因为客户端无法禁用服务端的session。
+  	* 在存储的数据量方面session和cookies也是不一样的。session能够存储任意的Java对象，cookie只能存储String类型的对象。
+
+- 三色规律PS：主色占60%，剩余两色分别为30%和10%。 
+  就好比男人的西装外套和裤子占了装配的60%，衬衫占30%，剩下的10%留给领带点缀
