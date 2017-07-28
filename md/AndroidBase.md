@@ -23,7 +23,9 @@
   android:id中的android就是在这定义的。可以自己修改，如 
   xmlns:a=”http://schemas.android.com/apk/res/android” 
   然后你就可以放心大胆地写a:id=”@+id/ha”了。  
-  
+- 在实际开发中LayoutInflater这个类还是非常有用的，它的作用类似于findViewById()。不同点是LayoutInflater是用来找res/layout/下的xml布局文件，并且实例化；而findViewById()是找xml布局文件下的具体widget控件(如Button、TextView等)
+- relativelayout 用这个来居中 要先设置Layout为wrap_content才行 
+ 
 ## AndroidManifest.xml
 - application 标签内加上  android:supportsRtl="true"属性，然后TargetSDK写成17
   由于布局方向可以是从右到左的，所以在写xml布局的时候，为了防止出现布局混乱的现象，不要使用诸如layout_marginRight这种，而应该是layout_marginEnd这种
@@ -31,7 +33,10 @@
   这样做是为了兼容阿拉伯文，阿拉伯文是一种从右向左书写的文字, 所谓RTL(Right to Left)文字
 
 - android:stateNotNeeded="true"  不保存state状态，即不保留屏幕临时数据
-
+- activity的主题很重要，有时候用的demo 导入后发现样式 字体等变了，很可能就是因为新工程用的不是demo中的主题
+- android theme和style的区别 
+  theme一般是整个activity的样式，而style一般是一个小部件的样式，如textView，listView等 
+  如果theme跟style样式有冲突，一般是style样式优先级高，就近原则
 
 ## TextView
 xml:
@@ -55,7 +60,10 @@ xml:
 - 直接在xml布局中限制输入字符串
   android:digits="qwertyuiopasdfghjklzxcvbnm1234567890"
 - TextLayout中显示密码的按钮 app:passwordToggleEnabled="true"
-
+- 有时候不是edittext没有光标，可能是光标默认白色，那么在白色背景下就看不到了 
+  方法一、 
+  EditText有一个属性：android:textCursorDrawable，这个属性是用来控制光标颜色的 
+  android:textCursorDrawable=”@null”，”@null”作用是让光标颜色和text color一样
 
 java:
 -  显示小键盘 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(editPrivateMsg, 0);
@@ -113,6 +121,8 @@ private void scrollToBottom() {
     }
 ```
 
+## AlertDialog
+- 点击外部不会关闭dialog, builder.setCancelable(false); 
 
 ## ListView
 - 长按获取listView的某项值
@@ -172,8 +182,16 @@ private void scrollToBottom() {
   　　intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
   　　//如果Activity已经运行到了顶部Task，再次跳转不会在运行这个Activity
   　　intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-
+- Android 开发有时需要在一个应用中启动另一个应用，比如Launcher加载所有的已安装的程序的列表，当点击图标时可以启动另一个应用。
+  
+  一般我们知道了另一个应用的包名和MainActivity的名字之后便可以直接通过如下代码来启动：
+```
+  Intent intent = newIntent(Intent.ACTION_MAIN);
+  intent.addCategory(Intent.CATEGORY_LAUNCHER);          
+  ComponentName cn = newComponentName(packageName, className);          
+  intent.setComponent(cn);
+  startActivity(intent);
+```
 ## fragment
 - activity获取fragment中的控件： getFragmentManager().findFragmentById(id).getView().findViewById(id)
 - 获取v7包中的fragment： getSupportFragmentManager().findFragmentById(id).getView().findViewById(id)
@@ -227,7 +245,19 @@ tools:visibility= "visible"
 ## 设计模式
 - [架构设计](https://github.com/googlesamples/android-architecture)
 - MVP：在Android项目中，业务逻辑，数据处理等担任了Model（模型）角色，XML界面显示等担任了View（视图）角色，Activity担任了Contronller（控制器）角色。contronller（控制器）是一个中间桥梁的作用，通过接口通信来协同 View（视图）和Model（模型）工作，起到了两者之间的通信作用。
-
+- 设计原则：(重要) 
+  a. 
+  逻辑代码独立到单独的方法中，注重封装性–易读，易复用。 
+  不要在一个方法中，写下上百行的逻辑代码。把各小逻辑代码独立出来，写于其它方法中，易读其可重复调用。 
+  b. 
+  写类，写方法，写功能时，应考虑其移植性，复用性：防止一次性代码！ 
+  是否可以拿到其它同类事物中应该？是否可以拿到其它系统中应该？ 
+  c. 
+  熟练运用继承的思想： 
+  找出应用中相同之处，且不容易发生变化的东西，把它们抽取到抽象类中，让子类去继承它们； 
+  继承的思想，也方便将自己的逻辑建立于别人的成果之上。如ImageField extends JTextField； 
+  熟练运用接口的思想： 
+  找出应用中可能需要变化之处，把它们独立出来，不要和那些不需要变化的代码混在一起。
 
 ## 多线程
 - Handler中：myReturnHandler.removeCallbacksAndMessages(null)。null表示将所有的Callbacks和Messages全部清除掉，如
@@ -305,14 +335,49 @@ insert into Book(name,pages,price,author)  values("作者",103,600,"书名");
 - 在BaseActivity中统一开启关闭DEBUG， 还有List<Activity> 管理所有Activity的finish()
 - Android oom 1是加载对象过大， 2是相应资源过多，没有来不及释放。
 - android new一个类后（如果被context或view等持有的话，会导致无法被GC回收），不用时要手动释放，不然有可能会导致内存泄漏
-
-
+- Android应用内存泄漏的的原因有以下几个： 
+  1查询数据库后没有关闭游标cursor 
+  2 构造Adapter时，没有使用 convertView 重用 
+  3 Bitmap对象不在使用时调用recycle()释放内存 
+  4 对象被生命周期长的对象引用，如activity被静态集合引用导致activity不能释放 
+- 资源性对象比如(Cursor，File文件等)往往都用了一些缓冲，我们在不使用的时候，应该及时关闭它们，以便它们的缓冲及时回收内存。它们的缓冲不 仅存在于 java虚拟机内，还存在于java虚拟机外。如果我们仅仅是把它的引用设置为null,而不关闭它们，往往会造成内存泄漏。
 
 ## 调试
 - Can’t bind to local 8601 for debugger 
   原因是androidstudio和eclipse一起开了，被eclipse占用，或者是其他ide工具占用了（一般关闭eclipse就好了） 
   netstat -ano 查看端口情况，然后ctrl+f搜索8601，查看该端口的PID，然后任务管理器中查看该PID对应的程序。需要在任务管理器中设置 才能查看PID
 - Android hierarchyviewer不能使用的解决方法，试下在任务管理器中，结束adb.exe进程，然后新建adb.exe进程即可
+- adb shell //进入adb控制台 
+  adb devices //查看连接设备 
+  adb install softwareName.apk 安装当前目录下的apk到当前连接设备
+
+
+## 测试
+编写测试用例，看输入输出是否正确 
+测试用例是软件测试的核心 
+测试用例制定的原则 
+测试用例要包括欲测试的功能、应输入的数据和预期的输出结果。测试数据应该选用少量、高效的测试数据进行尽可能完备的测试；基本目标是：设计一组发现某个错误或某类错误的测试数据，测试用例应覆盖方面： 
+1、 正确性测试：输入用户实际数据以验证系统是满足需求规格说明书的要求；测试用 
+例中的测试点应首先保证要至少覆盖需求规格说明书中的各项功能，并且正常。 
+2、 容错性（健壮性）测试：程序能够接收正确数据输入并且产生正确（预期）的输出， 
+输入非法数据（非法类型、不符合要求的数据、溢出数据等），程序应能给出提示 并进行相应处理。把自己想象成一名对产品操作一点也不懂的客户，在进行任意操作。 
+3、 完整（安全）性测试：对未经授权的人使用软件系统或数据的企图，系统能够控制的程度，程序的数据处理能够保持外部信息（数据库或文件）的完整。 
+4、 接口间测试：测试各个模块相互间的协调和通信情况，数据输入输出的一致性和正确性。 
+5、 数据库测试：依据数据库设计规范对软件系统的数据库结构、数据表及其之间的数据调用关系进行测试。 
+6、 边界值分析法：确定边界情况（刚好等于、稍小于和稍大于和刚刚大于等价类边界值），针对我们的系统在测试过程中主要输入一些合法数据/非法数据，主要在边界值附近选取。 
+7、 压力测试：输入10条记录运行各个功能，输入30条记录运行，输入50条记录运行。。。进行测试。 
+8、等价划分：将所有可能的输入数据（有效的和无效的）划分成若干个等价类。 
+9、错误推测：主要是根据测试经验和直觉，参照以往的软件系统出现错误之处。 
+10、效率：完成预定的功能，系统的运行时间（主要是针对数据库而言）。 
+11、可理解（操作）性：理解和使用该系统的难易程度（界面友好性）。 
+12、可移植性：在不同操作系统及硬件配置情况下的运行性。 
+13、回归测试：按照测试用例将所有的测试点测试完毕，测试中发现的问题开发人员 
+已经解决，进行下一轮的测试。 
+14、比较测试：将已经发版的类似产品或原有的老产品与测试的产品同时运行比较，或与已往的测试结果比较
+
+14、A/B测试 
+长标题还是短标题 
+疑问句还是陈述句 
 
 
 ## Android系统源码
@@ -360,8 +425,8 @@ android/platform/libcore：平台的lib库;
 - GMS全称为Google Mobile Service，即谷歌移动服务。GMS是Google开发并推动Android的动力，也是Android系统的灵魂所在。
 - 物料清单(Bill of Material,BOM)
 - .so ， shared object，用户层的动态库 。
-
-
+- ANR：Application Not Responding
+- JNI（java native interface java 本地接口）
 
 ## 工具&&网站
 - 自动获取shape  http://shapes.softartstudio.com/#&ui-state=dialog
@@ -392,3 +457,28 @@ android/platform/libcore：平台的lib库;
 
 - 三色规律PS：主色占60%，剩余两色分别为30%和10%。 
   就好比男人的西装外套和裤子占了装配的60%，衬衫占30%，剩下的10%留给领带点缀
+- 一个 Android 工程最后变成 apk 包大概要做这么几件事儿：
+  
+  * 1、生成 R.java 文件
+  * 2、将 .java 文件编译成 .class 文件
+  * 3、将 .class 文件打包成 .jar 文件
+  * 4、将所有 .jar 文件（包括依赖库）编译成 classes.dex 文件
+  * 5、将 assets 和 res 文件夹中所有的资源文件打包成一个 apk 包
+  * 6、将 classes.dex 文件添加进 apk 包
+  * 7、如果有使用 NDK 技术的话，将生成的 .so 文件添加进 apk 包
+  * 8、对 apk 包进行签名
+  
+- android 定义颜色color时6位或8位值的区别
+  
+  6位（#000000）就是RGB值（红绿蓝各自0~255，转换为16进制后，各对应前两位数，0~f）
+  8位（#1e000000）头两位是透明度，后6位是RGB值，00是完全透明，ff是完全不透明，比较适中的透明度值是 1e 3e 4e
+  
+- 如何将一个Activity设置成窗口的样式。 
+  答：中配置：android :theme=”@android:style/Theme.Dialog” 
+  另外android:theme=”@android:style/Theme.Translucent” 是设置透明
+  
+- 公钥和私钥是成对的，它们互相解密。 
+  公钥加密，私钥解密。 
+  私钥数字签名，公钥验证。 
+  RSA是目前最有影响力的公钥加密算法，它能够抵抗到目前为止已知的所有密码攻击，已被ISO推荐为公钥数据加密标准。 
+  RSA算法基于一个十分简单的数论事实：将两个大素数相乘十分容易，但那时想要对其乘积进行因式分解却极其困难，因此可以将乘积公开作为加密密钥。
