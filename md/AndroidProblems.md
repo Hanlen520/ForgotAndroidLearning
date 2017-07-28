@@ -108,3 +108,4 @@
 - apk经常装到一般就失败error，可能是连接的口有问题，电脑换一个USB口试试
 - 查看log的额外方法 /Users/<user>/Library/Logs/AndroidStudio2.2/
 - EditText挡住ListView的问题，在Manifest中设置Activity属性 android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
+- 微信支付调起失败，错误码-1 ， 签名与微信后台记录的不对

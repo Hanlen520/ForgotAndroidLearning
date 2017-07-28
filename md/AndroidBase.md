@@ -13,7 +13,7 @@
     答案是false true ，  ==比较的是两对象完全相等（值还有hashcode相等），而.equal比较的是值相等
 - 像a.equals("Happy new year")这种判断的话如果a为null就会出现异常，但是改成"Happy new year".equals(a)这种写法的话，则即使a为null也不会有问题。所以在Java中进行比较就最好把常量放在左边
 
-
+- Math.ceil(x/y) 向上取商；Math.floor(x/y) 向下取商
 
 ## AndroidManifest.xml
 - application 标签内加上  android:supportsRtl="true"属性，然后TargetSDK写成17
@@ -34,7 +34,7 @@ xml:
 
 java:
 - tv.setError("报错信息");
-
+- txtShow.setBackground("#000");
 
 
 ## EditText
@@ -84,6 +84,9 @@ xml:
 
 java:
 
+
+
+
 ## RadioButtn
 - 关于RadioGroup实现多行选项，如两排四列，在选择第一列时，把第二列清空选择即可
   mRg2.clearCheck();
@@ -121,14 +124,18 @@ private void scrollToBottom() {
 - android:tint="@color/sample_green"
   可以直接给ImageView图片src上色
 
-## 
+## Toast
+- 一般toast显示不出有3个原因： 
+  1、在非UI线程中执行，建议使用handler显示提示 
+  2、没有执行到，这是逻辑错误 
+  3、可能是手机设置-应用通知管理没打开
 
 ## String
 - %d（表示整数），%f（表示浮点数）， %s （表示字符串）
   例如 <string name="old">我今年%d岁了</string>
   String sAgeFormat = getResources().getString(R.string.old);
   String sFinalAge = String.format(sAgeFormat, 23);
-
+- toString和 强转(String)的区别。toString是一个方法，任何一个对象都可以有自己的toString方法，而强转String是将一个对象转化为String类型，若本身不是String类型则可能奔溃
 ## int
 - 十进制转化为十六进制，结果为C8。 Integer.toHexString(200);
 
@@ -226,7 +233,10 @@ tools:visibility= "visible"
       }
   }, 500);
 ```
-- 
+
+## 网络编程
+- 当我们打开浏览器，在地址栏中输入URL，然后我们就看到了网页。 原理是怎样的呢？ 
+  实际上我们输入URL后，我们的浏览器给Web服务器发送了一个Request, Web服务器接到Request后进行处理，生成相应的Response，然后发送给浏览器， 浏览器解析Response中的HTML,这样我们就看到了网页
   
 ## 异常
 - 异常的分类：
@@ -284,7 +294,8 @@ insert into Book(name,pages,price,author)  values("作者",103,600,"书名");
 - Application对象的生命周期是整个程序中最长的，它的生命周期就等于这个程序的生命周期。因为它是全局的单例的，所以在不同的Activity,Service中获得的对象都是同一个对象。所以可以通过Application来进行一些，如：数据传递、数据共享和数据缓存等操作。
 - Java中的卫语句:把嵌套写的if else判断，改为串行的条件判断, return;
 - 在BaseActivity中统一开启关闭DEBUG， 还有List<Activity> 管理所有Activity的finish()
-
+- Android oom 1是加载对象过大， 2是相应资源过多，没有来不及释放。
+- android new一个类后（如果被context或view等持有的话，会导致无法被GC回收），不用时要手动释放，不然有可能会导致内存泄漏
 
 ## Windows
 - 切换输入法 win+空格
@@ -325,12 +336,29 @@ android/platform/libcore：平台的lib库;
 
 
 
-
+## 关于APK签名
+- APK签名用处主要有两种 
+  a. 使用特殊的key签名可以获取到一些不同的权限。 
+  b. APK如果使用一个key签名，发布时另一个key签名的文件将无法安装或覆盖老的版本，这样可以防止你已安装的应用被恶意的第三方覆盖或替换掉
+- 包名不同则相当于两个应用，若包名相同而签名不同则无法安装，若包名和签名都相同，则可以覆盖安装
+- 包名一般选用自家域名的倒装
+- 直接查看签名文件 keytool -list -keystore E:\Trinea\keystore\appsearch.keystore （不够全）
+- .推荐：解压APK后 进入META-INF文件夹， cmd输入   keytool -printcert -file CERT.RSA   
+- android Your keystore contains 2 entries  一个签名文件可以包含多个别名，不同别名签名后的MD5不同，可以覆盖安装？？（不能，别名不同也不算同一个key），但微信支付就会失败，所以要注意用同一个别名
 
 ## 简称
 - SNS，全称Social Networking Services，即社会性网络服务
 - HAL（Hardware Abstract Layer硬件抽象层）
-
+- OpenGL（全写Open Graphics Library）是个定义了一个跨编程语言、跨平台的编程接口规格的专业的图形程序接口；
+- 位置服务(LBS,Location Based Services)；
+- OOM - Out of Mana，法力耗尽 
+- OOM - Out of Memory，内存溢出
+- Hotfix是针对某一个具体的系统漏洞或安全问题而发布的专门解决该漏洞或安全问题的小程序，通常称为修补程序。
+- JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式 
+- AJAX即“Asynchronous javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。
+- SYN(synchronous):TCP/IP建立连接时使用的握手信号 同步 
+- ACK(Acknowledgement):确认字符，确认发来的数据已经接受无误 确认
+- SVG 指可伸缩矢量图形 (Scalable Vector Graphics)
 
 ## 工具&&网站
 - 自动获取shape  http://shapes.softartstudio.com/#&ui-state=dialog
@@ -338,5 +366,7 @@ android/platform/libcore：平台的lib库;
 - 输入法推荐bing拼音输入法,能跟随AndroidStudio的光标移动,再切换到暗黑边界主题。 会导致Alt+Tab切换标签失败，不要用
 
 ![](../pictures/bing.png)
+
+- 『我从不畏惧一个知道一万种踢法的人，但是我害怕一个把一种踢法练习过一万次的对手。』
 
 

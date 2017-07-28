@@ -11,7 +11,7 @@
 
 - 出现string等中文乱码，设置语言为微软雅黑。 编码全部改为UTF-8
 <br>再Settings-Apperance-Override default fonts by 设置为微软雅黑
-
+- 若AndroidStudio上的logcat时间不对，其实这是你虚拟机上的时间，去改虚拟机上的就行了
 ## 快捷键：
 - Ctrl+H  查看该类的继承关系
 - Ctrl+O  查看可重写的方法
@@ -42,3 +42,5 @@
 ## 调试
 1. 遇到问题先看日志 ，先看日志，先看日志啊
    录音功能需要权限，然后6.0需要动态获取权限
+
+
