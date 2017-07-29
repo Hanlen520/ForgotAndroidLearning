@@ -56,7 +56,68 @@
 - 小布尔乔亚、克莱因瓶、皮亚诺曲线、莫比乌斯环、 康托尔集、狄利克雷函数、莱洛三角形
 
 - office套件可以内联使用MathType功能，即便MathType 没注册，也能使用精简功能
+- 禁用win10自动更新，在系统服务下的windows update,禁用即可 
+  
+-  关于office work老弹出宏错误<br>
+解决方法： 
+点击左上角文件——” 选项”——”加载项”——”管理【com加载项】”，点击”转到”——把几个COM加载项勾勾都取消掉——确定，即可。Win7中注意要以管理员身份进行
 
+- CPU要读取一个数据时，首先从Cache中查找，如果找到就立即读取并送给CPU处理；如果没有找到，就用相对慢的速度从内存中读取并送给CPU处理，同时把这个数据所在的数据块调入Cache中，可以使得以后对整块数据的读取都从Cache中进行，不必再调用内存。 
+  正是这样的读取机制使CPU读取Cache的命中率非常高（大多数CPU可达90%左右），也就是说CPU下一次要读取的数据90%都在Cache中，只有大约10%需要从内存读取。这大大节省了CPU直接读取内存的时间，也使CPU读取数据时基本无需等待。总的来说，CPU读取数据的顺序是先Cache后内存.
+
+- 有些ubuntu残留的错误文件，在win系统无法删除的，甚至会影响到磁盘的合并，此时除了格式化硬盘，还有别的办法，用系统自带的磁盘修复命令 
+  解决方法： 
+  在 cmd 命令行窗口中输入如下代码： 
+  chkdsk /f /x c:
+  
+  PS: 其中 “c:” 为需要进行操作的盘符，根据实际盘符修改。
+- 默认情况下xmind输入的文字都是水平，且只能一行，如果要多行显示，在编辑文字的时候，请使用CTRL+Enter而不要直接回车！
+
+## win+R 运行命令
+
+-  mstsc： 连接远程win服务器 
+-  register： 注册表 
+-  msconfig： 打开系统配置，设置启动等配置 
+-  dxdiag： 打开DirectX诊断工具 
+-  winver： 查看操作系统版本 
+-  explorer：打开资源管理器 
+-  cmd： 打开命令控制台
+
+## cmd命令
+
+-  ipconfig /all 查看网络ip 
+-  ipconfig /flushdns 清理dns缓存 
+-  ping www.github.com 查看网络传输数据是否成功 
+-  netstat -ano 查看端口占用情况
+  
+##  浏览器主页被hao123劫持的解决办法
+主页被劫持的情况经常出现，有的是装了流氓软件被改主页，有的是用windows激活软件等被改主页，收集了几个解决办法：
+
+1、检查chrome和IE等图标，右键属性-快捷方式- 目标 如果是这样的“C:\Program Files (x86)\Google\Chrome\Application\chrome.exe” www.hao123.com 把后面的删除就可以了
+
+2、看下目录下的chrome是否启动方式后缀名加了hao123 Start Menu下的 C:\ProgramData\Microsoft\Windows\Start Menu\Programs
+
+3、任务栏下的图标，有一次发现就是任务栏下的被改了 ，目录如下 
+C:\Users\你的电脑名\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar 
+右键查看属性，若目标后面有hao123删了就行了
+
+4、运行msconfig，找到系统自启动项，禁用陌生的自启动项。都陌生的，请禁用全部自启动项，如果解决了再一次解禁一部分自启动项来定位有问题的自启动项。
+
+5、运行taskschd.msc打开任务计划程序，定位问题方法同上。
+
+
+## 安装Ubuntu的方法
+制作镜像U盘
+
+不推荐用网上的U盘PE装系统，有一定几率安装失败。 
+推荐工具ImageWriter 
+下载地址 
+http://pan.baidu.com/s/1mhKngwS 
+制作U盘安装系统方法： 
+1、要先将系统的ISO文件的后缀名改为raw 
+2、直接运行imagewriter.exe ，选择后缀名为raw的系统的安装文件。 
+3、选择你的U盘的盘号，点击开始即可，等待导入成功 
+4、这时候跟普通U盘装windows系统一样，bios改成U盘启动就能简单安装了
   
 ## 个人常用软件
 

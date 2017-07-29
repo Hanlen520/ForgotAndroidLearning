@@ -12,7 +12,6 @@
     System.out.println(a.equals(b));
     答案是false true ，  ==比较的是两对象完全相等（值还有hashcode相等），而.equal比较的是值相等
 - 像a.equals("Happy new year")这种判断的话如果a为null就会出现异常，但是改成"Happy new year".equals(a)这种写法的话，则即使a为null也不会有问题。所以在Java中进行比较就最好把常量放在左边
-
 - Math.ceil(x/y) 向上取商；Math.floor(x/y) 向下取商
 - @Override是伪代码,表示重写(当然不写也可以)，不过写上有如下好处: 
   - 可以当注释用,方便阅读； 
@@ -25,7 +24,10 @@
   然后你就可以放心大胆地写a:id=”@+id/ha”了。  
 - 在实际开发中LayoutInflater这个类还是非常有用的，它的作用类似于findViewById()。不同点是LayoutInflater是用来找res/layout/下的xml布局文件，并且实例化；而findViewById()是找xml布局文件下的具体widget控件(如Button、TextView等)
 - relativelayout 用这个来居中 要先设置Layout为wrap_content才行 
- 
+- 在drawable文件夹右键新建VectorDrawable 就能创建vector图标了 
+- JAVA7中增强数字的可读性：1000000.0000 —> 1000_000.000_0 编译器会自动省略_
+- 类以代码形式保存在文件中（硬盘中），new一个类，则到内存中了，这就是类的实例化 
+- Java文件后缀是.java 编译之后是.class 
 ## AndroidManifest.xml
 - application 标签内加上  android:supportsRtl="true"属性，然后TargetSDK写成17
   由于布局方向可以是从右到左的，所以在写xml布局的时候，为了防止出现布局混乱的现象，不要使用诸如layout_marginRight这种，而应该是layout_marginEnd这种
@@ -199,7 +201,9 @@ private void scrollToBottom() {
   fragment中获取activity中的方法
 
 
-## 自定义View
+## View
+- view.bringToFront(); 
+  将一个控件放在顶层，如progressbar 
 - Android UI中的View如何刷新。
   在主线程中  拿到view调用Invalide()方法,查看画画板里面更新imageview的方法
   在子线程里面可以通过postInvalide()方法;
@@ -272,11 +276,18 @@ tools:visibility= "visible"
       }
   }, 500);
 ```
-
+- 多线程就是一个人同时在做多件事情，比如同时呼吸和写文章，而多进程就是复制一个人来和你一起做事，两个人之间独立 不冲突
 ## 网络编程
 - 当我们打开浏览器，在地址栏中输入URL，然后我们就看到了网页。 原理是怎样的呢？ 
   实际上我们输入URL后，我们的浏览器给Web服务器发送了一个Request, Web服务器接到Request后进行处理，生成相应的Response，然后发送给浏览器， 浏览器解析Response中的HTML,这样我们就看到了网页
-  
+- HttpURLConnection对象不能直接构造，需要通过URL.openConnection()来获得HttpURLConnection对象，因为HttpURLConnection是抽象类，不能new
+- 当用android内的webView打开微博个人页时，显示空白，因为要添加JavaScript脚本支持才行 
+  // 得到设置属性的对象 
+  WebSettings webSettings = myWeb.getSettings(); 
+  // 使能javascript 
+  webSettings.setJavaScriptEnabled(true); 
+  // 支持中文，否则页面中中文显示乱码 
+  webSettings.setDefaultTextEncodingName(“GBK”);
 ## 异常
 - 异常的分类：
   Java.lang.Throwable
@@ -316,6 +327,16 @@ select * from Book
 
 insert into Book(name,pages,price,author)  values("作者",103,600,"书名");
 
+- .help 帮助菜单 
+  .databases 显示数据库信息； 
+  .tables 显示表名称； 
+  .schema 命令可以查看创建数据表时的SQL命令； 
+  .schema table_name 查看创建表table_name时的SQL的命令； 
+  .exit 退出sqlite操作
+- 提示 
+  Android: adb: Permission Denied 
+  执行一下 
+  adb root
 
 
 
@@ -341,19 +362,24 @@ insert into Book(name,pages,price,author)  values("作者",103,600,"书名");
   3 Bitmap对象不在使用时调用recycle()释放内存 
   4 对象被生命周期长的对象引用，如activity被静态集合引用导致activity不能释放 
 - 资源性对象比如(Cursor，File文件等)往往都用了一些缓冲，我们在不使用的时候，应该及时关闭它们，以便它们的缓冲及时回收内存。它们的缓冲不 仅存在于 java虚拟机内，还存在于java虚拟机外。如果我们仅仅是把它的引用设置为null,而不关闭它们，往往会造成内存泄漏。
-
-## 调试
-- Can’t bind to local 8601 for debugger 
-  原因是androidstudio和eclipse一起开了，被eclipse占用，或者是其他ide工具占用了（一般关闭eclipse就好了） 
-  netstat -ano 查看端口情况，然后ctrl+f搜索8601，查看该端口的PID，然后任务管理器中查看该PID对应的程序。需要在任务管理器中设置 才能查看PID
-- Android hierarchyviewer不能使用的解决方法，试下在任务管理器中，结束adb.exe进程，然后新建adb.exe进程即可
-- adb shell //进入adb控制台 
-  adb devices //查看连接设备 
-  adb install softwareName.apk 安装当前目录下的apk到当前连接设备
-
+- “为什么我们的后台进程/Service会被结束掉？ 
+  我想到的是有三个方面： 
+  Android系统内存回收机制； 
+  各厂商对后台程序的一个管理制度（就是允许程序后台运行那个）； 
+  第三方软件的清理(360什么的)。
+- 为预防内存泄漏，尽量别把 activity 或 context 设置为静态 static, 对于生命周期长的对象，可以使用 applicationContext
 
 ## 测试
-编写测试用例，看输入输出是否正确 
+- 在移动应用上进行的测试包括：
+  
+  1. 性能测试: 执行测试客户端的应用程序性能，网络性能和服务器性能。
+  2. 功能测试: 这是根据需求检查应用程序功能的基本测试。
+  3. 内存测试: 与计算机相比，移动设备具有较小的内存，执行该测试以测试任何应用可优化的存储器使用。
+  4. 安装测试: 进行安装测试以检查包括卸载和更新的平滑与容易的安装过程。
+  5. 中断测试: 它用于检查由于短信或来电，低电量警告，低内存警告等引起的中断。
+  6. 可用性测试: 它用于检查应用程序的有效性，效率和满意度。
+  
+- 编写测试用例，看输入输出是否正确 
 测试用例是软件测试的核心 
 测试用例制定的原则 
 测试用例要包括欲测试的功能、应输入的数据和预期的输出结果。测试数据应该选用少量、高效的测试数据进行尽可能完备的测试；基本目标是：设计一组发现某个错误或某类错误的测试数据，测试用例应覆盖方面： 
@@ -427,7 +453,13 @@ android/platform/libcore：平台的lib库;
 - .so ， shared object，用户层的动态库 。
 - ANR：Application Not Responding
 - JNI（java native interface java 本地接口）
-
+- ARP(Address Resolution Protocol，地址解析协议)是获取物理地址的一个TCP/IP协议 
+  ARP欺骗可以导致目标计算机与网关通信失败； 
+- MIME 是multipurpose Internet mail extensions 的缩写。 
+它是一种协议，可使电子邮件除包含一般纯文本以外，还可加上彩色图片、视频、声音或二进位格式的文件。 
+它要求邮件的发送端和接收端必须有解读MIME 协议的电子邮件程序。
+- OA :Office Automation System 办公自动化系统 
+ 
 ## 工具&&网站
 - 自动获取shape  http://shapes.softartstudio.com/#&ui-state=dialog
 
@@ -482,3 +514,5 @@ android/platform/libcore：平台的lib库;
   私钥数字签名，公钥验证。 
   RSA是目前最有影响力的公钥加密算法，它能够抵抗到目前为止已知的所有密码攻击，已被ISO推荐为公钥数据加密标准。 
   RSA算法基于一个十分简单的数论事实：将两个大素数相乘十分容易，但那时想要对其乘积进行因式分解却极其困难，因此可以将乘积公开作为加密密钥。
+  
+- 人工画的二维码也能识别的，要分好格子来画，二维码有一定容错性，一般遮住一小部分仍然能识别  

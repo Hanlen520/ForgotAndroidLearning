@@ -55,6 +55,22 @@ git reflog命令可以对git误操作进行数据恢复。
 
 Git记录每次修改HEAD的操作，git reflog/git log -g可以查看所有的历史操作记录，然后通过git reset命令进行恢复。
 
+## SSH Key的配置
+
+1.Windows下打开Git Bash，创建SSH Key，按提示输入密码，可以不填密码一路回车
+
+$ ssh-keygen -t rsa -C “注册邮箱” 然后用户主目录 (如C:\Users\yourname.ssh) 下有两个文件，idrsa是私钥，idrsa.pub是公钥
+
+2.获取key，打开.ssh下的id_rsa.pub文件，里面的内容就是key的内容，复制下来
+
+3.登录GitHub，打开“SSH Keys”页面，点右下角的“New GPG key ” 粘贴key过去，就能成功生成SSH keys 在github网站了
+
+ssh地址：https://github.com/settings/ssh
+
+4.测试ssh key是否成功，使用命令“ssh -T git@github.com”，如果出现You’ve successfully authenticated, but GitHub does not provide shell access 。这就表示已成功连上github，现在你可以把本地项目提交到github仓库了
+
+
+
 ## 更多
 - git status 查看git当前文件情况
 - 有时候网络更换后，github push失败：ssh: Could not resolve hostname github.com: Name or service not known fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.
