@@ -157,6 +157,10 @@ private void scrollToBottom() {
   String sAgeFormat = getResources().getString(R.string.old);
   String sFinalAge = String.format(sAgeFormat, 23);
 - toString和 强转(String)的区别。toString是一个方法，任何一个对象都可以有自己的toString方法，而强转String是将一个对象转化为String类型，若本身不是String类型则可能奔溃
+- 如果用"."作为分隔的话，必须是如下写法：String.split("\\."),这样才能正确的分隔开，不能用String.split(".");
+同理若用"|"作为分隔符的话也一样，因为这是转义字符
+
+
 ## int
 - 十进制转化为十六进制，结果为C8。 Integer.toHexString(200);
 
@@ -277,6 +281,15 @@ tools:visibility= "visible"
   }, 500);
 ```
 - 多线程就是一个人同时在做多件事情，比如同时呼吸和写文章，而多进程就是复制一个人来和你一起做事，两个人之间独立 不冲突
+
+
+- 关于Handler的实现
+    - Looper: 一个线程可以产生一个Looper对象，由它来管理此线程里的Message Queue(消息队列)。
+ - Handler: 你可以构造Handler对象来与Looper沟通，以便push新消息到Message Queue里;或者接收Looper从Message Queue取出)所送来的消息。
+  - Message Queue(消息队列):用来存放线程放入的消息。
+  - 线程：UI thread 通常就是main thread，而Android启动程序时会替它建立一个Message Queue。
+  
+
 ## 网络编程
 - 当我们打开浏览器，在地址栏中输入URL，然后我们就看到了网页。 原理是怎样的呢？ 
   实际上我们输入URL后，我们的浏览器给Web服务器发送了一个Request, Web服务器接到Request后进行处理，生成相应的Response，然后发送给浏览器， 浏览器解析Response中的HTML,这样我们就看到了网页

@@ -1,6 +1,8 @@
 package tech.fuge.www.forgotandroidlearning.activity;
 
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -102,8 +104,13 @@ public class MainActivity extends BaseActivity {
         });
 //        String a;
 //        a.equals("ss");
+        mCanvas.drawCircle(300, 300, 200, paint);
 
     }
+
+
+    Paint paint = new Paint();
+    Canvas mCanvas = new Canvas();
 
 
     void doAfterPress() {

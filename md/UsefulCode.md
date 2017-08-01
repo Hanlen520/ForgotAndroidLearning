@@ -425,3 +425,14 @@ long[] mClicks = new long[n];
   }
 ``` 
 
+- 判断字符串能否转为int
+```
+ public static boolean isInt(String string){
+        try {
+            Integer.parseInt(string);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+```
