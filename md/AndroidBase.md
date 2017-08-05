@@ -47,7 +47,7 @@ xml:
 - android:alpha="0.6" 设置透明度
 - textView.append("\n" + msg.obj.toString());  追加消息到TextView中
 - 取消默认大写字母android:textAllCaps="false";
-
+- 竖向显示文字，固定几个文字可用\n,  android:text="立\n即\n使\n用"
 java:
 - tv.setError("报错信息");
 - txtShow.setBackground("#000");
@@ -229,6 +229,21 @@ private void scrollToBottom() {
 - TextView等预览
 tools:text="预览文字"
 tools:visibility= "visible"
+
+
+## 命名规范
+- UI资源命名(最好全用英文命名)
+命名规范\
+0,大模块名_元素名_状态值
+1, 大模块名分为：huanchang, legou , shejiao , xuchang , zhanghu等等
+2, 元素名按目前的，如：luyin, bofang , yidian等等
+3，状态值， 默认不带；点击变化的状态为 pressed
+
+例子： 
+huanchang_yidian 表示欢唱界面 已点图标
+huanchang_yidian_pressed 表示欢唱界面 已点图标 ,点击后变化的状态
+
+
 
 ## 集合
 -

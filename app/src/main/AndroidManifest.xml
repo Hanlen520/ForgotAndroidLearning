@@ -54,7 +54,9 @@
             <!-- </intent-filter> -->
         </activity>
         <activity android:name=".base.BaseActivity" />
-        <activity android:name=".activity.WineRecommendActivity">
+        <activity
+            android:theme="@style/AppTheme.Dialog"
+            android:name=".activity.WineRecommendActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <!-- 没有这个DEFAULT category也是收不到的 -->

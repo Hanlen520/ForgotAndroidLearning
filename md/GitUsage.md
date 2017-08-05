@@ -76,7 +76,7 @@ ssh地址：https://github.com/settings/ssh
 - 有时候网络更换后，github push失败：ssh: Could not resolve hostname github.com: Name or service not known fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.
   设置静态ip，添加dns解析 8.8.8.8 nameserver 8.8.4.4
 - 追加提交commit
-  使用 git commit --amend 进行修改，完成后 :wq 退出 (这个是修改注释)
+  使用 git commit --amend，进行追加，若不需要修改注释，则直接输入:wq 退出， 若要修改，则完成后再 :wq 退出 (这个是修改注释)
 - 使用git pull提示refusing to merge unrelated histories
 创建了一个origin，两个人分别clone，分别做完全不同的提交，第一个人git push成功，第二个人在执行git pull的时候,提示
 fatal: refusing to merge unrelated histories，解决方法:git pull --allow-unrelated-histories

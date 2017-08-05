@@ -103,9 +103,9 @@
 
 
 ## Others
-- android:allowBackup="true"  有风险，连接数据线可恢复备份数据，应该设置为false
+- android:allowBackup="true"  有风险，连接数据线可恢复备份数据，应该设置为false. 
   作为一个jar库，不要设置allowback属性
-- apk经常装到一般就失败error，可能是连接的口有问题，电脑换一个USB口试试
+- apk经常装到一半就失败error，可能是连接的口有问题，电脑换一个USB口试试（最后我是加一个USB扩展器才解决了）
 - 查看log的额外方法 /Users/<user>/Library/Logs/AndroidStudio2.2/
 - EditText挡住ListView的问题，在Manifest中设置Activity属性 android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
 - 微信支付调起失败，错误码-1 ， 签名与微信后台记录的不对
