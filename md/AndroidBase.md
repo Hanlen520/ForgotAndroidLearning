@@ -1,7 +1,7 @@
 ## Android基础
 整理通用基础知识
-* [TextView](#TextView)
-
+- [TextView](#textview)
+- [EditText](#edittext)
 ## Base
 - 父类定义过的变量，在子类可以直接使用 而不用声明
 - String string; 在栈和堆中都没有分配空间
