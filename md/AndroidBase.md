@@ -1,5 +1,6 @@
 ## Android基础
 整理通用基础知识
+* [TextView](#TextView)
 
 ## Base
 - 父类定义过的变量，在子类可以直接使用 而不用声明
