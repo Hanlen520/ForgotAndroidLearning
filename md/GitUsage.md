@@ -16,6 +16,7 @@
 ## 同步仓库
 - git init 初始化git仓库
 - git clone git://github.com/xxx/xxx.git  克隆远程仓库
+- git clone --depth=1 url  只克隆最新的仓库
 - git remote -v  查看远程仓库
 - git remote add [name] [url] 添加远程仓库
 - git remote rm [name] 删除远程仓库
