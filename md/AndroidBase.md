@@ -126,6 +126,27 @@ private void scrollToBottom() {
 
 ## AlertDialog
 - 点击外部不会关闭dialog, builder.setCancelable(false); 
+- 设置自定义dialog的圆角背景
+```
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="rectangle">
+    <solid android:color="@color/mainBg"/>
+    <corners android:radius="20dp"/>
+</shape>
+```
+然后设置dialog的样式
+```
+<style name="dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">true</item><!--半透明-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@color/transparent</item><!-- 背景透明 -->
+        <item name="android:backgroundDimEnabled">false</item><!--模糊-->
+    </style>
+```
 
 ## ListView
 - 长按获取listView的某项值

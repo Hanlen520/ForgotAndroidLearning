@@ -82,6 +82,8 @@
         <activity android:name=".activity.ActionbarActivity"/>
         <activity android:name=".sample.ThreadSampleActivity">
         </activity>
+        <activity android:name=".sample.ExceptionSampleActivity">
+        </activity>
     </application>
 
 </manifest>

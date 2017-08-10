@@ -28,6 +28,8 @@
 -  ctrl+alt+H 查看方法调用栈
 - F11 添加书签
 - ctrl+alt+home,快速打开对应的Activity或layout文件
+- ctrl + .   , 快速切换资源id和真实信息，如 R.string.id , 按下ctrl+.  可以快速查看字符串的内容
+
 
 ## 必装插件
 - ButterKnife Zelezny   简化注入  省略findviewbyid
