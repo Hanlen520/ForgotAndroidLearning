@@ -1,18 +1,43 @@
 ## Android基础
 整理通用基础知识
+- [Base](#base)
+- [AndroidManifest.xml](#androidmanifest.xml)
 - [TextView](#textview)
 - [EditText](#edittext)
+- [Button](#button)
+- [RadioButtn](#radiobuttn)
+- [ScrollView](#scrollview)
+- [AlertDialog](#alertdialog)
+- [ListView](#listview)
+- [ImageView](#imageview)
+- [Toast](#toast)
+- [String](#string)
+- [Int](#int)
+- [JavaDoc注释](#javadoc注释)
+- [四大组件](#四大组件)
+- [Fragment](#fragment)
+- [View](#view)
+- [布局预览](#布局预览)
+- [命名规范](#命名规范)
+- [集合框架](#集合框架)
+- [多媒体](#多媒体)
+- [设计模式](#设计模式)
+- [多线程](#多线程)
+- [网络编程](#网络编程)
+- [异常](#异常)
+- [I/O输入输出流](#输入输出流)
+- [SQLite数据库](#sqlite数据库)
+- [NDK开发](#ndk开发)
+- [性能优化](#性能优化)
+- [测试](#测试)
+- [Android系统源码](#Android系统源码)
+- [签名](#签名)
+- [简称](#简称)
+- [其他](#其他)
+
 ## Base
 - 父类定义过的变量，在子类可以直接使用 而不用声明
-- String string; 在栈和堆中都没有分配空间
-  String string=null; 在栈中分配了空间，在堆中没有分配空间
-  String string="";在栈和堆中都分配了空间
-- String a="abc";
-    String b=new String("abc");
-    System.out.println(a==b);
-    System.out.println(a.equals(b));
-    答案是false true ，  ==比较的是两对象完全相等（值还有hashcode相等），而.equal比较的是值相等
-- 像a.equals("Happy new year")这种判断的话如果a为null就会出现异常，但是改成"Happy new year".equals(a)这种写法的话，则即使a为null也不会有问题。所以在Java中进行比较就最好把常量放在左边
+
 - Math.ceil(x/y) 向上取商；Math.floor(x/y) 向下取商
 - @Override是伪代码,表示重写(当然不写也可以)，不过写上有如下好处: 
   - 可以当注释用,方便阅读； 
@@ -29,6 +54,9 @@
 - JAVA7中增强数字的可读性：1000000.0000 —> 1000_000.000_0 编译器会自动省略_
 - 类以代码形式保存在文件中（硬盘中），new一个类，则到内存中了，这就是类的实例化 
 - Java文件后缀是.java 编译之后是.class 
+
+- 就像每种原始类型都有默认值一样，如int默认值为0，boolean的默认值为false，null是任何引用类型的默认值，不严格的说是所有object类型的默认值。就像你创建了一个布尔类型的变量，它将false作为自己的默认值，Java中的任何引用变量都将null作为默认值。
+
 ## AndroidManifest.xml
 - application 标签内加上  android:supportsRtl="true"属性，然后TargetSDK写成17
   由于布局方向可以是从右到左的，所以在写xml布局的时候，为了防止出现布局混乱的现象，不要使用诸如layout_marginRight这种，而应该是layout_marginEnd这种
@@ -52,7 +80,7 @@ xml:
 java:
 - tv.setError("报错信息");
 - txtShow.setBackground("#000");
-
+-  textview.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG ); //中间删除横线
 
 ## EditText
 xml:
@@ -149,19 +177,8 @@ private void scrollToBottom() {
 ```
 
 ## ListView
-- 长按获取listView的某项值
-```
-   listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-             @Override
-             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-  str=view.getItemAtPosition(position).toString();
-                 TextView text=(TextView)view.findViewById(R.id.text2);
-                 String strText=text.getText().toString();
-                 Toast.makeText(CodeRecordActivity.this, strText, Toast.LENGTH_SHORT).show();
-                 return false;
-             }
-         });
-```
+
+- recyclerView的item ， 布局的宽度一定要match_parent, 否则首次记载时第一个宽度显示不全
 
 ## ImageView
 - android:tint="@color/sample_green"
@@ -178,10 +195,18 @@ private void scrollToBottom() {
   例如 <string name="old">我今年%d岁了</string>
   String sAgeFormat = getResources().getString(R.string.old);
   String sFinalAge = String.format(sAgeFormat, 23);
-- toString和 强转(String)的区别。toString是一个方法，任何一个对象都可以有自己的toString方法，而强转String是将一个对象转化为String类型，若本身不是String类型则可能奔溃
+- toString和强转(String)的区别。toString是一个方法，任何一个对象都可以有自己的toString方法，而强转String是将一个对象转化为String类型，若本身不是String类型则可能奔溃
 - 如果用"."作为分隔的话，必须是如下写法：String.split("\\."),这样才能正确的分隔开，不能用String.split(".");
 同理若用"|"作为分隔符的话也一样，因为这是转义字符
-
+- String string; 在栈和堆中都没有分配空间
+  String string=null; 在栈中分配了空间，在堆中没有分配空间
+  String string="";在栈和堆中都分配了空间
+- String a="abc";
+    String b=new String("abc");
+    System.out.println(a==b);
+    System.out.println(a.equals(b));
+    答案是false true ，  ==比较的是两对象完全相等（值还有hashcode相等），而.equal比较的是值相等
+- 像a.equals("Happy new year")这种判断的话如果a为null就会出现异常，但是改成"Happy new year".equals(a)这种写法的话，则即使a为null也不会有问题。所以在Java中进行比较就最好把常量放在左边
 
 ## int
 - 十进制转化为十六进制，结果为C8。 Integer.toHexString(200);
@@ -193,7 +218,7 @@ private void scrollToBottom() {
 
 
 
-## JavvaDoc注释
+## JavaDoc注释
 - {@link #getBoxStateById(String)}  同类下的方法
   不同类下的 {@link OtherClass#getBoxStateById(String)}
 
@@ -220,11 +245,13 @@ private void scrollToBottom() {
   intent.setComponent(cn);
   startActivity(intent);
 ```
-## fragment
+## Fragment
 - activity获取fragment中的控件： getFragmentManager().findFragmentById(id).getView().findViewById(id)
 - 获取v7包中的fragment： getSupportFragmentManager().findFragmentById(id).getView().findViewById(id)
 - fragment获取fragment中的控件： getView().findViewById(id)
   fragment中获取activity中的方法
+- 获取fragement中的子管理， getChildFragmentManager();
+
 
 
 ## View
@@ -325,6 +352,7 @@ huanchang_yidian_pressed 表示欢唱界面 已点图标 ,点击后变化的状�
  - Handler: 你可以构造Handler对象来与Looper沟通，以便push新消息到Message Queue里;或者接收Looper从Message Queue取出)所送来的消息。
   - Message Queue(消息队列):用来存放线程放入的消息。
   - 线程：UI thread 通常就是main thread，而Android启动程序时会替它建立一个Message Queue。
+- 用Message msg = handler.obtainMessage(); 来替代Message msg = new Message()
   
 
 ## 网络编程
@@ -338,6 +366,7 @@ huanchang_yidian_pressed 表示欢唱界面 已点图标 ,点击后变化的状�
   webSettings.setJavaScriptEnabled(true); 
   // 支持中文，否则页面中中文显示乱码 
   webSettings.setDefaultTextEncodingName(“GBK”);
+  
 ## 异常
 - 异常的分类：
   Java.lang.Throwable
@@ -349,7 +378,8 @@ huanchang_yidian_pressed 表示欢唱界面 已点图标 ,点击后变化的状�
 1)非受检的：NullPointerException,ClassCastException,ArrayIndexsOutOfBoundsException,ArithmeticException(算术异常，除0溢出)
 2)受检：Exception,FileNotFoundException,IOException,SQLException.
 
-
+## I/O输入输出流
+- str.getBytes(Charset.forName("UTF-8"))
 
 ## SQLite数据库
 - 调试数据库
@@ -515,7 +545,6 @@ android/platform/libcore：平台的lib库;
 
 - 输入法推荐bing拼音输入法,能跟随AndroidStudio的光标移动,再切换到暗黑边界主题。 会导致Alt+Tab切换标签失败，不要用
 
-![](../pictures/bing.png)
 
 - 『我从不畏惧一个知道一万种踢法的人，但是我害怕一个把一种踢法练习过一万次的对手。』
 
@@ -566,3 +595,9 @@ android/platform/libcore：平台的lib库;
   RSA算法基于一个十分简单的数论事实：将两个大素数相乘十分容易，但那时想要对其乘积进行因式分解却极其困难，因此可以将乘积公开作为加密密钥。
   
 - 人工画的二维码也能识别的，要分好格子来画，二维码有一定容错性，一般遮住一小部分仍然能识别  
+
+- 在计算机中，整数是以原码的形式存储的，而负数是以补码的形式存储的
+
+- 在安卓系统，我们经常会接触到弹窗，说到弹窗，我们经常接触到的也就dialog或者popupWindow了。而这两者的区别，简单的说就是“一大小二蒙层三阻塞”，如果再简单点说，就是对话框与悬浮框的区别吧。。。还有Dialog样式的Activity
+
+- 

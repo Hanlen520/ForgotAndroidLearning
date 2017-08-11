@@ -102,6 +102,12 @@
 <br>导致报这个错是在于new AlertDialog.Builder(mcontext)，虽然这里的参数是AlertDialog.Builder(Context context)但我们不能使用getApplicationContext()获得的Context,而必须使用Activity,因为只有一个Activity才能添加一个窗体。 
 
 
+
+- java.lang.RuntimeException: Can't create handler inside thread that has not called Looper.prepare()
+  Handler若在子线程中运行的话，需要先Looper.prepare()
+
+
+
 ## Others
 - android:allowBackup="true"  有风险，连接数据线可恢复备份数据，应该设置为false. 
   作为一个jar库，不要设置allowback属性

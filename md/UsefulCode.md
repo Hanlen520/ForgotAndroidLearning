@@ -436,3 +436,41 @@ long[] mClicks = new long[n];
         }
     }
 ```
+
+- 改变Activity Dialog样式的位置
+```
+  @Override
+  public void onAttachedToWindow() {
+  super.onAttachedToWindow();
+  View view = getWindow().getDecorView();
+  WindowManager.LayoutParams lp = (WindowManager.LayoutParams) view.getLayoutParams();
+  lp.gravity = Gravity.LEFT | Gravity.TOP;
+  lp.x = 10;
+  lp.y = 10;
+  getWindowManager().updateViewLayout(view, lp);
+  }
+```
+
+- 长按获取listView的某项值
+```
+   listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+             @Override
+             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+  str=view.getItemAtPosition(position).toString();
+                 TextView text=(TextView)view.findViewById(R.id.text2);
+                 String strText=text.getText().toString();
+                 Toast.makeText(CodeRecordActivity.this, strText, Toast.LENGTH_SHORT).show();
+                 return false;
+             }
+         });
+```
+
+- 在main线程运行handler
+```
+new Handler(Looper.getMainLooper()).post(new Runnable() {
+@Override
+public void run() {
+Toast(...);
+}});
+``` 
+

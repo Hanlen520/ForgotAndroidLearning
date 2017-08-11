@@ -1,0 +1,8 @@
+@startuml
+class MainActivity{
+     +CategorySelectorState
+        +{static}CategorySelectorChangeEvent
+}
+class MainActivity extends BaseActivity
+
+@enduml

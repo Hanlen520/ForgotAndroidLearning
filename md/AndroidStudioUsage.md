@@ -65,3 +65,13 @@
 
 ## 单元测试
 - 添加新测试 Ctrl+Shift+T
+
+
+## 其他
+- 使用某一个库，但移除它里面的其他依赖,再更新新的库
+```
+  compile('com.squareup.retrofit2:retrofit:2.1.0') {
+  exclude module: 'com.squareup.okhttp3:okhttp:3.4.1'
+  }
+  compile 'com.squareup.okhttp3:okhttp:3.4.2'
+```
