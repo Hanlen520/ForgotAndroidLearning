@@ -332,6 +332,7 @@ huanchang_yidian_pressed 表示欢唱界面 已点图标 ,点击后变化的状�
   找出应用中可能需要变化之处，把它们独立出来，不要和那些不需要变化的代码混在一起。
 
 ## 多线程
+- ActivityThread被创建时就会自动初始化Looper，所以能直接使用Handler，若在子线程中使用Handler的话，就要先初始化Looper.prepare()或者
 - Handler中：myReturnHandler.removeCallbacksAndMessages(null)。null表示将所有的Callbacks和Messages全部清除掉，如
 - 关于Handler为何不采用Binder， 先总结说一句，Handler完全可以通过BInder，但是杀鸡焉用牛刀。
   Binder用于进程间通信，而Handler消息机制用于同进程的线程间通信
@@ -448,6 +449,12 @@ insert into Book(name,pages,price,author)  values("作者",103,600,"书名");
   各厂商对后台程序的一个管理制度（就是允许程序后台运行那个）； 
   第三方软件的清理(360什么的)。
 - 为预防内存泄漏，尽量别把 activity 或 context 设置为静态 static, 对于生命周期长的对象，可以使用 applicationContext
+- 布局优化，减少布局层级。功能一样时，优先LinearLayout和FrameLayout
+- 使用使用<include>,<merge>和ViewStub
+- meger还有另外一个用法，当应用Include或者ViewStub标签从外部导入xml结构时，可以将被导入的xml用merge作为根节点表示，这样当被嵌入父级结构中后可以很好的将它所包含的子集融合到父级结构中，而不会出现冗余的节点。
+  另外有两点需要特别注意：
+  <merge />只可以作为xml layout的根节点。
+  当需要扩充的xml layout本身是由merge作为根节点的话，需要将被导入的xml layout置于 viewGroup中，同时需要设置attachToRoot为True。
 
 ## 测试
 - 在移动应用上进行的测试包括：
