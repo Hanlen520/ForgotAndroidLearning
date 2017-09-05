@@ -81,3 +81,9 @@ ssh地址：https://github.com/settings/ssh
 - 使用git pull提示refusing to merge unrelated histories
 创建了一个origin，两个人分别clone，分别做完全不同的提交，第一个人git push成功，第二个人在执行git pull的时候,提示
 fatal: refusing to merge unrelated histories，解决方法:git pull --allow-unrelated-histories
+- git ls-files 查看当前目录下，已添加到git管理的文件
+- 注意若文件名只是大小写不同，会被git认为是同一个文件，而导致同名文件不会再上传提交
+-但有时会出现.gitignore中增加了过滤规则但是不起作用的情况。多半是由于在创建.gitignore文件或添加一些过滤规则之前就track了相应的内容，那么即使在.gitignore文件中写入新的过滤规则，这些规则也不会起作用，Git仍然会对这些文件进行版本管理
+ git rm -r --cached .
+git add .
+git commit -m 'update .gitignore'
