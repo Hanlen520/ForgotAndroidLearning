@@ -77,6 +77,7 @@ xml:
 - textView.append("\n" + msg.obj.toString());  追加消息到TextView中
 - 取消默认大写字母android:textAllCaps="false";
 - 竖向显示文字，固定几个文字可用\n,  android:text="立\n即\n使\n用"
+- android:autoLink="web" 设置超链接突出显示
 java:
 - tv.setError("报错信息");
 - txtShow.setBackground("#000");
