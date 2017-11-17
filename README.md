@@ -16,3 +16,5 @@
 [Git使用](md/GitUsage.md)
 
 [AndroidStudio 使用技巧](md/AndroidStudioUsage.md)
+
+[HireRequire](md/HireRequire.md)
