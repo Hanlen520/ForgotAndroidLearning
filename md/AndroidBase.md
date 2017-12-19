@@ -547,6 +547,7 @@ android/platform/libcore：平台的lib库;
 它是一种协议，可使电子邮件除包含一般纯文本以外，还可加上彩色图片、视频、声音或二进位格式的文件。 
 它要求邮件的发送端和接收端必须有解读MIME 协议的电子邮件程序。
 - OA :Office Automation System 办公自动化系统 
+- AMS:ActivityManagerServices，服务端对象，负责系统中所有Activity的生命周期
  
 ## 工具&&网站
 - 自动获取shape  http://shapes.softartstudio.com/#&ui-state=dialog
