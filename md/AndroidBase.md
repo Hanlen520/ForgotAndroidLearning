@@ -5,7 +5,7 @@
 - [TextView](#textview)
 - [EditText](#edittext)
 - [Button](#button)
-- [RadioButtn](#radiobuttn)
+- [RadioButton](#radiobutton)
 - [ScrollView](#scrollview)
 - [AlertDialog](#alertdialog)
 - [ListView](#listview)
@@ -136,7 +136,7 @@ java:
 
 
 
-## RadioButtn
+## RadioButton
 - 关于RadioGroup实现多行选项，如两排四列，在选择第一列时，把第二列清空选择即可
   mRg2.clearCheck();
 
