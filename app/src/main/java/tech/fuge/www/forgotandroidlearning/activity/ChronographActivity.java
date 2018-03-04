@@ -24,12 +24,7 @@ private boolean wasRunning;
             running=savedInstanceState.getBoolean("curRun");
             wasRunning=savedInstanceState.getBoolean("wasRunning");
         }
-        findViewById(R.id.btn_start).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                running = true;
-            }
-        });
+        findViewById(R.id.btn_start).setOnClickListener(v -> running = true);
         findViewById(R.id.btn_stop).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
