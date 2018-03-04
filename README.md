@@ -13,8 +13,11 @@
 
 [Android问题整理](md/AndroidProblems.md)
 
+[Android编程权威指南](md/Android编程权威指南.md)
+
 [Git使用](md/GitUsage.md)
 
 [AndroidStudio 使用技巧](md/AndroidStudioUsage.md)
 
 [HireRequire](md/HireRequire.md)
+

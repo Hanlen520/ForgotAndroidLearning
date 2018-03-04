@@ -44,3 +44,4 @@ public class WorkoutListFragment extends ListFragment {
         super.onListItemClick(l, v, position, id);
     }
 }
+

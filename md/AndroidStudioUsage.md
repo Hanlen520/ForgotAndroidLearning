@@ -14,6 +14,11 @@
 - 若AndroidStudio上的logcat时间不对，其实这是你虚拟机上的时间，去改虚拟机上的就行了
 - IDE工具字体 推荐sourse code pro ， 棱角分明，0和O,1和I l都能分清
 
+- 设置自动导包，Files ->Settings-> IDE Settings-> Editor -> Auto Import ， 选择: Add unambiguous imports on the fly, 即可
+
+- 安装更好看的代码样式，主题下载地址 http://color-themes.com/?view=index
+
+- 分析内存泄漏，点击上方的“Profile app” , 然后进入内存分析，点击"Dump Java Heap" (第一次要设置run configcation, Profiling中勾选即可)
 ## 快捷键：
 - Ctrl+H  查看该类的继承关系
 - Ctrl+O  查看可重写的方法
