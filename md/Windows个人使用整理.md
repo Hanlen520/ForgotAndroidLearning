@@ -9,6 +9,8 @@
 
 
 ## Windows
+- Chrome插件工具  JsonFormatter
+- 接口调试工具 Postman
 - 清除txt等文件的默认打开应用：
   在设置-应用-具体应用（如pdf阅读器，html查看器），清除默认行为即可
 - 切换输入法 win+空格

@@ -131,7 +131,6 @@ xml:
       android:src="@drawable/btn_back_normal"
       android:background="?attr/selectableItemBackgroundBorderless"/>
 ```
-
 java:
 
 
@@ -153,6 +152,11 @@ private void scrollToBottom() {
         });
     }
 ```
+
+- 解决 Recyclerview和 
+  ScrollView的嵌套滑动问题  https://my.oschina.net/caomenglong/blog/747197
+  在RelativeLayout 中添加 android:descendantFocusability="blocksDescendants">
+   mRecyclerView.setNestedScrollingEnabled(false);
 
 ## AlertDialog
 - 点击外部不会关闭dialog, builder.setCancelable(false); 
@@ -185,7 +189,7 @@ private void scrollToBottom() {
 ## ImageView
 - android:tint="@color/sample_green"
   可以直接给ImageView图片src上色
-
+- ImageView水波纹效果,android:background="?selectableItemBackgroundBorderless"
 ## Toast
 - 一般toast显示不出有3个原因： 
   1、在非UI线程中执行，建议使用handler显示提示 
@@ -209,6 +213,13 @@ private void scrollToBottom() {
     System.out.println(a.equals(b));
     答案是false true ，  ==比较的是两对象完全相等（值还有hashcode相等），而.equal比较的是值相等
 - 像a.equals("Happy new year")这种判断的话如果a为null就会出现异常，但是改成"Happy new year".equals(a)这种写法的话，则即使a为null也不会有问题。所以在Java中进行比较就最好把常量放在左边
+- 1、如果用“.”作为分隔的话，必须是如下写法：String.split("\\."),这样才能正确的分隔开，不能用String.split(".");
+  2、如果用“|”作为分隔的话，必须是如下写法：String.split("\\|"),这样才能正确的分隔开，不能用String.split("|");
+  “.”和“|”都是转义字符，必须得加"\\";
+  3、如果在一个字符串中有多个分隔符，可以用“|”作为连字符，比如：“a=1 and b =2 or c=3”,把三个都分隔出来，可以用String.split("and|or");
+- String[]转List
+  Arrays.asList(abc.split(","));
+
 
 ## int
 - 十进制转化为十六进制，结果为C8。 Integer.toHexString(200);
@@ -249,11 +260,20 @@ private void scrollToBottom() {
 ```
 ## Fragment
 - activity获取fragment中的控件： getFragmentManager().findFragmentById(id).getView().findViewById(id)
-- 获取v7包中的fragment： getSupportFragmentManager().findFragmentById(id).getView().findViewById(id)
+- 推荐使用app包下的fragment，不要再使用v4包的fragment的
+- 获取v4包中的fragment： getSupportFragmentManager().findFragmentById(id).getView().findViewById(id)
 - fragment获取fragment中的控件： getView().findViewById(id)
   fragment中获取activity中的方法
 - 获取fragement中的子管理， getChildFragmentManager();
-
+- fragment每次点击回来 加载数据的时机
+  @Override
+  public void onHiddenChanged(boolean hidden) {
+  super.onHiddenChanged(hidden);
+  // 这里的 isResumed() 判断就是为了避免与 onResume() 方法重复发起网络请求
+  if (isVisible() && isResumed()){
+  Log.e(TAG, "onHiddenChanged可见状态,进行数据加载");
+  }
+  }
 
 
 ## View
@@ -265,6 +285,9 @@ private void scrollToBottom() {
   View view;
   view.invalidate();//主线程
   view.postInvalidate();//子线程
+
+- 设置view透明图
+  android:alpha="0.7"
 
 
 ## 布局预览
@@ -537,15 +560,19 @@ android/platform/libcore：平台的lib库;
 - Hotfix是针对某一个具体的系统漏洞或安全问题而发布的专门解决该漏洞或安全问题的小程序，通常称为修补程序。
 - JNI（java native interface java 本地接口）
 - JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式 
+- LRU， Least Recently Used 近期最少使用算法
 - MIME 是multipurpose Internet mail extensions 的缩写。 
 它是一种协议，可使电子邮件除包含一般纯文本以外，还可加上彩色图片、视频、声音或二进位格式的文件。 
 它要求邮件的发送端和接收端必须有解读MIME 协议的电子邮件程序。
 - NPE:No Pointer Exception
+- npm: （全称Node Package Manager，即node包管理器）是Node.js默认的、以JavaScript编写的软件包管理系统。
 - OA :Office Automation System 办公自动化系统 
 - OpenGL（全写Open Graphics Library）是个定义了一个跨编程语言、跨平台的编程接口规格的专业的图形程序接口；
 - 位置服务(LBS,Location Based Services)；
 - OOM - Out of mana，法力耗尽 
 - OOM - Out of Memory，内存溢出
+- SaaS:Software as a Service
+- SKU:库存单位(Stock Keeping Unit)；单品；最小存货单位
 - SNS，全称Social Networking Services，即社会性网络服务
 - SSH 为 Secure Shell 的缩写,为建立在应用层和传输层基础上的安全协议。
 - SVG 指可伸缩矢量图形 (Scalable Vector Graphics)
@@ -609,4 +636,4 @@ android/platform/libcore：平台的lib库;
 
 - 在安卓系统，我们经常会接触到弹窗，说到弹窗，我们经常接触到的也就dialog或者popupWindow了。而这两者的区别，简单的说就是“一大小二蒙层三阻塞”，如果再简单点说，就是对话框与悬浮框的区别吧。。。还有Dialog样式的Activity
 
-- 
+- 骁龙835cpu是arm64-v8a

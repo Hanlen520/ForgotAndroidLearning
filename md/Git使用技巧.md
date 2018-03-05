@@ -87,3 +87,15 @@ fatal: refusing to merge unrelated histories，解决方法:git pull --allow-unr
  git rm -r --cached .
 git add .
 git commit -m 'update .gitignore'
+
+- 同步远程origin的dev分支到本地：
+$ git checkout -b dev origin/dev
+
+- 报错提示
+  　ssh: Could not resolve hostname bitbucket.org: Name or service not known
+  　　fatal: Could not read from remote repository.
+  　　Please make sure you have the correct access rights
+  　　and the repository exists.
+  
+  除了设置ssh密钥，还可以修改下DNS， 我是改为了114.114.114.114然后就成功了 （一开始是192.168.1.1）
+   直接设置dns或用腾讯管家等来设置

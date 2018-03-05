@@ -2,10 +2,10 @@
 
 ## 使用优化
 - 优化IDE使用内存，在Help - Edit Custom VM Option 选项，打开studio(64?).vmoptions文件,设置项目
--Xms518m
+-Xms2048m
 -Xmx4096m
--XX:MaxPermSize=2048m
--XX:ReservedCodeCacheSize=1024m
+-XX:MaxPermSize=4096m
+-XX:ReservedCodeCacheSize=2048m
 <br>如何确定修改生效了？
 在 Settings -> Appearance 页里，打开 Show memory indicator 选项，然后主界面右下角会显示 Heap 总大小以及使用状况。这样操作一下，就可以确认 Heap Size 修改是否生效。
 
@@ -37,17 +37,19 @@
 
 
 ## 必装插件
-- ButterKnife Zelezny   简化注入  省略findviewbyid
-- WakaTime  统计你使用AS的时间
-- MarkDown Navigator  写作 github方便，还能配合wakatime统计事件
 - Android Parcelable Code Generator  生成Parcelable序列化的方法
+- ButterKnife Zelezny   简化注入  省略findviewbyid
+- ButterKnife插件突然没有注入的选项了，在Build-clean project一下就好了，缓存问题？ 还不行的话就 File-Invalidate Caches and Restart
 - CheckStyle 检查代码规范性，自己导入规范文档
-- FindBugs 找空指针等bug.是一个静态分析工具，它检查类或者 JAR 文件，将字节码与一组缺陷模式进行对比以发现可能的问题。
 - CodeGlance 右边方便预览代码
 - DataBase Navigator 查看SQLite数据库，需要导出文件再查看
+- FindBugs 找空指针等bug.是一个静态分析工具，它检查类或者 JAR 文件，将字节码与一组缺陷模式进行对比以发现可能的问题。
 - GsonFormat 方便用json字符串 一键生成bean类
+- InnerBuilder插件，快速用Builder模式创建对象，更加直观
+- MarkDown Navigator  写作 github方便，还能配合wakatime统计事件
 - Material UI 界面更好看
-- ADB Wifi Connect 无线调试APP
+- WakaTime  统计你使用AS的时间
+
 
 ## 调试
 - 尽量减少debug，少用debug，优秀的程序员总是花80%的时间来思考如何解决问题，20%的时间来动手完成代码，而糟糕的程序员总是用20%的时间去写代码，80%的时间去调试代码，动手之前尽量想好如何去做，并且已经为你自己的思路做了充分的实验。
@@ -67,6 +69,9 @@
 - 调试开始后，在红箭头指向的区域可以给指定的变量赋值（鼠标左键选择变量，右键弹出菜单选择setValue…）。这个功能可以更加快速的检测你的条件语句和循环语句。
 - Android Monitor有截图 和录视频功能，查看CPU 内存等使用情况，和启动layout inspector
 - Android手机开发者选项 的实用功能： 不锁定屏幕，跳过锁屏界面，允许模拟位置（代码修改gps定位），显示触摸操作，指针位置，显示布局边界，显示surface更新，动画缩放（可以更好的查看动画效果，进行参考），调试GPU过度绘制
+- adb connect 192.168.x.x 直接连上支持局域网调试的设备（adb tcpip 5555  连接上wifi调试机器，不一定要用）
+- 有时候调试奔溃时看到不logcat日志，可以换一台手机或模拟器试一下，IDE的原因？
+
 
 ## 单元测试
 - 添加新测试 Ctrl+Shift+T
@@ -80,3 +85,9 @@
   }
   compile 'com.squareup.okhttp3:okhttp:3.4.2'
 ```
+- 在Androidstudio 直接从File->New -> Import Sample 总是报错：
+  在System Steeints-HTTP Proxy代理这设置一下Auto-detect proxy settings, 自动检测代理，然后在导入Sample就能打开了
+  
+- 在3.0版本中，compile 指令被标注为过时方法，而新增了两个依赖指令，一个是implement 和api，这两个都可以进行依赖添加，但是有什么区别呢？api 指令
+  完全等同于compile指令，没区别，你将所有的compile改成api，完全没有错。implement指令
+  这个指令的特点就是，对于使用了该命令编译的依赖，对该项目有依赖的项目将无法访问到使用该命令编译的依赖中的任何程序，也就是将该依赖隐藏在内部，而不对外部公开。

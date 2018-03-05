@@ -1,6 +1,17 @@
 ## 开发中遇到的Android问题整理
 
 ## Exceptions
+- android 串口 提示没有权限读写权限
+  看一下是不是选错了串口，要选择ttyS01234 ,而不是ttyGS1
+
+- 网络请求报错 Illegal character in query at index 153
+  因为存在空格导致？替换为%20
+  url.replaceAll(" ","%20");
+
+- 报错Error:Execution failed for task ':app:compileDebugJavaWithJavac'.
+  > Compilation failed; see the compiler error output for details.
+  解决：找到AndroidStudio右下角的 其中有一个叫GradleConsole,打开之后,会显示本次Gradle编译所有的问题
+
 - Error:(1, 0) Your project path contains non-ASCII characters.
   一般时工程项目路径或者项目名称包含了中文，修改相关的名称就好了！
   别再项目路径名称中去搞另类弄什么中文名
@@ -72,24 +83,15 @@
       File2: C:\Users\forgot\.gradle\caches\modules-2\files-2.1\io.reactivex\rxjava\1.1.1\b494968f6050d494de55dc3ce005e59c7eb40012\rxjava-1.1.1.jar
   <br>找到相应目录，删除重复文件即可
 
-- 使用Parcelable时报错
-  Parcel android.os.Parcel@9574c5: Unmarshalling unknown type code'
-  原因在Create部分代码
-```
-  Person person = new Person(in);
-  public static final Creator<Person> CREATOR = new Creator<Person>() {
-          @Override
-          public Person createFromParcel(Parcel in) {
-              Person person = new Person();
+- MQTT报错
+  java.lang.SecurityException: SHA-256 digest error for org/eclipse/paho/client/mqttv3/internal/ClientState.class
+  暂停AS的Instant Run即可
 
-              //注意不要写成下面的
-  //            Person person = new Person(in);
-              person.id = in.readInt();
-              person.name = in.readString();
-              return person;
-  //            return new Person(in);
-          }
-```
+- java.lang.IllegalStateException: Couldn't read row 0, col -1 from CursorWind
+  数据库问题，看selectArgs那里是不是没有某个字段
+  
+
+
 -数据库更改数据时报错（Too many bind arguments.  2 arguments were provided but the statement needs 1 arguments.）
  <br>在Where字段中缺少了+ " = ?"
  正确写法：db.update(table, values, whereClause + "=?", whereArgs);
