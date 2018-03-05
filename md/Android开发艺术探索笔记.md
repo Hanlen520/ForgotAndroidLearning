@@ -1,4 +1,5 @@
-# 《Android开发艺术探索》 任玉刚
+# 《Android开发艺术探索》 
+读书笔记
 
 ## 第1章 Activity的生命周期和启动模式
 - Activity的生命周期全面分析，onStart()和onStop()表示前台，而onResume()和onPause()表示可见

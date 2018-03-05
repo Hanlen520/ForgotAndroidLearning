@@ -1,4 +1,4 @@
-# AndroidThreeParty
+# Android第三方库使用集锦
 放第三方库的简单应用。 包括导入包的方法还有简单用法
 
 ## [Lottie 动画库](https://github.com/airbnb/lottie-android)
