@@ -33,6 +33,7 @@
 - [Android系统源码](#Android系统源码)
 - [签名](#签名)
 - [简称](#简称)
+- [工具&&网站](#工具&&网站)
 - [其他](#其他)
 
 ## Base
@@ -520,42 +521,41 @@ android/platform/libcore：平台的lib库;
 - android Your keystore contains 2 entries  一个签名文件可以包含多个别名，不同别名签名后的MD5不同，可以覆盖安装？？（不能，别名不同也不算同一个key），但微信支付就会失败，所以要注意用同一个别名
 
 ## 简称
-- SNS，全称Social Networking Services，即社会性网络服务
-- HAL（Hardware Abstract Layer硬件抽象层）
-- OpenGL（全写Open Graphics Library）是个定义了一个跨编程语言、跨平台的编程接口规格的专业的图形程序接口；
-- 位置服务(LBS,Location Based Services)；
-- OOM - Out of Mana，法力耗尽 
-- OOM - Out of Memory，内存溢出
-- Hotfix是针对某一个具体的系统漏洞或安全问题而发布的专门解决该漏洞或安全问题的小程序，通常称为修补程序。
-- JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式 
-- AJAX即“Asynchronous javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。
-- SYN(synchronous):TCP/IP建立连接时使用的握手信号 同步 
 - ACK(Acknowledgement):确认字符，确认发来的数据已经接受无误 确认
-- SVG 指可伸缩矢量图形 (Scalable Vector Graphics)
-- SSH 为 Secure Shell 的缩写,为建立在应用层和传输层基础上的安全协议。
-- APK是AndroidPackage的缩写，即Android安装包(apk)
-- USB-OTG线 接鼠标操作手机
-- API（Application Programming Interface,应用程序编程接口）是一些预先定义的函数，目的是提供应用程序与开发人员基于某软件或硬件得以访问一组例程的能力，而又无需访问源码，或理解内部工作机制的细节。
-- GMS全称为Google Mobile Service，即谷歌移动服务。GMS是Google开发并推动Android的动力，也是Android系统的灵魂所在。
-- 物料清单(Bill of Material,BOM)
-- .so ， shared object，用户层的动态库 。
+- AJAX即“Asynchronous javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。
+- AMS:ActivityManagerServices，服务端对象，负责系统中所有Activity的生命周期
 - ANR：Application Not Responding
-- JNI（java native interface java 本地接口）
+- API（Application Programming Interface,应用程序编程接口）是一些预先定义的函数，目的是提供应用程序与开发人员
+基于某软件或硬件得以访问一组例程的能力，而又无需访问源码，或理解内部工作机制的细节。
+- APK是AndroidPackage的缩写，即Android安装包(apk)
 - ARP(Address Resolution Protocol，地址解析协议)是获取物理地址的一个TCP/IP协议 
   ARP欺骗可以导致目标计算机与网关通信失败； 
+- BOM:物料清单(Bill of Material)
+- DRY:Don’t Repeat Yourself  
+- GMS全称为Google Mobile Service，即谷歌移动服务。GMS是Google开发并推动Android的动力，也是Android系统的灵魂所在。
+- HAL（Hardware Abstract Layer硬件抽象层）
+- Hotfix是针对某一个具体的系统漏洞或安全问题而发布的专门解决该漏洞或安全问题的小程序，通常称为修补程序。
+- JNI（java native interface java 本地接口）
+- JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式 
 - MIME 是multipurpose Internet mail extensions 的缩写。 
 它是一种协议，可使电子邮件除包含一般纯文本以外，还可加上彩色图片、视频、声音或二进位格式的文件。 
 它要求邮件的发送端和接收端必须有解读MIME 协议的电子邮件程序。
+- NPE:No Pointer Exception
 - OA :Office Automation System 办公自动化系统 
-- AMS:ActivityManagerServices，服务端对象，负责系统中所有Activity的生命周期
- 
+- OpenGL（全写Open Graphics Library）是个定义了一个跨编程语言、跨平台的编程接口规格的专业的图形程序接口；
+- 位置服务(LBS,Location Based Services)；
+- OOM - Out of mana，法力耗尽 
+- OOM - Out of Memory，内存溢出
+- SNS，全称Social Networking Services，即社会性网络服务
+- SSH 为 Secure Shell 的缩写,为建立在应用层和传输层基础上的安全协议。
+- SVG 指可伸缩矢量图形 (Scalable Vector Graphics)
+- SYN(synchronous):TCP/IP建立连接时使用的握手信号 同步 
+- USB-OTG线 接鼠标操作手机
+- .so ， shared object，用户层的动态库 。
+
 ## 工具&&网站
 - 自动获取shape  http://shapes.softartstudio.com/#&ui-state=dialog
 
-- 输入法推荐bing拼音输入法,能跟随AndroidStudio的光标移动,再切换到暗黑边界主题。 会导致Alt+Tab切换标签失败，不要用
-
-
-- 『我从不畏惧一个知道一万种踢法的人，但是我害怕一个把一种踢法练习过一万次的对手。』
 
 ## 其他
 
