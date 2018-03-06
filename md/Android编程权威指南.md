@@ -46,21 +46,43 @@
 - 恰当地使用单例模式，不要乱用
 
 ## 第10章 使用fragment argument
+- Adapter的notifyDataSetChanged和notifyItemChanged(int)
+
+## 第11章 使用ViewPager
+- ViewPager和PagerAdapter
+
+## 第12章 对话框
 
 
-## 第11章
-## 第12章
-## 第13章
-## 第14章
-## 第15章
-## 第16章
-## 第17章
-## 第18章
-## 第19章
-## 第20章
-## 第21章
-## 第22章
-## 第23章
+## 第13章 工具栏
+
+
+## 第14章 SQLite数据库
+- 使用ContentValues
+- 使用Cursor
+
+## 第15章 隐式Intent
+- 先检查是否有可响应任务的Activity，再启动隐式Intent(若没有可响应的Activity，则将该按钮setEnable(false))
+
+## 第16章 使用Intent拍照
+
+## 第17章 Mater-Detail用户界面
+
+## 第18章 Assets
+
+## 第19章 使用SoundPool播放音频
+
+## 第20章 样式和主题
+- 样式继承，通过命名或者指定父样式
+- 引用主题属性
+
+## 第21章 XML drawable
+- 使用9-patch图像
+- 使用Mipmap图像（应用图标就放在mipmap文件夹中，这样不会压缩，能保持高分辨率）
+
+## 第22章 深入学习Intent和任务
+
+## 第23章 HTTP与后台任务
 ## 第24章
 ## 第25章
 ## 第26章
