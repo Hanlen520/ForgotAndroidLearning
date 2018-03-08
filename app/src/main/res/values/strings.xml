@@ -5,6 +5,4 @@
     <string name="no_for_you">品味太独特，没有适合你的</string>
     <string name="chooser">分享消息到：</string>
     <string name="age">我今年%1$d岁了</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

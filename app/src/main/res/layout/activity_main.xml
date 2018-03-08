@@ -1,70 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnCount="3"
-    android:rowCount="10"
     tools:context="tech.fuge.www.forgotandroidlearning.activity.MainActivity">
 
     <Button
-        android:id="@+id/btn_wine_activity"
+        android:id="@+id/btn_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="啤酒推荐" />
+        android:text="展示dialog"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="响应Action" />
-
-    <Button
-        android:id="@+id/btn_select"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="选择器" />
-
-    <Button
-        android:id="@+id/chronograph"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="秒表" />
-
-    <Button
-        android:id="@+id/btn_gridlayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="gridlayout布局" />
-
-    <Button
-        android:id="@+id/btn_widget"
-        android:text="小控件" />
-
-    <Button
-        android:id="@+id/list"
-        android:text="列表视图和适配器" />
-
-    <Button
-        android:id="@+id/workout"
-        android:text="workout" />
-
-    <Button
-        android:id="@+id/btn_titlebar"
-        android:text="actionBar" />
     <TextView
-        android:id="@+id/text"
-        android:text="test"/>
-    <Button
-        android:text="反复点击"
-        android:id="@+id/btn_press"/>
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/buttonAwesome"
+        android:id="@+id/tv_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Awesome Button"
-        android:textColor="#000"
-        app:backgroundTint="#ccc"/>
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="74dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</GridLayout>
+    <Button
+        android:id="@+id/btn_thread_ui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Thread更新UI"
+        app:layout_constraintTop_toBottomOf="@id/tv_msg" />
+
+    <Button
+        android:id="@+id/btn_thread_handler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thread中的Handler更新UI"
+        app:layout_constraintTop_toBottomOf="@id/btn_thread_ui" />
+</android.support.constraint.ConstraintLayout>
