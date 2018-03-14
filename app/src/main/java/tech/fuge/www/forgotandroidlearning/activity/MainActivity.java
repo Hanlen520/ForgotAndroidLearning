@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                tvMsg.setText("Thread update ui");
+                tvMsg.setText("Thread update ui , crash");
             }
         }).start();
     }

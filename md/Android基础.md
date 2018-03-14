@@ -571,6 +571,7 @@ android/platform/libcore：平台的lib库;
 - 位置服务(LBS,Location Based Services)；
 - OOM - Out of mana，法力耗尽 
 - OOM - Out of Memory，内存溢出
+- Rx ReactiveX是Reactive Extensions的缩写，一般简写为Rx
 - SaaS:Software as a Service
 - SKU:库存单位(Stock Keeping Unit)；单品；最小存货单位
 - SNS，全称Social Networking Services，即社会性网络服务
@@ -579,6 +580,7 @@ android/platform/libcore：平台的lib库;
 - SYN(synchronous):TCP/IP建立连接时使用的握手信号 同步 
 - USB-OTG线 接鼠标操作手机
 - .so ， shared object，用户层的动态库 。
+
 
 ## 工具&&网站
 - 自动获取shape  http://shapes.softartstudio.com/#&ui-state=dialog

@@ -1,6 +1,14 @@
 ## 开发中遇到的Android问题整理
 
 ## Exceptions
+- Android Studio 3 Gradle插件报错：AAPT2 error: check logs for details
+Android的Gradle 3.0插件默认启动Aapt2，目的是为了改进增量资源的处理。
+如果有问题可以退回到之前的版本，打开gradle.properties，添加如下内容
+android.enableAapt2=false
+
+- Android: android.content.res.Resources$NotFoundException: String resource ID #0x5
+问题可能出在setText()， 因里面的值不是字符串
+
 - android 串口 提示没有权限读写权限
   看一下是不是选错了串口，要选择ttyS01234 ,而不是ttyGS1
 
