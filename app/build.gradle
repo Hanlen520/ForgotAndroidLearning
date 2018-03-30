@@ -2,9 +2,13 @@ apply plugin: 'com.android.application'
 def androidSupportVersion = '27.1.0'
 def daggerVersion = '2.15'
 def rxBindingVersion = '2.1.1'
+
 android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
+    dataBinding {
+        enabled = true
+    }
     defaultConfig {
         applicationId 'tech.fuge.www.forgotandroidlearning'
         minSdkVersion 17

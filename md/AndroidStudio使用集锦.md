@@ -18,6 +18,9 @@
 
 - 安装更好看的代码样式，主题下载地址 http://color-themes.com/?view=index
 
+- 在Editor-General-Code Completion
+取消代码补全的大小写敏感，在这改为None，不再需要刻意注意大小写
+
 - 分析内存泄漏，点击上方的“Profile app” , 然后进入内存分析，点击"Dump Java Heap" (第一次要设置run configcation, Profiling中勾选即可)
 ## 快捷键：
 - Ctrl+H  查看该类的继承关系
@@ -91,3 +94,4 @@
 - 在3.0版本中，compile 指令被标注为过时方法，而新增了两个依赖指令，一个是implement 和api，这两个都可以进行依赖添加，但是有什么区别呢？api 指令
   完全等同于compile指令，没区别，你将所有的compile改成api，完全没有错。implement指令
   这个指令的特点就是，对于使用了该命令编译的依赖，对该项目有依赖的项目将无法访问到使用该命令编译的依赖中的任何程序，也就是将该依赖隐藏在内部，而不对外部公开。
+
