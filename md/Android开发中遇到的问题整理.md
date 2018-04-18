@@ -30,6 +30,19 @@ android.enableAapt2=false
   2、一些点9图不规范，AS中点9图必须四边全部描黑点，而这在eclipse中就比较松懈。所以修改相应的图片就行！
   （直接把.9后缀去掉 测试能运行了 就说明是第二种情况所致）
 
+- com.android.support 包冲突问题
+在gradle中设置
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '27.0.2'//此处为你需要的版本
+            }
+        }
+    }
+}
+
 - Android - Error:Execution failed for task ':app:mergeDebugResources'
   <br>这是因为.9图不规范所致，最好删除不规范的.9图，重新制作,或者再build.gradle中添加如下两句，让IDE不去严格检查png图
   <br>aaptOptions.cruncherEnabled = false
