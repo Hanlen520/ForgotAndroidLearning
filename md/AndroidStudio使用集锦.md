@@ -22,6 +22,14 @@
 取消代码补全的大小写敏感，在这改为None，不再需要刻意注意大小写
 
 - 分析内存泄漏，点击上方的“Profile app” , 然后进入内存分析，点击"Dump Java Heap" (第一次要设置run configcation, Profiling中勾选即可)
+
+- 设置本地Gradle，减少构建时间
+In Android Studio go to File -> Settings -> Build, Execution, Deployment -> Build Tools -> Gradle
+
+Check the 'Offline work' under 'Global Gradle settings'
+
+It will reduce 90% gradle build time.
+
 ## 快捷键：
 - Ctrl+H  查看该类的继承关系
 - Ctrl+O  查看可重写的方法

@@ -2,6 +2,7 @@ package tech.fuge.www.forgotandroidlearning.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
@@ -81,6 +82,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void run() {
                 Log.e(TAG, "Thread Handler Update UI111");
+                Looper.prepare();
                 new Handler().post(new Runnable() {
                     @Override
                     public void run() {
@@ -88,6 +90,7 @@ public class MainActivity extends BaseActivity {
                         tvMsg.setText("Thread Handler Update UI");
                     }
                 });
+                Looper.loop();
             }
         }).start();
     }

@@ -42,7 +42,6 @@
         <activity android:name=".base.BaseActivity" />
         <activity
             android:name=".activity.MainActivity"
-            android:taskAffinity="testAffinity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait">
             <intent-filter>

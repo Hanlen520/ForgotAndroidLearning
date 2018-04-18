@@ -2,17 +2,17 @@
 
 <country>
 
-    <name>ÖÐ¹ú</name>
+    <name>ä¸­å›½</name>
 
     <province>
 
-        <name>ºÚÁú½­</name>
+        <name>é»‘é¾™æ±Ÿ</name>
 
      <cities>
 
-            <city>¹þ¶û±õ</city>
+            <city>å“ˆå°”æ»¨</city>
 
-            <city>´óÇì</city>
+            <city>å¤§åº†</city>
 
         </cities>
 
@@ -20,15 +20,15 @@
 
     <province>
 
-        <name>¹ã¶«</name>
+        <name>å¹¿ä¸œ</name>
 
         <cities>
 
-            <city>¹ãÖÝ</city>
+            <city>å¹¿å·ž</city>
 
-            <city>ÉîÛÚ</city>
+            <city>æ·±åœ³</city>
 
-            <city>Öéº£</city>
+            <city>ç æµ·</city>
 
         </cities>
 
