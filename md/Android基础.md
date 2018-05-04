@@ -58,6 +58,8 @@
 
 - 就像每种原始类型都有默认值一样，如int默认值为0，boolean的默认值为false，null是任何引用类型的默认值，不严格的说是所有object类型的默认值。就像你创建了一个布尔类型的变量，它将false作为自己的默认值，Java中的任何引用变量都将null作为默认值。
 
+- 依赖注入：如果 Class B 是 Class A 的 Dependency，B 的赋值不是写死在了类或构造函数中，而是通过构造函数或其他函数的参数传入，这种赋值方式我们称之为依赖注入。
+
 ## AndroidManifest.xml
 - application 标签内加上  android:supportsRtl="true"属性，然后TargetSDK写成17
   由于布局方向可以是从右到左的，所以在写xml布局的时候，为了防止出现布局混乱的现象，不要使用诸如layout_marginRight这种，而应该是layout_marginEnd这种
@@ -548,13 +550,16 @@ android/platform/libcore：平台的lib库;
 - AJAX即“Asynchronous javascript And XML”（异步JavaScript和XML），是指一种创建交互式网页应用的网页开发技术。
 - AMS:ActivityManagerServices，服务端对象，负责系统中所有Activity的生命周期
 - ANR：Application Not Responding
+- AOP。AOP是Aspect Oriented Programming的缩写，中译文为面向切向编程
 - API（Application Programming Interface,应用程序编程接口）是一些预先定义的函数，目的是提供应用程序与开发人员
 基于某软件或硬件得以访问一组例程的能力，而又无需访问源码，或理解内部工作机制的细节。
 - APK是AndroidPackage的缩写，即Android安装包(apk)
+- APT：(Annotation Process Tool) 在编译时生成辅助类，这些类继承特定父类或实现特定接口
 - ARP(Address Resolution Protocol，地址解析协议)是获取物理地址的一个TCP/IP协议 
   ARP欺骗可以导致目标计算机与网关通信失败； 
 - BOM:物料清单(Bill of Material)
 - DRY:Don’t Repeat Yourself  
+- DSL： 即Domain Specific Language，领域相关语言
 - GMS全称为Google Mobile Service，即谷歌移动服务。GMS是Google开发并推动Android的动力，也是Android系统的灵魂所在。
 - HAL（Hardware Abstract Layer硬件抽象层）
 - Hotfix是针对某一个具体的系统漏洞或安全问题而发布的专门解决该漏洞或安全问题的小程序，通常称为修补程序。
@@ -571,6 +576,7 @@ android/platform/libcore：平台的lib库;
 - 位置服务(LBS,Location Based Services)；
 - OOM - Out of mana，法力耗尽 
 - OOM - Out of Memory，内存溢出
+- OOP，即ObjectOriented Programming，面向对象编程
 - Rx ReactiveX是Reactive Extensions的缩写，一般简写为Rx
 - SaaS:Software as a Service
 - SKU:库存单位(Stock Keeping Unit)；单品；最小存货单位
