@@ -8,7 +8,7 @@
 - [RadioButton](#radiobutton)
 - [ScrollView](#scrollview)
 - [AlertDialog](#alertdialog)
-- [ListView](#listview)
+- [RecyclerView](#recyclerView)
 - [ImageView](#imageview)
 - [Toast](#toast)
 - [String](#string)
@@ -100,6 +100,7 @@ xml:
   EditText有一个属性：android:textCursorDrawable，这个属性是用来控制光标颜色的 
   android:textCursorDrawable=”@null”，”@null”作用是让光标颜色和text color一样
 
+
 java:
 -  显示小键盘 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(editPrivateMsg, 0);
 -  隐藏小键盘 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).
@@ -108,6 +109,7 @@ java:
 - 点击控件时，重新获取焦点，激活软键盘
 - 监听输入edtInput.setKeyListener(DigitsKeyListener.getInstance("1234567890."));
   edtInput.setInputType(8194);
+- EditText 在 setText 时不要忘记是否需要 setSelection。在大多数情况下是需要设置的。
 
 ```
   etCode.setFocusable(true);
@@ -141,7 +143,8 @@ java:
 ## RadioButton
 - 关于RadioGroup实现多行选项，如两排四列，在选择第一列时，把第二列清空选择即可
   mRg2.clearCheck();
-
+- 取消选择小圆圈 android:button="@null"
+- 设置checked背景变化， 在selector文件中设置checked的样式即可
 
 ## ScrollView
 - 配合TextView来打印日志，自动滚到最底部
@@ -184,14 +187,18 @@ private void scrollToBottom() {
     </style>
 ```
 
-## ListView
-
+## RecyclerView
 - recyclerView的item ， 布局的宽度一定要match_parent, 否则首次记载时第一个宽度显示不全
+- tools:itemCount
+- tools:layoutManager="GridLayoutManager"
+- tools:listitem="@layout/item"
+- tools:spanCount="2"
 
 ## ImageView
 - android:tint="@color/sample_green"
   可以直接给ImageView图片src上色
 - ImageView水波纹效果,android:background="?selectableItemBackgroundBorderless"
+- 设置背景图遮罩层颜色  clMode.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY ); 
 ## Toast
 - 一般toast显示不出有3个原因： 
   1、在非UI线程中执行，建议使用handler显示提示 

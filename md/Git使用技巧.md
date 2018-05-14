@@ -10,9 +10,6 @@
 6. git commit -m "说明文字"  提交本地代码更改 并添加更改说明
 7. git push origin master 提交本地仓库到远程github上面
 
-
-
-
 ## 同步仓库
 - git init 初始化git仓库
 - git clone git://github.com/xxx/xxx.git  克隆远程仓库
@@ -25,7 +22,6 @@
 - git push [remoteName] [localBranchName] 推送远程仓库
 - git push –force origin master 当本地缺少远程仓库部分文件时，可能提示出错，需要用–force 来强制上传
 
-
 ## 关于分支
 - git branch 查看当前所有分支
 - git branch [branchName]  创建分支
@@ -37,7 +33,6 @@
 - git push origin [branchName] 传送本地分支[branchName]到仓库origin（会自动合成到仓库的分支中）
 - git push origin --delete [branchName] 删除远程[branchName]分支
 
-
 ## 同时关联多个远程仓库
 ***关联仓库***
 git remote add github url;(如果是clone下来的可以省略)
@@ -47,7 +42,6 @@ git remote add gitcafe url;
 git push github master;
 git push gitcafe master;
 可以考虑自己写个小脚本，一个命令同时执行多个
-
 
 ## 恢复日志
 git reflog命令可以对git误操作进行数据恢复。
@@ -69,8 +63,6 @@ $ ssh-keygen -t rsa -C “注册邮箱” 然后用户主目录 (如C:\Users\you
 ssh地址：https://github.com/settings/ssh
 
 4.测试ssh key是否成功，使用命令“ssh -T git@github.com”，如果出现You’ve successfully authenticated, but GitHub does not provide shell access 。这就表示已成功连上github，现在你可以把本地项目提交到github仓库了
-
-
 
 ## 更多
 - git status 查看git当前文件情况
@@ -99,3 +91,8 @@ $ git checkout -b dev origin/dev
   
   除了设置ssh密钥，还可以修改下DNS， 我是改为了114.114.114.114然后就成功了 （一开始是192.168.1.1）
    直接设置dns或用腾讯管家等来设置
+
+- git tag version
+相当于发布版本
+git tag v1.0.0  # 为当前commit打上TAG
+git push origin v1.0.0 # 把TAG推送到远程仓库
