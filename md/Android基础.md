@@ -34,7 +34,9 @@
 - [签名](#签名)
 - [简称](#简称)
 - [工具&&网站](#工具&&网站)
+- [ADB使用技巧](#adb使用技巧)
 - [其他](#其他)
+
 
 ## Base
 - 父类定义过的变量，在子类可以直接使用 而不用声明
@@ -81,10 +83,20 @@ xml:
 - 取消默认大写字母android:textAllCaps="false";
 - 竖向显示文字，固定几个文字可用\n,  android:text="立\n即\n使\n用"
 - android:autoLink="web" 设置超链接突出显示
+- android:fontFamily="sans-serif"      修改字体
+- <string name="your_string_here">This is an <u>underline</u>.</string> 在strings.xml中可以支持html标识符，
+或者在java代码中用SpannableString，又或者用tv.setText(Html.fromHtml("htmlStr"))
+
+
 java:
 - tv.setError("报错信息");
 - txtShow.setBackground("#000");
--  textview.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG ); //中间删除横线
+-  textview.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG ); //中间添加删除横线
+- android:maxLines = "AN_INTEGER"
+android:scrollbars = "vertical"
+yourTextView.setMovementMethod(new ScrollingMovementMethod());
+设置TextView可固定行数，超出部分可滚动
+
 
 ## EditText
 xml:
@@ -99,6 +111,7 @@ xml:
   方法一、 
   EditText有一个属性：android:textCursorDrawable，这个属性是用来控制光标颜色的 
   android:textCursorDrawable=”@null”，”@null”作用是让光标颜色和text color一样
+- et.setSelection(et.getText().length());  设置弹出时的光标位置
 
 
 java:
@@ -193,6 +206,8 @@ private void scrollToBottom() {
 - tools:layoutManager="GridLayoutManager"
 - tools:listitem="@layout/item"
 - tools:spanCount="2"
+- tools:listheader 
+- tools:listfooter
 
 ## ImageView
 - android:tint="@color/sample_green"
@@ -598,6 +613,11 @@ android/platform/libcore：平台的lib库;
 ## 工具&&网站
 - 自动获取shape  http://shapes.softartstudio.com/#&ui-state=dialog
 
+
+## ADB使用技巧
+- adb shell 进入adb（当只有一个设备连接时）
+- control+d  退出adb
+- adb
 
 ## 其他
 
