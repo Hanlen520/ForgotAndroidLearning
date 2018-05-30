@@ -8,7 +8,8 @@
 4. git status 查看git当前文件情况
 5. git add . 添加本地代码改变部分
 6. git commit -m "说明文字"  提交本地代码更改 并添加更改说明
-7. git push origin master 提交本地仓库到远程github上面
+7. git push -u origin master -- 将本地仓库push远程仓库，并将origin设为默认远程仓库
+8. git push origin master 提交本地仓库到远程github上面
 
 ## 同步仓库
 - git init 初始化git仓库
@@ -32,6 +33,12 @@
 - git pull origin [branchName] 下载远程[branchName]分支 到本地
 - git push origin [branchName] 传送本地分支[branchName]到仓库origin（会自动合成到仓库的分支中）
 - git push origin --delete [branchName] 删除远程[branchName]分支
+
+## 设置版本标记
+- git tag version # 为当前commit打上TAG
+例如： git tag v1.0.0   
+- git push origin version # 推送到仓库
+例如：git push origin v1.0.0  
 
 ## 同时关联多个远程仓库
 ***关联仓库***
@@ -92,7 +99,3 @@ $ git checkout -b dev origin/dev
   除了设置ssh密钥，还可以修改下DNS， 我是改为了114.114.114.114然后就成功了 （一开始是192.168.1.1）
    直接设置dns或用腾讯管家等来设置
 
-- git tag version
-相当于发布版本
-git tag v1.0.0  # 为当前commit打上TAG
-git push origin v1.0.0 # 把TAG推送到远程仓库
