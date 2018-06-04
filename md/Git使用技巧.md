@@ -80,7 +80,12 @@ Git记录每次修改HEAD的操作，git reflog/git log -g可以查看所有的�
 # 回退所有内容到某个斑斑
 git reset commitId
 # 将本地的状态回退到某个版本  
+<<<<<<< HEAD
 git reset –-hard commitId 
+=======
+git reset –hard commitId  
+
+>>>>>>> 23b98fe1e52bafda80a3618562ecaff54357f5bc
 ## SSH Key的配置
 
 1.Windows下打开Git Bash，创建SSH Key，按提示输入密码，可以不填密码一路回车
