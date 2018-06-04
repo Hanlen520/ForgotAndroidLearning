@@ -129,7 +129,22 @@ configurations.all {
 - java.lang.RuntimeException: Can't create handler inside thread that has not called Looper.prepare()
   Handler若在子线程中运行的话，需要先Looper.prepare()
 
+- Error:Conflict with dependency 'com.google.code.findbugs:jsr305'
+In your app's build.gradle add the following:
+android {
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
+    }
+}
 
+Enforces Gradle to only compile the version number you state for all dependencies, no matter which version number the dependencies have stated.
+
+- dialog - The specified child already has a parent. You must call removeView() on the child's parent first
+The problem is on this line: alert.setView(input); You added input View that have already parent. Create new input instance.
+检查最后的setView是不是layout中根view Id ， 不要用edittext的id啊，看上面是不是还有viewgroup如linearlayout
+
+- Android-Application被回收引发空指针异常分析（消灭全局变量）
+https://blog.csdn.net/zivensonice/article/details/51451486
 
 ## Others
 - android:allowBackup="true"  有风险，连接数据线可恢复备份数据，应该设置为false. 
@@ -138,3 +153,6 @@ configurations.all {
 - 查看log的额外方法 /Users/<user>/Library/Logs/AndroidStudio2.2/
 - EditText挡住ListView的问题，在Manifest中设置Activity属性 android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
 - 微信支付调起失败，错误码-1 ， 签名与微信后台记录的不对
+- 谨防sql注入
+所谓SQL注入，就是通过把SQL命令插入到Web表单递交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。
+我们永远不要信任用户的输入，我们必须认定用户输入的数据都是不安全的，我们都需要对用户输入的数据进行过滤处理。

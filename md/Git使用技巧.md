@@ -35,6 +35,7 @@
 - git push origin --delete [branchName] 删除远程[branchName]分支
 
 ## 设置版本标记
+相当于发布版本
 - git tag version # 为当前commit打上TAG
 例如： git tag v1.0.0   
 - git push origin version # 推送到仓库
