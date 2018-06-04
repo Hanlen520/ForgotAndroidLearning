@@ -97,7 +97,7 @@ java:
 -  textview.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG ); //中间添加删除横线
 yourTextView.setMovementMethod(new ScrollingMovementMethod());
 设置TextView可固定行数，超出部分可滚动
-
+- 同样一个TextView,如果我们的MainActivity 分别继承Activity，AppCompatActivity，我们打印一下我们的TextView，会发现继承了AppCompatActivity的会变成AppCompatTextView
 
 ## EditText
 xml:
@@ -204,12 +204,18 @@ private void scrollToBottom() {
 
 ## RecyclerView
 - recyclerView的item ， 布局的宽度一定要match_parent, 否则首次记载时第一个宽度显示不全
-- tools:itemCount
-- tools:layoutManager="GridLayoutManager"
-- tools:listitem="@layout/item"
+- 在adapter的默认构造器中使用
+public RepositoryAdapter() {
+    this.repositories = Collections.emptyList();
+}
+### 关于视图预览
+- tools:itemCount  //设置显示多少个item
+- tools:layoutManager="GridLayoutManager" //要和spanCount一起用才有效
 - tools:spanCount="2"
+- tools:listitem="@layout/item"
 - tools:listheader 
 - tools:listfooter
+
 
 ## ImageView
 - android:tint="@color/sample_green"
@@ -253,7 +259,7 @@ private void scrollToBottom() {
 ## ArrayList
 - Create ArrayList from array
 new ArrayList<>(Arrays.asList(array))
-- 
+
 ## int
 - 十进制转化为十六进制，结果为C8。 Integer.toHexString(200);
 
@@ -687,3 +693,21 @@ android/platform/libcore：平台的lib库;
 - 在安卓系统，我们经常会接触到弹窗，说到弹窗，我们经常接触到的也就dialog或者popupWindow了。而这两者的区别，简单的说就是“一大小二蒙层三阻塞”，如果再简单点说，就是对话框与悬浮框的区别吧。。。还有Dialog样式的Activity
 
 - 骁龙835cpu是arm64-v8a
+
+- Android手机唯一标识，Settings.Secure#ANDROID_ID returns the Android ID as an unique for each user 64-bit hex string.
+private String android_id = Settings.Secure.getString(getContext().getContentResolver(),
+                                                        Settings.Secure.ANDROID_ID); 
+
+- ActivityManager中的一个方法
+/**
+ * Returns "true" if the user interface is currently being messed with
+ * by a monkey.
+ */
+public static boolean isUserAMonkey() {
+    try {
+        return getService().isUserAMonkey();
+    } catch (RemoteException e) {
+        throw e.rethrowFromSystemServer();
+    }
+}
+
