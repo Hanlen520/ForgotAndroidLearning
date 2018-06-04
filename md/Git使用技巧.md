@@ -43,6 +43,24 @@
 - git tag -d tagName # 删除tag
 - git push origin --tags #提交所有tags到仓库
 
+
+## gitignore使用
+# a.忽略指定文件/目录
+### 忽略指定文件
+HelloWrold.class
+### 忽略指定文件夹
+bin/
+bin/gen/
+
+# b.通配符忽略规则
+通配符规则如下：
+### 忽略.class的所有文件
+*.class
+### 忽略名称中末尾为ignore的文件夹
+*ignore/
+### 忽略名称中间包含ignore的文件夹
+*ignore*/
+
 ## 同时关联多个远程仓库
 ***关联仓库***
 git remote add github url;(如果是clone下来的可以省略)
@@ -90,8 +108,6 @@ fatal: refusing to merge unrelated histories，解决方法:git pull --allow-unr
 git add .
 git commit -m 'update .gitignore'
 
-- 同步远程origin的dev分支到本地：
-$ git checkout -b dev origin/dev
 
 - 报错提示
   　ssh: Could not resolve hostname bitbucket.org: Name or service not known
