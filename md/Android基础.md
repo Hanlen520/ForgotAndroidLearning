@@ -11,7 +11,9 @@
 - [RecyclerView](#recyclerView)
 - [ImageView](#imageview)
 - [Toast](#toast)
+- [ConstraintLayout](#ConstraintLayout)
 - [String](#string)
+- [ArrayList](#arrayList)
 - [Int](#int)
 - [JavaDoc注释](#javadoc注释)
 - [四大组件](#四大组件)
@@ -86,14 +88,13 @@ xml:
 - android:fontFamily="sans-serif"      修改字体
 - <string name="your_string_here">This is an <u>underline</u>.</string> 在strings.xml中可以支持html标识符，
 或者在java代码中用SpannableString，又或者用tv.setText(Html.fromHtml("htmlStr"))
-
+- android:maxLines = "AN_INTEGER"
+android:scrollbars = "vertical"
 
 java:
 - tv.setError("报错信息");
 - txtShow.setBackground("#000");
 -  textview.getPaint().setFlags(Paint. STRIKE_THRU_TEXT_FLAG ); //中间添加删除横线
-- android:maxLines = "AN_INTEGER"
-android:scrollbars = "vertical"
 yourTextView.setMovementMethod(new ScrollingMovementMethod());
 设置TextView可固定行数，超出部分可滚动
 
@@ -148,6 +149,7 @@ xml:
       android:src="@drawable/btn_back_normal"
       android:background="?attr/selectableItemBackgroundBorderless"/>
 ```
+- 对于 Selector 当背景的，可以将 normal 状态的 color 设置为 @android:color/transparent ， 效果简洁
 java:
 
 
@@ -219,6 +221,10 @@ private void scrollToBottom() {
   1、在非UI线程中执行，建议使用handler显示提示 
   2、没有执行到，这是逻辑错误 
   3、可能是手机设置-应用通知管理没打开
+- Toast有可能导致Activity泄漏。在创建Toast时，需要传入Context，如果这个Context是Activity，而Toast是异步弹出，有可能弹出时Activity已经结束。所以正确使用方法，应该是传入ApplicationContext，避免Toast导致内存泄漏。
+## ConstraintLayout
+- 高宽用0dp wrap_content， 而不能用match_parent
+- 
 
 ## String
 - %d（表示整数），%f（表示浮点数）， %s （表示字符串）
@@ -244,7 +250,10 @@ private void scrollToBottom() {
 - String[]转List
   Arrays.asList(abc.split(","));
 
-
+## ArrayList
+- Create ArrayList from array
+new ArrayList<>(Arrays.asList(array))
+- 
 ## int
 - 十进制转化为十六进制，结果为C8。 Integer.toHexString(200);
 
@@ -477,7 +486,14 @@ insert into Book(name,pages,price,author)  values("作者",103,600,"书名");
 - 谈谈对Android NDK的理解。
   native develop kit   只是一个交叉编译的工具  .so
       1.什么时候用ndk,  实时性要求高,游戏,图形渲染,  opencv (人脸识别) , ffmpeg , rmvb  mp5 avi 高清解码. ffmpeg, opencore.
-
+- 关于NDK开发
+0.NDK是一种技术手段，我觉得不能问“NDK学了能做什么”，而应该问“什么情况下应该用NDK而不用Java“。
+项目中用NDK无外乎下面几种原因：
+1、安全因素。利用NDK编译出的是NativeCode，相比java的代码，本地代码从破解上更难，对破解者技术要求高。
+2、系统级编程。不跟jvm打交道，直接跟android系统打交道。
+3、性能需求。虽然java很快了，但是c++会更快。
+4、跨平台。国内某视频直播客户端支持多个平台，其底层的解码是由c++编写，一套代码用于多个平台，减少维护成本。
+所以说你学不学NDK是看项目有没这些需要。
 ## 性能优化
 - Java 内存泄露的根本原因就是 保存了不可能再被访问的变量类型的引用
 - 匿名内部类默认持有外部类的引用，有内存泄漏的风险;

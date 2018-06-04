@@ -1,6 +1,8 @@
 # Android第三方库使用集锦
 放第三方库的简单应用。 包括导入包的方法还有简单用法
 
+
+- [RxJava](#RxJava)
 ## [Lottie 动画库](https://github.com/airbnb/lottie-android)
 *支持AE导出的json动画*
 ### 使用方法
@@ -129,3 +131,14 @@ apply plugin: 'realm-android'
 
 
 ##  flexbox-layout ，类似瀑布流布局
+
+## RxJava
+Observable.just(1, 2, 3, 4) // IO 线程，由 subscribeOn() 指定
+    .subscribeOn(Schedulers.io())
+    .observeOn(Schedulers.newThread())
+    .map(mapOperator) // 新线程，由 observeOn() 指定
+    .observeOn(Schedulers.io())
+    .map(mapOperator2) // IO 线程，由 observeOn() 指定
+    .observeOn(AndroidSchedulers.mainThread) 
+    .subscribe(subscriber);  // Android 主线程，由 observeOn() 指定
+如上，通过 observeOn() 的多次调用，程序实现了线程的多次切换。

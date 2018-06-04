@@ -2,15 +2,17 @@
 
 ## 使用优化
 - 优化IDE使用内存，在Help - Edit Custom VM Option 选项，打开studio(64?).vmoptions文件,设置项目
--Xms2048m
--Xmx4096m
--XX:MaxPermSize=4096m
--XX:ReservedCodeCacheSize=2048m
-<br>如何确定修改生效了？
+-Xms2g
+-Xmx6g
+-XX:MaxPermSize=6g
+-XX:ReservedCodeCacheSize=2g
+-XX:+UseCompressedOops
+
+- 如何确定修改生效了？
 在 Settings -> Appearance 页里，打开 Show memory indicator 选项，然后主界面右下角会显示 Heap 总大小以及使用状况。这样操作一下，就可以确认 Heap Size 修改是否生效。
 
 - 出现string等中文乱码，设置语言为微软雅黑。 编码全部改为UTF-8
-<br>再Settings-Apperance-Override default fonts by 设置为微软雅黑
+- 再Settings-Apperance-Override default fonts by 设置为微软雅黑
 - 若AndroidStudio上的logcat时间不对，其实这是你虚拟机上的时间，去改虚拟机上的就行了
 - IDE工具字体 推荐sourse code pro ， 棱角分明，0和O,1和I l都能分清
 
