@@ -77,6 +77,10 @@ git reflog命令可以对git误操作进行数据恢复。
 如不小心用git commit --amend当成git commit覆盖当前的commit，或不小心把当前的commit给搞没了（reset --hard）。 都可以通过git reflog恢复。
 
 Git记录每次修改HEAD的操作，git reflog/git log -g可以查看所有的历史操作记录，然后通过git reset命令进行恢复。
+# 回退所有内容到某个斑斑
+git reset commitId
+# 将本地的状态回退到某个版本  
+git reset –hard commitId  
 
 ## SSH Key的配置
 
