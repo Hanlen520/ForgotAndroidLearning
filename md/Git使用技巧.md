@@ -71,16 +71,12 @@ git push github master;
 git push gitcafe master;
 可以考虑自己写个小脚本，一个命令同时执行多个
 
-## 恢复日志
-git reflog命令可以对git误操作进行数据恢复。
+## reset使用
+git reflog  #查看操作历史
+git reset logId #恢复到某次操作
+git reset –-soft commitId：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可；
+git reset -–hard commitId：彻底回退到某个版本，本地的源码也会变为上一个版本的内容，撤销的commit中所包含的更改被冲掉；
 
-如不小心用git commit --amend当成git commit覆盖当前的commit，或不小心把当前的commit给搞没了（reset --hard）。 都可以通过git reflog恢复。
-
-Git记录每次修改HEAD的操作，git reflog/git log -g可以查看所有的历史操作记录，然后通过git reset命令进行恢复。
-# 回退所有内容到某个斑斑
-git reset commitId
-# 将本地的状态回退到某个版本  
-git reset –-hard commitId 
 ## SSH Key的配置
 
 1.Windows下打开Git Bash，创建SSH Key，按提示输入密码，可以不填密码一路回车
