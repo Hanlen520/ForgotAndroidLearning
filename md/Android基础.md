@@ -1,4 +1,4 @@
-## Android基础
+# Android基础
 整理通用基础知识
 - [Base](#base)
 - [AndroidManifest.xml](#androidmanifest.xml)
@@ -151,9 +151,6 @@ xml:
 ```
 - 对于 Selector 当背景的，可以将 normal 状态的 color 设置为 @android:color/transparent ， 效果简洁
 java:
-
-
-
 
 ## RadioButton
 - 关于RadioGroup实现多行选项，如两排四列，在选择第一列时，把第二列清空选择即可

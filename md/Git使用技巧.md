@@ -14,7 +14,7 @@
 ## 同步仓库
 - git init 初始化git仓库
 - git clone git://github.com/xxx/xxx.git  克隆远程仓库
-- git clone --depth=1 url  只克隆最新的仓库
+- git clone --depth=1 url  只克隆仓库最新的提交
 - git remote -v  查看远程仓库
 - git remote add [name] [url] 添加远程仓库
 - git remote rm [name] 删除远程仓库
@@ -36,10 +36,12 @@
 
 ## 设置版本标记
 相当于发布版本
-- git tag version # 为当前commit打上TAG
+- git tag tagName # 为当前commit打上TAG
 例如： git tag v1.0.0   
-- git push origin version # 推送到仓库
+- git push origin tagName # 推送tag到仓库
 例如：git push origin v1.0.0  
+- git tag -d tagName # 删除tag
+- git push origin --tags #提交所有tags到仓库
 
 ## 同时关联多个远程仓库
 ***关联仓库***
@@ -73,7 +75,7 @@ ssh地址：https://github.com/settings/ssh
 4.测试ssh key是否成功，使用命令“ssh -T git@github.com”，如果出现You’ve successfully authenticated, but GitHub does not provide shell access 。这就表示已成功连上github，现在你可以把本地项目提交到github仓库了
 
 ## 更多
-- git status 查看git当前文件情况
+- git help 查看git帮助信息，显示能用的命令
 - 有时候网络更换后，github push失败：ssh: Could not resolve hostname github.com: Name or service not known fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists.
   设置静态ip，添加dns解析 8.8.8.8 nameserver 8.8.4.4
 - 追加提交commit
