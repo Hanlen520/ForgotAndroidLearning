@@ -19,6 +19,7 @@
 - git remote add [name] [url] 添加远程仓库
 - git remote rm [name] 删除远程仓库
 - git remote set-url --push[name][newUrl] 修改远程仓库
+- git remote remove origin  取消本地目录下关联的远程库
 - git pull [remoteName] [localBranchName] 拉取远程仓库
 - git push [remoteName] [localBranchName] 推送远程仓库
 - git push –force origin master 当本地缺少远程仓库部分文件时，可能提示出错，需要用–force 来强制上传
@@ -43,6 +44,20 @@
 - git tag -d tagName # 删除tag
 - git push origin --tags #提交所有tags到仓库
 
+## 多人协作时的Fork和Merge Request
+多人协作的项目，往往不会直接commit到总项目，而是由组员各自fork总项目到各自的目录下，然后当有新的commit时，再提交merge request到总项目，由总项目负责人进行文件合并和冲突解决。
+
+git remote add upstream url #添加总仓库
+git fetch upstream  #拉取总仓库所有分支下来，但只是存起来，不会合并
+git checkout master #切换到你想合并的分支下
+git merge upstream/master #合并upstrem下的mater分支到当前master分支
+
+
+官方教程，如何添加upstream仓库（也就是你fork的项目的总仓库）
+https://help.github.com/articles/configuring-a-remote-for-a-fork/
+
+如何拉取最新的总仓库到你本地
+https://help.github.com/articles/syncing-a-fork/
 
 ## gitignore使用
 # a.忽略指定文件/目录
@@ -76,7 +91,10 @@ git reflog  #查看操作历史
 git reset logId #恢复到某次操作
 git reset –-soft commitId：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可；
 git reset -–hard commitId：彻底回退到某个版本，本地的源码也会变为上一个版本的内容，撤销的commit中所包含的更改被冲掉；
+git revert HEAD~2
+相比git reset，它不会改变现在的提交历史。因此，git revert可以用在公共分支上，git reset应该用在私有分支上。
 
+你也可以把git revert当作撤销已经提交的更改，而git reset HEAD用来撤销没有提交的更改。
 ## SSH Key的配置
 
 1.Windows下打开Git Bash，创建SSH Key，按提示输入密码，可以不填密码一路回车
@@ -117,3 +135,8 @@ git commit -m 'update .gitignore'
   除了设置ssh密钥，还可以修改下DNS， 我是改为了114.114.114.114然后就成功了 （一开始是192.168.1.1）
    直接设置dns或用腾讯管家等来设置
 
+- fetch和pull的区别
+- fetch只会把各分支拉下来，而不会进行合并merge，所以不会产生冲突等
+如 git fetch upstream 
+- pull除了拉下某分支，还会进行merge操作，有可能会产生冲突
+如 git pull upstream/matster
