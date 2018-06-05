@@ -19,7 +19,7 @@
 - git remote add [name] [url] 添加远程仓库
 - git remote rm [name] 删除远程仓库
 - git remote set-url --push[name][newUrl] 修改远程仓库
-- git remote remove origin  取消本地目录下关联的远程库
+- git remote remove origin  取消本地目录下关联的远程库origin
 - git pull [remoteName] [localBranchName] 拉取远程仓库
 - git push [remoteName] [localBranchName] 推送远程仓库
 - git push –force origin master 当本地缺少远程仓库部分文件时，可能提示出错，需要用–force 来强制上传
@@ -140,3 +140,5 @@ git commit -m 'update .gitignore'
 如 git fetch upstream 
 - pull除了拉下某分支，还会进行merge操作，有可能会产生冲突
 如 git pull upstream/matster
+
+- gitk  查看commit变更日志
