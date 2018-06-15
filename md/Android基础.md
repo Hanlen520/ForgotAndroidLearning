@@ -36,7 +36,6 @@
 - [签名](#签名)
 - [简称](#简称)
 - [工具&&网站](#工具&&网站)
-- [ADB使用技巧](#adb使用技巧)
 - [其他](#其他)
 
 
@@ -205,6 +204,8 @@ private void scrollToBottom() {
 public RepositoryAdapter() {
     this.repositories = Collections.emptyList();
 }
+- 想要RecyclerVIew中显示平分的两列，只需在item_layout中设置宽度match_content， 然后设置布局两列的GridLayoutManager即可
+
 ### 关于视图预览
 - tools:itemCount  //设置显示多少个item
 - tools:layoutManager="GridLayoutManager" //要和spanCount一起用才有效
@@ -633,10 +634,6 @@ android/platform/libcore：平台的lib库;
 - 自动获取shape  http://shapes.softartstudio.com/#&ui-state=dialog
 
 
-## ADB使用技巧
-- adb shell 进入adb（当只有一个设备连接时）
-- control+d  退出adb
-- adb
 
 ## 其他
 

@@ -29,11 +29,14 @@
 - git branch [branchName]  创建分支
 - git checkout [branchName] 切换到分支
 - git branch -d [branchName] 删除[branchName]分支
+- git branch -D [branchName] 强制删除[branchName]分支
 - git merge [branchName] 将名称为[branchName]的分支与当前分支合并
 - git branch -a 查看远程分支
 - git pull origin [branchName] 下载远程[branchName]分支 到本地
 - git push origin [branchName] 传送本地分支[branchName]到仓库origin（会自动合成到仓库的分支中）
 - git push origin --delete [branchName] 删除远程[branchName]分支
+- git checkout -b dev origin/dev，作用是checkout远程的dev分支，在本地起名为dev分支，并切换到本地的dev分支
+- git checkout -t origin/feature, 类似，它默认会在本地建立一个和远程分支名字一样的分支， 如果远程分支没拉下来，则再git pull origin branchName
 
 ## 设置版本标记
 相当于发布版本
@@ -75,6 +78,9 @@ bin/gen/
 *ignore/
 ### 忽略名称中间包含ignore的文件夹
 *ignore*/
+
+
+
 
 ## 同时关联多个远程仓库
 ***关联仓库***
