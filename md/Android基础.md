@@ -6,12 +6,14 @@
 - [EditText](#edittext)
 - [Button](#button)
 - [RadioButton](#radiobutton)
+- [Switch](#switch)
 - [ScrollView](#scrollview)
 - [AlertDialog](#alertdialog)
 - [RecyclerView](#recyclerView)
 - [ImageView](#imageview)
 - [Toast](#toast)
 - [ConstraintLayout](#ConstraintLayout)
+- [FrameLayout](#FrameLayout)
 - [String](#string)
 - [ArrayList](#arrayList)
 - [Int](#int)
@@ -122,12 +124,21 @@ java:
 - 点击控件时，重新获取焦点，激活软键盘
 - 监听输入edtInput.setKeyListener(DigitsKeyListener.getInstance("1234567890."));
   edtInput.setInputType(8194);
-- EditText 在 setText 时不要忘记是否需要 setSelection。在大多数情况下是需要设置的。
-
+- EditText 在 setText 时不要忘记是否需要 setSelection。在某些情况下是需要设置的。
 ```
   etCode.setFocusable(true);
   etCode.setFocusableInTouchMode(true);
   etCode.requestFocus();
+```
+- dialog中软键盘的弹出和隐藏
+隐藏 , view是EditText
+```
+ protected void hideSoftInput(View view) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
 ```
 
 
@@ -156,6 +167,25 @@ java:
   mRg2.clearCheck();
 - 取消选择小圆圈 android:button="@null"
 - 设置checked背景变化， 在selector文件中设置checked的样式即可
+
+## Switch
+- 关于4.4以下switch自定义样式显示错误的问题，
+在track样式中添加size属性，如
+```
+<size
+        android:width="34dp"
+        android:height="20dp"/>
+```
+然后在Switch属性中添加
+```
+android:thumbTextPadding="10dp"
+        android:switchMinWidth="40dp"
+        android:textOn=""
+        android:textOff=""
+        android:thumb="@drawable/switch_thumb_dark"
+        android:track="@drawable/switch_track_orange"
+```
+可达到大致兼容的效果
 
 ## ScrollView
 - 配合TextView来打印日志，自动滚到最底部
@@ -228,7 +258,13 @@ public RepositoryAdapter() {
 - Toast有可能导致Activity泄漏。在创建Toast时，需要传入Context，如果这个Context是Activity，而Toast是异步弹出，有可能弹出时Activity已经结束。所以正确使用方法，应该是传入ApplicationContext，避免Toast导致内存泄漏。
 ## ConstraintLayout
 - 高宽用0dp wrap_content， 而不能用match_parent
-- 
+- app:layout_constraintDimensionRatio="30:19"   //设置宽高比例 ，自适应，把固定长度的设为0dp即可
+- 实现B在A的底部交叉居中显示
+ app:layout_constraintBottom_toBottomOf="@id/tv_top"
+  app:layout_constraintTop_toBottomOf="@+id/tv_top"
+
+## FrameLayout
+- 调整子布局位置，如android:layout_marginTop="-100dp"
 
 ## String
 - %d（表示整数），%f（表示浮点数）， %s （表示字符串）
