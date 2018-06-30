@@ -105,6 +105,7 @@ xml:
 - android:ems="1" 设置EditText为一列
 - android:background="@null" 消除底部横线
 - android:inputType="textMultiLine" 多行显示文字
+- android:inputType="number" 只能输入文字
 - EditText挡住ListView的问题，在Manifest中设置Activity属性 android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
 - 直接在xml布局中限制输入字符串
   android:digits="qwertyuiopasdfghjklzxcvbnm1234567890"
@@ -173,7 +174,7 @@ java:
 在track样式中添加size属性，如
 ```
 <size
-        android:width="34dp"
+        android:width="30dp"
         android:height="20dp"/>
 ```
 然后在Switch属性中添加
