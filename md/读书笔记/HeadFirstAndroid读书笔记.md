@@ -1,6 +1,6 @@
 # 《ForgotHeadFirstAndroid》
-看Head First Android 做的笔记
-<br>
+**作者 xxx**
+
 ## 第一章 初尝(P1~38)
 - Android 平台框架图
 - 项目文件结构
