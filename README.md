@@ -1,9 +1,9 @@
 # 个人Android学习笔记
 ### 主要包含Android书籍阅读笔记，和一些个人想要探讨的知识点
 
-[AndroidStudio 使用集锦](md/AndroidStudio使用集锦.md)
+[Android基础知识](md/Android基础.md)
 
-[Android基础](md/Android基础.md)
+[AndroidStudio 使用集锦](md/AndroidStudio使用集锦.md)
 
 [Android开发中遇到的问题整理](md/Android开发中遇到的问题整理.md)
 

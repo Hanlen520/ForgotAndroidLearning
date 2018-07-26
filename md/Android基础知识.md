@@ -91,6 +91,9 @@ xml:
 或者在java代码中用SpannableString，又或者用tv.setText(Html.fromHtml("htmlStr"))
 - android:maxLines = "AN_INTEGER"
 android:scrollbars = "vertical"
+- 实用的点击样式
+style="@style/Base.Widget.AppCompat.Button.Borderless"
+
 
 java:
 - tv.setError("报错信息");
@@ -115,7 +118,8 @@ xml:
   EditText有一个属性：android:textCursorDrawable，这个属性是用来控制光标颜色的 
   android:textCursorDrawable=”@null”，”@null”作用是让光标颜色和text color一样
 - et.setSelection(et.getText().length());  设置弹出时的光标位置
-
+- android:imeOptions
+附加功能，设置右下角IME动作与编辑框相关的动作，如actionDone右下角将显示一个“完成”，而不设置默认是一个回车符号。
 
 java:
 -  显示小键盘 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(editPrivateMsg, 0);
@@ -160,6 +164,9 @@ xml:
       android:src="@drawable/btn_back_normal"
       android:background="?attr/selectableItemBackgroundBorderless"/>
 ```
+- 使用的点击样式
+style="@style/Base.Widget.AppCompat.Button.Borderless"
+
 - 对于 Selector 当背景的，可以将 normal 状态的 color 设置为 @android:color/transparent ， 效果简洁
 java:
 
@@ -199,11 +206,15 @@ private void scrollToBottom() {
         });
     }
 ```
+- ScrollView滚到最下面
+scrollView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                    }
+                });
 
-- 解决 Recyclerview和 
-  ScrollView的嵌套滑动问题  https://my.oschina.net/caomenglong/blog/747197
-  在RelativeLayout 中添加 android:descendantFocusability="blocksDescendants">
-   mRecyclerView.setNestedScrollingEnabled(false);
+
 
 ## AlertDialog
 - 点击外部不会关闭dialog, builder.setCancelable(false); 
@@ -236,7 +247,17 @@ public RepositoryAdapter() {
     this.repositories = Collections.emptyList();
 }
 - 想要RecyclerVIew中显示平分的两列，只需在item_layout中设置宽度match_content， 然后设置布局两列的GridLayoutManager即可
+- 解决与ScrollView嵌套时的内部无法滑动问题。设置内部滑动效果
+1.将Scrollview改为NestedScrollView；
+2.设置rv属性rvRoom.setNestedScrollingEnabled(true);
 
+- 解决 Recyclerview和 ScrollView的嵌套滑动问题  https://my.oschina.net/caomenglong/blog/747197
+设置全部展开滑动效果
+  在RecyclerView外面嵌套一层RelativeLayout,在RelativeLayout 中添加 android:descendantFocusability="blocksDescendants">
+   mRecyclerView.setNestedScrollingEnabled(false);
+  或者
+  1.将Scrollview改为NestedScrollView；
+2.mRecyclerView.setNestedScrollingEnabled(false);
 ### 关于视图预览
 - tools:itemCount  //设置显示多少个item
 - tools:layoutManager="GridLayoutManager" //要和spanCount一起用才有效
@@ -244,7 +265,8 @@ public RepositoryAdapter() {
 - tools:listitem="@layout/item"
 - tools:listheader 
 - tools:listfooter
-
+- tools:orientation="horizontal" 设置水平方向
+- tools:scrollbars="horizontal"
 
 ## ImageView
 - android:tint="@color/sample_green"
@@ -263,7 +285,40 @@ public RepositoryAdapter() {
 - 实现B在A的底部交叉居中显示
  app:layout_constraintBottom_toBottomOf="@id/tv_top"
   app:layout_constraintTop_toBottomOf="@+id/tv_top"
+- layout_constraintHorizontal_chainStyle 属性的应用，例如
+```
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="测试111"
+        app:layout_constraintEnd_toStartOf="@id/textView2"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="测试222"
+        app:layout_constraintEnd_toStartOf="@id/textView3"
+        app:layout_constraintStart_toEndOf="@id/textView" />
+
+    <Button
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="测试333"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/textView2" />
+
+</android.support.constraint.ConstraintLayout>
+```
 ## FrameLayout
 - 调整子布局位置，如android:layout_marginTop="-100dp"
 
@@ -359,6 +414,10 @@ new ArrayList<>(Arrays.asList(array))
   View view;
   view.invalidate();//主线程
   view.postInvalidate();//子线程
+- 设置控件最大宽高
+android:maxHeight="90dp"
+android:maxWidth="90dp"
+android:adjustViewBounds="true"
 
 - 设置view透明图
   android:alpha="0.7"
