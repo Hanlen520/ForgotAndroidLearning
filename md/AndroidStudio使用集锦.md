@@ -105,3 +105,24 @@ It will reduce 90% gradle build time.
   完全等同于compile指令，没区别，你将所有的compile改成api，完全没有错。implement指令
   这个指令的特点就是，对于使用了该命令编译的依赖，对该项目有依赖的项目将无法访问到使用该命令编译的依赖中的任何程序，也就是将该依赖隐藏在内部，而不对外部公开。
 
+## 配置注释模版
+1。在Live Templates中添加模版，并配置快捷单词auth
+```
+/**
+ * 功能:
+ * 描述:
+ * @author Lin Zongfu
+ * @date   $date$
+ * @email  jouney90@163.com
+ */
+ ```
+ 2。在File and Code Templates中配置File Header
+ ```
+ /**
+  * 功能:
+  * 描述:
+  * @author Lin Zongfu
+  * @date   ${DATE}
+  * @email  jouney90@163.com
+  */
+ ```

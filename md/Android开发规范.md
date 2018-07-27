@@ -6,15 +6,17 @@
 2. animation 资源命名
 
 3. color 资源命名
-颜色参考这里，取3-6种主颜色，色值分10个阶梯
-https://material.io/design/color/the-color-system.html#tools-for-picking-colors
+用来存放text状态变化的颜色
+selector_color1_to_color2
+如selector_white_to_black
 
 4. drawable 资源命名规范
-0. `前缀_大模块名_元素名_状态值`
-1. 前缀分为 ic (表示有点击事件的图标） ， bg (背景) ，img(无事件的图片)
-2. 大模块名分为：sing, shop , social , encore 等等
-3. 元素名如：start,stop 等等
-4. 状态值，默认不带；点击变化的状态为 pressed , 获得焦点为 focused 
+### 图标类
+-  `前缀_大模块名_元素名_状态值`
+- 前缀分为 ic (表示有点击事件的图标） ， bg (背景) ，img(无事件的图片)
+- 大模块名分为：sing, shop , social , encore 等等
+- 元素名如：start,stop 等等
+- 状态值，默认不带；点击变化的状态为 pressed , 获得焦点为 focused 
 
 ***例子：*** 
 - ic_sing_start 表示欢唱界面 开始图标
@@ -56,6 +58,10 @@ https://material.io/design/color/the-color-system.html#tools-for-picking-colors
 - array 命名规范
 - attrs 命名规范
 - colors 命名规范
+颜色参考这里，取3-6种主颜色，色值分10个阶梯
+https://ant.design/docs/spec/colors
+如red_1 、red_2、red_3
+
 - dimen 资源命名规范
 - strings 命名规范
 - style 命名规范
@@ -79,6 +85,7 @@ https://material.io/design/typography/the-type-system.html#type-scale
   ● 页面跳转 放到 Presenter 层中。
   ● View 和 Presenter 之间是双向依赖，所以通过接口解藕，便于进行 UI Mock 测试，而 Presenter 和 Model 是单向依赖，可以直接编写单元测试来测试 Model。
   
+  
 ## (二) Java 文件命名规范
 ## 类和方法，变量命名
 0. 参考本目录下的阿里Java开发命名规范，（阿里巴巴Java开发手册（详尽版）.pdf）
@@ -89,9 +96,32 @@ https://material.io/design/typography/the-type-system.html#type-scale
 5. 接口实现命名，Impl结尾，如LoginImpl
 
 - 成员变量命名前面加m，如User的成员变量为mUser
+- 静态字段命名以 s 开头,如sManager
+
+
+类中成员的顺序
+如果都使用一致的顺序将会提高代码的可读性，推荐使用如下排序：
+常量
+字段
+构造函数
+重写函数和回调
+公有函数
+私有函数
+内部类或接口
+
+函数参数的排序
+在 Android 开发过程中，Context 在函数参数中是再常见不过的了，我们最好把 Context 作为其第一个参数。
+
+正相反，我们把回调接口应该作为其最后一个参数。
+
+多参数的换行
+当一个方法有很多参数或者参数很长的时候，我们应该在每个 , 后面进行换行。
+
+
 
 ## (三) 项目命名参照表
 1. 通用
+
 - cur 当前这个
 - pre 上一个
 - next 下一个
