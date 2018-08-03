@@ -258,6 +258,18 @@ public RepositoryAdapter() {
   或者
   1.将Scrollview改为NestedScrollView；
 2.mRecyclerView.setNestedScrollingEnabled(false);
+
+- viewpager 嵌套fragment时，发现RecycerView数据不更新,
+需要在onActivityCreated方法中再次进行关联：adapter和RecyclerView，
+如：
+```
+@Override
+public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    super.onActivityCreated(savedInstanceState);
+    RoomCoverAdapter adapter = (RoomCoverAdapter) rvRoom.getAdapter();
+    rvRoom.setAdapter(adapter);
+}
+```
 ### 关于视图预览
 - tools:itemCount  //设置显示多少个item
 - tools:layoutManager="GridLayoutManager" //要和spanCount一起用才有效
