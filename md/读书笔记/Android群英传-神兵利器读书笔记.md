@@ -24,7 +24,6 @@
 - 多语言处理，点击strings.xml右上角的Open editor
 - 输入/** 再按Enter 快速生成注释代码
 - 自定义Live Templates, 如author声明, 也可以在File and Code Templates设置模版
-![debug](./pictures/Debug1.png)
 - Theme Editor 主题右上角点击Open Editor进行编辑
 
 AS快捷键：
