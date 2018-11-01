@@ -1,3 +1,7 @@
+36. Chrome插件整理
+Octotree方便查看github代码
+JsonFormatter 查看json格式化数据
+
 35.mac创建txt文本的方法：
 先打开“文本编辑器”应用，“新建文稿”，"格式“选择”纯文本“（快捷键command+shift+T），存为文件即可
 PS：可直接在“文本编辑器”的“偏好设置”中设置新建时即可“纯文本”格式
