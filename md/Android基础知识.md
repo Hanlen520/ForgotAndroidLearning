@@ -83,16 +83,20 @@ xml:
 - android:ems="1" 设置TextView为一列
 - android:alpha="0.6" 设置透明度
 - textView.append("\n" + msg.obj.toString());  追加消息到TextView中
-- 取消默认大写字母android:textAllCaps="false";
+- android:textAllCaps="false"; //取消默认大写字母
 - 竖向显示文字，固定几个文字可用\n,  android:text="立\n即\n使\n用"
 - android:autoLink="web" 设置超链接突出显示
 - android:fontFamily="sans-serif"      修改字体
 - <string name="your_string_here">This is an <u>underline</u>.</string> 在strings.xml中可以支持html标识符，
 或者在java代码中用SpannableString，又或者用tv.setText(Html.fromHtml("htmlStr"))
-- android:maxLines = "AN_INTEGER"
+- android:maxLines = "3"
 android:scrollbars = "vertical"
 - 实用的点击样式
 style="@style/Base.Widget.AppCompat.Button.Borderless"
+- android:ellipsize="end"
+ android:singleLine="true"
+ java代码设置 tv.setSelect(true)
+//设置长度超长时的显示效果，后面加省略号. 嫌麻烦的话还是手动算长度加省略号吧，也不好，不同手机上显示长度不一样
 
 
 java:
@@ -102,6 +106,7 @@ java:
 yourTextView.setMovementMethod(new ScrollingMovementMethod());
 设置TextView可固定行数，超出部分可滚动
 - 同样一个TextView,如果我们的MainActivity 分别继承Activity，AppCompatActivity，我们打印一下我们的TextView，会发现继承了AppCompatActivity的会变成AppCompatTextView
+- tvHint.setText(Html.fromHtml("<big>将网关连接电源，并与家庭路由器相连，<br>使手机和网关在<font color='#FF9600'>同一网络下</font>，确定指示灯<br>（绿灯常亮）<big>"));
 
 ## EditText
 xml:
@@ -110,8 +115,7 @@ xml:
 - android:inputType="textMultiLine" 多行显示文字
 - android:inputType="number" 只能输入文字
 - EditText挡住ListView的问题，在Manifest中设置Activity属性 android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
-- 直接在xml布局中限制输入字符串
-  android:digits="qwertyuiopasdfghjklzxcvbnm1234567890"
+- android:digits="qwertyuiopasdfghjklzxcvbnm1234567890" //直接在xml布局中限制输入字符串
 - TextLayout中显示密码的按钮 app:passwordToggleEnabled="true"
 - 有时候不是edittext没有光标，可能是光标默认白色，那么在白色背景下就看不到了 
   方法一、 
