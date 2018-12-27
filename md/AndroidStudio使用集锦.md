@@ -47,7 +47,7 @@ It will reduce 90% gradle build time.
 - F11 添加书签
 - ctrl+alt+home,快速打开对应的Activity或layout文件
 - ctrl + .   , 快速切换资源id和真实信息，如 R.string.id , 按下ctrl+.  可以快速查看字符串的内容
-
+- Command+Shift+U 切换大小写
 
 ## 必装插件
 - Android Parcelable Code Generator  生成Parcelable序列化的方法

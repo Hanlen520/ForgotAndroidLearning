@@ -95,6 +95,9 @@ android:scrollbars = "vertical"
 style="@style/Base.Widget.AppCompat.Button.Borderless"
 - android:ellipsize="end"
  android:singleLine="true"
+//若是一行有两个TextView显示（标题+内容）， 则还是要套一层LinearLayout，而不要直接在ConstraintLayout中使用，比较难实现功能. 
+//不，这样也没多大意义
+
  java代码设置 tv.setSelect(true)
 //设置长度超长时的显示效果，后面加省略号. 嫌麻烦的话还是手动算长度加省略号吧，也不好，不同手机上显示长度不一样
 
@@ -199,6 +202,9 @@ android:thumbTextPadding="10dp"
 ```
 可达到大致兼容的效果
 
+- 为了更好的Switch样式和配置颜色等，建议高兼容包的SwitchCompact
+androidx.appcompat.widget.SwitchCompat
+
 ## ScrollView
 - 配合TextView来打印日志，自动滚到最底部
 ```
@@ -272,8 +278,13 @@ public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
     RoomCoverAdapter adapter = (RoomCoverAdapter) rvRoom.getAdapter();
     rvRoom.setAdapter(adapter);
-}
+} 
 ```
+
+- 使用RecyclerView时发现item显示不全的问题，在外层都用LinearLayout或者再包一层NestedScrollView即可，使用ConstraintLayout不当，会显示不全
+- 取消RecyclerView刷新数据时的闪烁动画效果
+((DefaultItemAnimator) rvButton.getItemAnimator()).setSupportsChangeAnimations(false);
+
 ### 关于视图预览
 - tools:itemCount  //设置显示多少个item
 - tools:layoutManager="GridLayoutManager" //要和spanCount一起用才有效
