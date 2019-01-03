@@ -6,6 +6,7 @@
 - [EditText](#edittext)
 - [Button](#button)
 - [RadioButton](#radiobutton)
+- [CheckBox](#checkbox)
 - [Switch](#switch)
 - [ScrollView](#scrollview)
 - [AlertDialog](#alertdialog)
@@ -97,10 +98,11 @@ style="@style/Base.Widget.AppCompat.Button.Borderless"
  android:singleLine="true"
 //若是一行有两个TextView显示（标题+内容）， 则还是要套一层LinearLayout，而不要直接在ConstraintLayout中使用，比较难实现功能. 
 //不，这样也没多大意义
+- 使用autoLink属性识别链接类型
+
 
  java代码设置 tv.setSelect(true)
 //设置长度超长时的显示效果，后面加省略号. 嫌麻烦的话还是手动算长度加省略号吧，也不好，不同手机上显示长度不一样
-
 
 java:
 - tv.setError("报错信息");
@@ -110,6 +112,13 @@ yourTextView.setMovementMethod(new ScrollingMovementMethod());
 设置TextView可固定行数，超出部分可滚动
 - 同样一个TextView,如果我们的MainActivity 分别继承Activity，AppCompatActivity，我们打印一下我们的TextView，会发现继承了AppCompatActivity的会变成AppCompatTextView
 - 设置段落中部分文字特殊颜色或字体: tvHint.setText(Html.fromHtml("<big>将网关连接电源，并与家庭路由器相连，<br>使手机和网关在<font color='#FF9600'>同一网络下</font>，确定指示灯<br>（绿灯常亮）<big>"));
+- 关于TextView设置了drawableStart后无法在xml中设置图片大小的问题，在java代码中可以配置, 但不推荐这样使用，还不如外面再包一个LinearLayout来得简单
+ txtZQD = (TextView) findViewById(R.id.txtZQD);  
+        Drawable[] drawable = txtZQD.getCompoundDrawables();  
+        // 数组下表0~3,依次是:左上右下  
+        drawable[1].setBounds(100, 0, 200, 200);  
+        txtZQD.setCompoundDrawables(drawable[0], drawable[1], drawable[2],  
+                drawable[3]);  
 
 ## EditText
 xml:
@@ -127,6 +136,15 @@ xml:
 - et.setSelection(et.getText().length());  设置弹出时的光标位置
 - android:imeOptions
 附加功能，设置右下角IME动作与编辑框相关的动作，如actionDone右下角将显示一个“完成”，而不设置默认是一个回车符号。
+- 另外EditText还为我们提供了设置英文字母大写类型的属性：android:capitalize 默认none，提供了三个可选值：
+sentences：仅第一个字母大写
+words：每一个单词首字母大小，用空格区分单词
+characters:每一个英文字母都大写
+当然我们也可以调用setSelectAllOnFocus(true);让EditText获得焦点时选中全部文本！
+另外我们还可以调用setCursorVisible(false);设置光标不显示
+还可以调用getSelectionStart()和getSelectionEnd获得当前光标的前后位置
+- android:textScaleX="1.5"    //设置字与字的水平间隔
+android:textScaleY="1.5"    //设置字与字的垂直间隔
 
 java:
 -  显示小键盘 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(editPrivateMsg, 0);
@@ -175,6 +193,10 @@ xml:
 style="@style/Base.Widget.AppCompat.Button.Borderless"
 
 - 对于 Selector 当背景的，可以将 normal 状态的 color 设置为 @android:color/transparent ， 效果简洁
+- MaterialButton可以设置圆角等属性
+注意：MaterialButton必须设置textAppearance属性，如果没有的话会报错，不知道是不是bug。
+
+
 java:
 
 ## RadioButton
@@ -182,6 +204,11 @@ java:
   mRg2.clearCheck();
 - 取消选择小圆圈 android:button="@null"
 - 设置checked背景变化， 在selector文件中设置checked的样式即可
+- - Material中的ChipGroups控件可以实现流式布局的多选
+
+## CheckBox
+- 注意，关于CheckBox切换状态触发动作时，需要加一个判断
+ if (buttonView.isPressed()) { 否则可能多次触发动作
 
 ## Switch
 - 关于4.4以下switch自定义样式显示错误的问题，
@@ -319,6 +346,11 @@ public void onActivityCreated(@Nullable Bundle savedInstanceState) {
   可以直接给ImageView图片src上色
 - ImageView水波纹效果,android:background="?selectableItemBackgroundBorderless"
 - 设置背景图遮罩层颜色  clMode.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY ); 
+- ImageView的src属性和blackground的区别；
+adjustViewBounds设置图像缩放时是否按长宽比
+scaleType设置缩放类型
+ImageView为我们提供了adjustViewBounds属性，用于设置缩放时是否保持原图长宽比！ 单独设置不起作用，需要配合maxWidth和maxHeight属性一起使用！而后面这两个属性 也是需要adjustViewBounds为true才会生效的~
+
 ## Toast
 - 一般toast显示不出有3个原因： 
   1、在非UI线程中执行，建议使用handler显示提示 
@@ -331,40 +363,9 @@ public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 - 实现B在A的底部交叉居中显示
  app:layout_constraintBottom_toBottomOf="@id/tv_top"
   app:layout_constraintTop_toBottomOf="@+id/tv_top"
-- layout_constraintHorizontal_chainStyle 属性的应用，例如
-```
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+- layout_constraintHorizontal_chainStyle 属性的应用
+- ConstraintLayout+RecyclerView也是可以显示完全的，秘诀是RecyclerVIew需要设置height为0dp, 然后设置layout_constraintBottom_toTopOf等属性
 
-    <Button
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="测试111"
-        app:layout_constraintEnd_toStartOf="@id/textView2"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="测试222"
-        app:layout_constraintEnd_toStartOf="@id/textView3"
-        app:layout_constraintStart_toEndOf="@id/textView" />
-
-    <Button
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="测试333"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/textView2" />
-
-</android.support.constraint.ConstraintLayout>
-```
 ## FrameLayout
 - 调整子布局位置，如android:layout_marginTop="-100dp"
 
@@ -393,8 +394,12 @@ public void onActivityCreated(@Nullable Bundle savedInstanceState) {
   Arrays.asList(abc.split(","));
 
 ## ArrayList
-- Create ArrayList from array
+- String[] 转化为 List<String>
 new ArrayList<>(Arrays.asList(array))
+
+-  List<String>转换为String[]
+List<String> list = ..;
+String[] array = list.toArray(new String[0]);
 
 ## int
 - 十进制转化为十六进制，结果为C8。 Integer.toHexString(200);
@@ -467,6 +472,11 @@ android:adjustViewBounds="true"
 
 - 设置view透明图
   android:alpha="0.7"
+- View的滑动冲突一般可以分为三种：
+外部滑动和内部滑动方向不一致
+外部滑动方向和内部滑动方向一致
+嵌套上面两种情况
+比如说一个常见的，外部一个ListView，里面一个ScrollView。这个时候该怎么解决呢？其实这里想到了ViewPager，它里面实际上是解决了滑动冲突的，可以借鉴一下它的。
 
 
 ## 布局预览

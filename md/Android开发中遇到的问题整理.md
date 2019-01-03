@@ -156,3 +156,6 @@ https://blog.csdn.net/zivensonice/article/details/51451486
 - 谨防sql注入
 所谓SQL注入，就是通过把SQL命令插入到Web表单递交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。
 我们永远不要信任用户的输入，我们必须认定用户输入的数据都是不安全的，我们都需要对用户输入的数据进行过滤处理。
+- 当复制 .git或.gitignore文件夹到另一个新目录下是，提示如下：
+the item .git can't be replaced because it invisible
+需要先把新目录下的.git文件夹或.gitignore删掉，然后就可以了
