@@ -1,6 +1,84 @@
 ## 开发中遇到的Android问题整理
 
 ## Exceptions
+- JNI ERROR (app bug): local reference table overflow (max=512)
+也是引入别人View时造成的，检查了下发现View的类型写错了
+
+- Caused by: android.view.InflateException: Binary XML file line #14: Error inflating class com.renny.simplebrowser.view.widget.pullextend.ExpendPoint
+检查对应类的布局文件line#14 , 检查布局View的类型是不是错了。
+我后来发现是我复制别人的自定义View时，忘了修改View的名字了
+
+-  APK签名时报错Lint found fatal errors while assembling a release target. To proceed, either fix the issues identified by lint, or modify your build script as follows:
+发现是string多国语言包，但有的字符串在别的语言包中没有，所以打包报错了，可以按说明添加来忽略错误，但最好还是新增其他的string
+
+
+- System.err: io.reactivex.exceptions.OnErrorNotImplementedException: failed to connect to /192.168.0.225 (port 20000) after 10000ms
+        at io.reactivex.internal.functions.Functions$OnErrorMissingConsumer.accept(Unknown Source)
+        at io.reactivex.internal.functions.Functions$OnErrorMissingConsumer.accept(Unknown Source)
+        at io.reactivex.internal.observers.LambdaObserver.onError(Unknown Source)
+        at io.reactivex.internal.operators.observable.ObservableObserveOn$ObserveOnObserver.a(Unknown Source)
+        at io.reactivex.internal.operators.observable.ObservableObserveOn$ObserveOnObserver.b(Unknown Source)
+        at io.reactivex.internal.operators.observable.ObservableObserveOn$ObserveOnObserver.run(Unknown Source)
+具体现象是，某些型号的手机上才会出现，目前发现华为的。。。型号：FRD-DL00       andriod系统版本：6.0        EMUI版本：4.1
+现象是请求网络失败，而且会奔溃？ 但其他手机同一个apk能成功，
+
+解决办法：在服务端修改tcp_timestamp为0即可
+It's not from connection changes, at least not in my case - the devices are connected to WiFi in the office.
+However we've resolved the issue - it was server side. We had to disable tcp_timestamp on the server side and everything worked perfectly.
+https://www.jianshu.com/p/dde236d7211d
+
+- android 内存泄漏 InputmethodManager mParentInputMethodManager
+Android系统官方的bug，可不解决， 出现在 15<sdk版本<23
+
+- 一个fragment传值给Activity的问题。后来发现是自己类型写错了
+我写成了int sceneId = getIntent().getIntExtra(EXTRA_SCENE_ID, 0);
+应该是 long sceneId = getIntent().getLongExtra(EXTRA_SCENE_ID, 0);
+传值类型的前后要对应，切记.
+传值方法，可直接传 SceneDetailActivity.actionStart(getActivity(),sceneId);
+也可以在Activity中设置一个回调来传
+
+- 有时候发现AVD虚拟起重启后回到之前的状态了（如app还是以前的版本），那是因为关闭虚拟机时没有选择保存状态的选项，相当于硬盘自动还原了
+
+- git拉取远程UI文件夹时报错，error: The following untracked working tree files would be overwritten by by merge: gifts/.DS_Store Please move or remove them before you can merge. Aborting
+执行一次 git clean -d -fx .  即可
+
+- 版本升级后，supportLibrary升级为AndroidX的问题
+gradle.properties file:
+android.useAndroidX=true
+android.enableJetifier=true
+
+然后顶部菜单Refactor-》migrate to AndroidX
+接着要修改各个文件中的import问题
+
+Refactor到AndroidX， 然后全选要自动转化的文件即可，然后Do Refactor就自动转换了，不用自己再手动去转
+
+- 有时候编译出现问题。提示输入--stacktrace可以查看更多报错信息，在以下地方输入指令
+Settings - Build,Execution - Compiler - Command Line Options
+
+- 修改button样式 从 shapexx改为 selectorxxx时出现卡死的问题。
+因为这样把 selectorxxx下的shape也改成了  selectorxxx，导致发生了递归卡死的问题。
+结局：找到 selectorxxx 下的  selectorxxx改回来shapexxx即可
+```
+错误的：
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/shape_grey_gradient_semicircle" android:state_pressed="true" />
+    <item android:drawable="@drawable/selector_btn_semicircle" />
+</selector>
+
+正确的：
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/shape_grey_gradient_semicircle" android:state_pressed="true" />
+    <item android:drawable="@drawable/shape_red_gradient_circle_rect" />
+</selector>
+
+教训：重命名有风险，要谨慎修改
+```
+
+- 在一次将某属性重命名，将action重命名为property时，结果程序无法运行：Error Default activity not found
+后来发现坑爹的IDE居然把AndroidManifest设置中的两个action也改成了property，坑爹的操作
+正确的：<action android:name="android.intent.action.MAIN"/>
+错误的：<property android:name="android.intent.property.MAIN"/>
+
 - Android Studio 3 Gradle插件报错：AAPT2 error: check logs for details
 Android的Gradle 3.0插件默认启动Aapt2，目的是为了改进增量资源的处理。
 如果有问题可以退回到之前的版本，打开gradle.properties，添加如下内容
@@ -12,7 +90,7 @@ android.enableAapt2=false
 - android 串口 提示没有权限读写权限
   看一下是不是选错了串口，要选择ttyS01234 ,而不是ttyGS1
 
-- 网络请求报错 Illegal character in query at index 153
+- 用某些网络请求库报错 Illegal character in query at index 153
   因为存在空格导致？替换为%20
   url.replaceAll(" ","%20");
 
@@ -29,6 +107,13 @@ android.enableAapt2=false
   1、直接在AS中将jpg图片改成png为后缀的图片，所以导致了这种情况的发生
   2、一些点9图不规范，AS中点9图必须四边全部描黑点，而这在eclipse中就比较松懈。所以修改相应的图片就行！
   （直接把.9后缀去掉 测试能运行了 就说明是第二种情况所致）
+   <br>这是因为.9图不规范所致，最好删除不规范的.9图，重新制作,或者再build.gradle中添加如下两句，让IDE不去严格检查png图
+  <br>aaptOptions.cruncherEnabled = false
+  <br>aaptOptions.useNewCruncher = false
+
+- xml布局报错：The following classes could not be found: - ImageView (Change to android.widget.ImageView, Fix Build Path, Edit XML).
+  这问题害的我花了半天时间下载api16，最后发现是一个test.png图片的命名问题了
+  更改.9图命名（去掉.9，因为as对.9要求严格，不像eclipse）或标准样式
 
 - com.android.support 包冲突问题
 在gradle中设置
@@ -42,15 +127,6 @@ configurations.all {
         }
     }
 }
-
-- Android - Error:Execution failed for task ':app:mergeDebugResources'
-  <br>这是因为.9图不规范所致，最好删除不规范的.9图，重新制作,或者再build.gradle中添加如下两句，让IDE不去严格检查png图
-  <br>aaptOptions.cruncherEnabled = false
-  <br>aaptOptions.useNewCruncher = false
-
-- xml布局报错：The following classes could not be found: - ImageView (Change to android.widget.ImageView, Fix Build Path, Edit XML).
-  这问题害的我花了半天时间下载api16，最后发现是一个test.png图片的命名问题了
-  更改.9图命名（去掉.9，因为as对.9要求严格，不像eclipse）或标准样式
 
 - android打包提示 checkReleaseBuilds false
   解决办法，在build.gradle里面的buildTypes同级添加如下代码，放在android下面
@@ -79,17 +155,19 @@ configurations.all {
   <uses-permission android:name="android.permission.INTERNET" />
   注意：直接用内置浏览器打开时又不会报错，那是因为调用的是手机自带浏览器，而不是你自己应用中的webView。 自己应用中的webView需要设置INTERNET权限才能访问网络
 
-
 - startActivity没有成功跳转，查看日志，是否AndroidManifest中没有声明Activity
-- E/BufferQueue: [com.uma.switcher/com.uma.switcher.background.activity.BackgroundMainActivity] dequeueBuffer: can't dequeue multiple buffers without setting the buffer count
+
 - java.lang.IllegalThreadStateException: Thread already started
   <br>不能重复start同一个线程, 可以重开新线程,或者使用下面的方法
   if (thread.getState() == Thread.State.NEW){
   thread.start();}
+
 - Error:(6, 8) error: Attempt to recreate a file for type io.realm.AdvertisementInfoRealmProxyInterface
   <br>在别的文件夹中有一样名字的bean类，删除一个即可
+
 - INSTALL_FAILED_NO_MATCHING_ABIS is when you are trying to install an app that has native libraries and it doesn't have a native library for your cpu architecture. For example if you compiled an app for armv7 and are trying to install it on an emulator that uses the Intel architecture instead it will not work.
 <br>虚拟机安装应用失败,INSTALL_FAILED_NO_MATCHING_ABIS,是因为native库不适配虚拟机
+
 - 使用adb命令时
   adb opendir failed, Permission denied
   执行 adb root shell来进入
@@ -111,8 +189,6 @@ configurations.all {
 - java.lang.IllegalStateException: Couldn't read row 0, col -1 from CursorWind
   数据库问题，看selectArgs那里是不是没有某个字段
   
-
-
 -数据库更改数据时报错（Too many bind arguments.  2 arguments were provided but the statement needs 1 arguments.）
  <br>在Where字段中缺少了+ " = ?"
  正确写法：db.update(table, values, whereClause + "=?", whereArgs);
@@ -120,24 +196,20 @@ configurations.all {
 - 旧项目使用的apache网络请求过期了，需要在gradle设置 android｛最后加入以下行｝
   useLibrary 'org.apache.http.legacy'
 
-
 - WindowManager$BadTokenException: Unable to add window -- token null is not for an application
 <br>导致报这个错是在于new AlertDialog.Builder(mcontext)，虽然这里的参数是AlertDialog.Builder(Context context)但我们不能使用getApplicationContext()获得的Context,而必须使用Activity,因为只有一个Activity才能添加一个窗体。 
-
-
 
 - java.lang.RuntimeException: Can't create handler inside thread that has not called Looper.prepare()
   Handler若在子线程中运行的话，需要先Looper.prepare()
 
 - Error:Conflict with dependency 'com.google.code.findbugs:jsr305'
+依赖冲突
 In your app's build.gradle add the following:
 android {
     configurations.all {
         resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
     }
 }
-
-Enforces Gradle to only compile the version number you state for all dependencies, no matter which version number the dependencies have stated.
 
 - dialog - The specified child already has a parent. You must call removeView() on the child's parent first
 The problem is on this line: alert.setView(input); You added input View that have already parent. Create new input instance.
@@ -148,7 +220,7 @@ https://blog.csdn.net/zivensonice/article/details/51451486
 
 ## Others
 - android:allowBackup="true"  有风险，连接数据线可恢复备份数据，应该设置为false. 
-  作为一个jar库，不要设置allowback属性
+  作为一个jar库，不要设置allowBackup属性
 - apk经常装到一半就失败error，可能是连接的口有问题，电脑换一个USB口试试（最后我是加一个USB扩展器才解决了）
 - 查看log的额外方法 /Users/<user>/Library/Logs/AndroidStudio2.2/
 - EditText挡住ListView的问题，在Manifest中设置Activity属性 android:windowSoftInputMode="stateAlwaysHidden|adjustPan"

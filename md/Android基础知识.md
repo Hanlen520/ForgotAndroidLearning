@@ -8,6 +8,7 @@
 - [RadioButton](#radiobutton)
 - [CheckBox](#checkbox)
 - [Switch](#switch)
+- [SeekBar](#seekbar)
 - [ScrollView](#scrollview)
 - [AlertDialog](#alertdialog)
 - [RecyclerView](#recyclerView)
@@ -231,6 +232,31 @@ android:thumbTextPadding="10dp"
 
 - 为了更好的Switch样式和配置颜色等，建议高兼容包的SwitchCompact
 androidx.appcompat.widget.SwitchCompat
+
+## SeekBar
+- 在api19以下，seekBar在scrollView中会出现无法拖动的问题？，解决办法，在新增一个触摸事件处理
+```
+viewHolder.sbCurtain.setOnTouchListener(new View.OnTouchListener() {
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        int action = event.getAction();
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                break;
+
+            case MotionEvent.ACTION_UP:
+                v.getParent().requestDisallowInterceptTouchEvent(false);
+                break;
+            default:
+                break;
+        }
+        // Handle Seekbar touch events.
+        v.onTouchEvent(event);
+        return true;
+    }
+});
+```
 
 ## ScrollView
 - 配合TextView来打印日志，自动滚到最底部

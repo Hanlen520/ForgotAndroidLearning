@@ -148,7 +148,8 @@ git commit -m 'update .gitignore'
 如 git pull upstream/matster
 
 - gitk  查看commit变更日志
-- git remove .DS_Store //merge冲突时，删除.DS_Store文件
+- git拉取远程UI文件夹时报错，error: The following untracked working tree files would be overwritten by by merge: gifts/.DS_Store Please move or remove them before you can merge. Aborting
+执行一次 git clean -d -fx .  即可
 - 当复制 .git或.gitignore文件夹到另一个新目录下是，提示如下：
 the item .git can't be replaced because it invisible
 需要先把新目录下的.git文件夹或.gitignore删掉，然后就可以了
