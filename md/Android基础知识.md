@@ -109,7 +109,7 @@ java:
 yourTextView.setMovementMethod(new ScrollingMovementMethod());
 设置TextView可固定行数，超出部分可滚动
 - 同样一个TextView,如果我们的MainActivity 分别继承Activity，AppCompatActivity，我们打印一下我们的TextView，会发现继承了AppCompatActivity的会变成AppCompatTextView
-- tvHint.setText(Html.fromHtml("<big>将网关连接电源，并与家庭路由器相连，<br>使手机和网关在<font color='#FF9600'>同一网络下</font>，确定指示灯<br>（绿灯常亮）<big>"));
+- 设置段落中部分文字特殊颜色或字体: tvHint.setText(Html.fromHtml("<big>将网关连接电源，并与家庭路由器相连，<br>使手机和网关在<font color='#FF9600'>同一网络下</font>，确定指示灯<br>（绿灯常亮）<big>"));
 
 ## EditText
 xml:
@@ -248,6 +248,25 @@ scrollView.post(new Runnable() {
         <item name="android:windowBackground">@color/transparent</item><!-- 背景透明 -->
         <item name="android:backgroundDimEnabled">false</item><!--模糊-->
     </style>
+```
+- 在create()执行之后设置dialog背景透明
+```
+builder.setView(view);
+Dialog dialog = builder.create();
+Window window = dialog.getWindow();
+window.setBackgroundDrawableResource(R.color.colorTransparent);
+dialog.show();
+```
+- 关于AlertDialog兼容性的问题，背景无法完全透明，只要更换AlertDialog api为appcompat的即可
+新版本是 import androidx.appcompat.app.AlertDialog;
+- 设置dialog的宽高比例
+```
+WindowManager windowManager = getWindowManager();
+Display d = windowManager.getDefaultDisplay();  //为获取屏幕宽、高
+WindowManager.LayoutParams p = window.getAttributes();  //获取对话框当前的参数值
+p.height = (int) (d.getHeight() * 0.5);   //高度设置为屏幕的0.5
+p.width = (int) (d.getWidth() * 0.8);    //宽度设置为屏幕的0.8
+window.setAttributes(p);
 ```
 
 ## RecyclerView

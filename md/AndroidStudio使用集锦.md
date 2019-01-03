@@ -99,11 +99,15 @@ It will reduce 90% gradle build time.
   compile 'com.squareup.okhttp3:okhttp:3.4.2'
 ```
 - 在Androidstudio 直接从File->New -> Import Sample 总是报错：
-  在System Steeints-HTTP Proxy代理这设置一下Auto-detect proxy settings, 自动检测代理，然后在导入Sample就能打开了
+  在System Settings-HTTP Proxy代理这设置一下Auto-detect proxy settings, 自动检测代理，然后在导入Sample就能打开了
   
 - 在3.0版本中，compile 指令被标注为过时方法，而新增了两个依赖指令，一个是implement 和api，这两个都可以进行依赖添加，但是有什么区别呢？api 指令
   完全等同于compile指令，没区别，你将所有的compile改成api，完全没有错。implement指令
   这个指令的特点就是，对于使用了该命令编译的依赖，对该项目有依赖的项目将无法访问到使用该命令编译的依赖中的任何程序，也就是将该依赖隐藏在内部，而不对外部公开。
+
+- Android Studio Refactor时排除一些不需要更改的选项。
+右键弹出菜单，点击“Exclude”或“Remove”即可
+(没用啊卧槽，IDE的Bug？）
 
 ## 配置注释模版
 1。在Live Templates中添加模版，并配置快捷单词auth

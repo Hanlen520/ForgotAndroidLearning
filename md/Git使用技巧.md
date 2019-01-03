@@ -148,3 +148,4 @@ git commit -m 'update .gitignore'
 如 git pull upstream/matster
 
 - gitk  查看commit变更日志
+- git remove .DS_Store //merge冲突时，删除.DS_Store文件
