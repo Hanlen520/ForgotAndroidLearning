@@ -358,7 +358,9 @@ public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 - 使用RecyclerView时发现item显示不全的问题，在外层都用LinearLayout或者再包一层NestedScrollView即可，使用ConstraintLayout不当，会显示不全
 - 取消RecyclerView刷新数据时的闪烁动画效果
 ((DefaultItemAnimator) rvButton.getItemAnimator()).setSupportsChangeAnimations(false);
-
+- diffutil一个神奇的工具类，不好用，暂时不推荐
+- 滑动时定位到当前显示item
+new LinearSnapHelper().attachToRecyclerView(recycleview);
 ### 关于视图预览
 - tools:itemCount  //设置显示多少个item
 - tools:layoutManager="GridLayoutManager" //要和spanCount一起用才有效

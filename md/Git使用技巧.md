@@ -153,3 +153,7 @@ git commit -m 'update .gitignore'
 - 当复制 .git或.gitignore文件夹到另一个新目录下是，提示如下：
 the item .git can't be replaced because it invisible
 需要先把新目录下的.git文件夹或.gitignore删掉，然后就可以了
+
+- 报错 fatal: refusing to merge unrelated histories
+在后面加一句 --allow-unrelated-histories
+如：git pull origin master --allow-unrelated-histories
