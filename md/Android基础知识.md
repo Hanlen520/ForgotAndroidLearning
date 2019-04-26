@@ -146,6 +146,10 @@ characters:每一个英文字母都大写
 还可以调用getSelectionStart()和getSelectionEnd获得当前光标的前后位置
 - android:textScaleX="1.5"    //设置字与字的水平间隔
 android:textScaleY="1.5"    //设置字与字的垂直间隔
+- 设置EditText单行，且enter键换行或收起键盘时，三个字段都要
+android:imeOptions="actionDone"
+android:inputType="textPassword"
+android:maxLines="1"
 
 java:
 -  显示小键盘 ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE)).showSoftInput(editPrivateMsg, 0);
@@ -422,6 +426,7 @@ ImageView为我们提供了adjustViewBounds属性，用于设置缩放时是否�
   3、如果在一个字符串中有多个分隔符，可以用“|”作为连字符，比如：“a=1 and b =2 or c=3”,把三个都分隔出来，可以用String.split("and|or");
 - String[]转List
   Arrays.asList(abc.split(","));
+- new String(T t)方法可以转换各种格式成字符串，如  new String(byte[])  可以直接把byte[]转为各种格式，ASCII  表示的字符也可以
 
 ## ArrayList
 - String[] 转化为 List<String>

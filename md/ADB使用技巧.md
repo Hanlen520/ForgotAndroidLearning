@@ -29,6 +29,10 @@
 - adb shell cat /proc/meminfo // 查看内存信息
 - adb shell cat /proc/cpuinfo // 查看CPU信息 
 
+- 当执行ls报错Permission denied时
+run-as packageName
+再输入ls就行了
+
 
 ## Monkey测试
 - adb shell monkey  // 使用monkey测试

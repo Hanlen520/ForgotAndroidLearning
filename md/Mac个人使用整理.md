@@ -38,17 +38,12 @@ https://segmentfault.com/a/1190000010608389
 1. 以自己常用的 Firefox 浏览器为例，通过屏幕左上角的入口得知退出 Firefox 浏览器的快捷键名字是“Quit Firefox”（如下图1）
 2. 在设置里新增名为“Quit Firefox”的快捷键，键为 option + command + Q（如下图2）
 
-
-
-
 31. 安装未知来源的破解软件时，有的会打不开，提示软件损坏请放到trash，此时要在设置的安全设置中勾选全部可打开，如果没有这个选项的话（macOS Sierra 10.12）,打开终端，输入sudo spctl --master-disable然后按回车。然后会看见个password后面还有个钥匙图标，然后不用管他直接再继续输入你自己电脑解锁密码（输入的时候不显示你输入的密码，感觉就是输入不了东西一样，也不用管，凭感觉输入完按回车键）。然后再回到隐私里，就看见任何来源了。
-
 
 30.Gif图查看，选中git图片，按空格预览即可播放
 
 29.修改zsh后，终端显示某些字符乱码的问题，在iTerm设置修改下字体就好了
 Preferences - Profiles - Text - Change Font - All Fonts Meslo LG M
-
 
 27. 下载完整包来安装macOS的话，文稿文件夹内的文件会消失，所以要备份这个文件夹，其他应用还存在
 
