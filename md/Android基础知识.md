@@ -14,6 +14,7 @@
 - [RecyclerView](#recyclerView)
 - [ImageView](#imageview)
 - [Toast](#toast)
+- [Dialog](#dialog)
 - [ConstraintLayout](#ConstraintLayout)
 - [FrameLayout](#FrameLayout)
 - [String](#string)
@@ -391,6 +392,11 @@ ImageView为我们提供了adjustViewBounds属性，用于设置缩放时是否�
   2、没有执行到，这是逻辑错误 
   3、可能是手机设置-应用通知管理没打开
 - Toast有可能导致Activity泄漏。在创建Toast时，需要传入Context，如果这个Context是Activity，而Toast是异步弹出，有可能弹出时Activity已经结束。所以正确使用方法，应该是传入ApplicationContext，避免Toast导致内存泄漏。
+
+## Dialog
+- //设置dialog背景透明,要在dialog.show()之后执行
+Window window = dialog.getWindow();
+window.setBackgroundDrawableResource(R.color.colorTransparent);
 ## ConstraintLayout
 - 高宽用0dp wrap_content， 而不能用match_parent
 - app:layout_constraintDimensionRatio="30:19"   //设置宽高比例 ，自适应，把固定长度的设为0dp即可
